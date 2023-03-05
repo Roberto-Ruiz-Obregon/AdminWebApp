@@ -1,11 +1,19 @@
-import React from 'react'
-import ReactDom from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Saludo } from './dashboard.js'; 
 import './style.css'; 
+import { Sidebar } from './sidebar';
 
-ReactDom.render(<Saludo />, document.getElementById('root'));
+function App() {
+  return (
+    <div>
+      <Saludo />
+      <Sidebar />
+    </div>
+  );
+}
 
-
+ReactDOM.render(<App />, document.getElementById('root'));
 
 
 
