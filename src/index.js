@@ -1,10 +1,9 @@
 import React from 'react'
-import ReactDom from 'react-dom/client'
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import ReactDom from 'react-dom'
+import { Saludo } from './dashboard.js'; 
+import './style.css'; 
 
-//Elemento raíz de react
-const root = ReactDom.createRoot(document.getElementById('root'))
-
+ReactDom.render(<Saludo />, document.getElementById('root'));
 
 
 
