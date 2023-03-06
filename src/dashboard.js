@@ -3,8 +3,6 @@ import './style.css';
 import logo from './assets/image 9.png';
 // { useState }
 
-
-
 export function Saludo() {
   const usuario = {
     nombre: 'Carlos',
@@ -25,25 +23,4 @@ export default Saludo;
 
 
 
-// export function Saludo() {
-//   const [nombre, setNombre] = useState('');
-//   const [apellido, setApellido] = useState('');
 
-//   return (
-//     <div>
-//       <input
-//         type="text"
-//         placeholder="Nombre"
-//         value={nombre}
-//         onChange={(event) => setNombre(event.target.value)}
-//       />
-//       <input
-//         type="text"
-//         placeholder="Apellido"
-//         value={apellido}
-//         onChange={(event) => setApellido(event.target.value)}
-//       />
-//       <h1>Hola, {nombre} {apellido}!</h1>
-//     </div>
-//   );
-// }
