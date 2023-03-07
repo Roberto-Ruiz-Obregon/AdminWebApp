@@ -3,7 +3,7 @@ import '../styles/style.css';
 import { Link, useNavigate } from 'react-router-dom';
 import profile from '../assets/perfil.png'
 
-export function Sidebar() {
+function Sidebar() {
   const navigate = useNavigate();
 
   return (
@@ -13,9 +13,13 @@ export function Sidebar() {
       <button className="sidebar-button" onClick={() => navigate('/cursos')}>
         Agregar cursos
       </button>
+      <button className="sidebar-button" onClick={() => navigate('/verCursos')}>
+        Ver cursos
+      </button>
       <button className="sidebar-button">Salir</button>
     </div>
-  );
+    
+  ); 
 }
 
-  
+export default Sidebar;
