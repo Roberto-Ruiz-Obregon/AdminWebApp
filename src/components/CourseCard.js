@@ -5,7 +5,7 @@ function CourseCard(props) {
   return (
     <div className="course-card">
       <h3>{props.courseName}</h3>
-      <img src={logo} alt={props.courseName} />
+      {/* <img src={logo} alt={props.courseName} /> */}
     </div>
   );
 }

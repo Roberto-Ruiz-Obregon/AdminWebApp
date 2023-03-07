@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/style.css';
 import logo from '../assets/image 9.png';
 import CourseCard from '../components/CourseCard';
@@ -13,10 +13,16 @@ function Cursos() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+  
     const newCourses = [...courses, newCourse];
+   
     setCourses(newCourses);
     setNewCourse('');
   };
+
+  useEffect(function(){
+    console.log(courses)
+  }, [courses]) 
 
   return (
     <div>
@@ -32,7 +38,7 @@ function Cursos() {
           Agregar Curso
         </button>
       </form>
-      
+     
       {courses.map((course, index) => ( 
         <CourseCard key={index} courseName={course}/>
       ))}
