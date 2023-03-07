@@ -1,7 +1,7 @@
 import React from 'react';
-import './style.css';
-import logo from './assets/image 9.png';
-import grafica from './assets/grafica.png';
+import '../styles/style.css';
+import logo from '../assets/image 9.png';
+import grafica from '../assets/grafica.png';
 
 export function Saludo() {
   const usuario = {

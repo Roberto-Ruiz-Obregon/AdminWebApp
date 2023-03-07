@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './style.css';
-import logo from './assets/image 9.png';
-import CourseCard from './CourseCard';
+import '../styles/style.css';
+import logo from '../assets/image 9.png';
+import CourseCard from '../components/CourseCard';
 
 function Cursos() {
   const [newCourse, setNewCourse] = useState('');

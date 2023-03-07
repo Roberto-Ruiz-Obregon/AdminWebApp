@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './assets/image 9.png';
+import logo from '../assets/image 9.png';
 
 function CourseCard(props) {
   return (

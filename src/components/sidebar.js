@@ -1,7 +1,7 @@
 import React from 'react';
-import './style.css';
+import '../styles/style.css';
 import { Link, useNavigate } from 'react-router-dom';
-import profile from './assets/perfil.png'
+import profile from '../assets/perfil.png'
 
 export function Sidebar() {
   const navigate = useNavigate();
