@@ -36,8 +36,20 @@ class VerCursos extends React.Component {
         <h1> Cursos subidos </h1>{" "}
         {cursos.map((curso) => (
           <ol key={curso.id}>
-            nombreCurso: {curso.nombreCurso}, fechaInicio: {curso.fechaInicio},
-            ponente: {curso.ponente}
+            _id:         {curso._id},
+            nombreCurso: {curso.nombreCurso}, 
+            ponente:     {curso.ponente}
+            topics:      {curso.topics},
+            teachers:    {curso.teachers},
+            courseName:  {curso.courseName},
+            description: {curso.description} ,
+            modality:    {curso.modality} ,
+            status:      {curso.status} ,
+            startDate:   {curso.startDate},
+            endDate:     {curso.endDate} ,
+            imageUrl:    {curso.imageUrl} ,
+            createdAt:   {curso.createdAt},
+            updatedAt:   {curso.updatedAt}
           </ol>
         ))}
       </div>
