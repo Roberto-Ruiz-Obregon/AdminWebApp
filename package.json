@@ -14,18 +14,19 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
+    "sass": "^1.58.3",
     "web-vitals": "^2.1.4"
   },
-"husky": {
+  "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-   "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-     "prettier --write"
-   ]
- },
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
+    ]
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

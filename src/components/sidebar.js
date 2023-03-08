@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/style.css";
+import "../styles/style.scss";
 import { Link, useNavigate } from "react-router-dom";
 import profile from "../assets/perfil.png";
 

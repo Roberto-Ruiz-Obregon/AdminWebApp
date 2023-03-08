@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/style.css";
+import "../styles/style.scss";
 
 // class VerCursos extends React.Component {
 //   constructor(props) {
@@ -75,9 +75,9 @@ const cursos = [request,request,request]
 
 
 function VerCursos() {
-<<<<<<< HEAD
   return(
       <div className="saludo-container">
+      <div className="inicio-agregar">
         {cursos.map((curso) => (
           <ul key={curso._id}>
             _id: {curso._id},
@@ -95,12 +95,8 @@ function VerCursos() {
           </ul>
         ))}
       </div>
+      </div>
     )
-=======
-    return (
-        <h4 className="inicio_agregar">Inicio / Ver Cursos</h4>
-    );
->>>>>>> develop
 }
 
 export default VerCursos;

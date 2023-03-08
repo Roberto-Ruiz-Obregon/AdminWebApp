@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../styles/style.css";
+import "../styles/style.scss";
 import logo from "../assets/image 9.png";
 import CourseCard from "../components/CourseCard";
 
