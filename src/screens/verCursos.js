@@ -1,6 +1,8 @@
 import React from 'react'
 import '../styles/style.css';
 
-export function VerCursos() {
-    <h1>Aquí verás los cursos subidos</h1>
+function VerCursos() {
+    <h4 className="inicio_agregar">Inicio / Ver Cursos</h4>
 }
+
+export default VerCursos;

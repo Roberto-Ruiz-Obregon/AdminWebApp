@@ -5,15 +5,15 @@ import './styles/style.css';
 import  Navbar  from './components/sidebar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 import Cursos from './screens/cursos';
-import verCursos from './screens/verCursos'
+import VerCursos from './screens/verCursos'
 
 function App() {
   return (
     <div>
       <Routes>
         <Route exact path="/" element={<Saludo />} /> 
-        <Route path="/cursos" element={<Cursos />} />
-        <Route path="/verCursos" element={<verCursos />} />  
+        <Route path="/agregarCursos" element={<Cursos />} />
+        <Route path="/verCursos" element={<VerCursos />} />  
       </Routes>
     <Navbar />
     </div>

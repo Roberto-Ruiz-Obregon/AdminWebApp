@@ -26,14 +26,14 @@ function Cursos() {
 
   return (
     <div>
-      <h2 id="cursos">Aquí puedes agregar cursos</h2>
-      <img src={logo} alt="Logo fundación" className="logo-der" />
+      <h5 className="inicio_agregar">Inicio / Agregar Cursos</h5>
+      <h2 className="agregarc">Agregar Cursos</h2>
 
       <form onSubmit={handleSubmit} id="form">
         <label htmlFor="newCourse" id="newCourse_">
-          Nuevo curso:
+          Título del curso:
         </label>
-        <input type="text" id="newCourse" value={newCourse} onChange={handleInputChange} />
+        <input type="text" id="newCourse" className="newCourse_inpt" value={newCourse} onChange={handleInputChange} />
         <button type="submit" id="agregar">
           Agregar Curso
         </button>

@@ -13,9 +13,9 @@ export function Saludo() {
   return (
     <div className="saludo-container">
       <h1 className="saludo-greeting">Hola, {usuario.nombre} {usuario.apellido}!</h1>
-      <h3 className="personas_inscritas">Personas inscritas</h3>
+      <h3 className="personas_inscritas">Personas inscritas:</h3>
       <img src={grafica} alt="grafica" className="grafica"/>
-      <img src={logo} alt="Logo fundación" className="logo-der" />
+      
     </div>
     
   );
