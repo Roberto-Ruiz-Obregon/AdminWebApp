@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Saludo } from './screens/dashboard'; 
+
+// style
 import './styles/style.css'; 
-import  Navbar  from './components/sidebar';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
+
+// views
+import { Saludo } from './screens/dashboard'; 
 import Cursos from './screens/cursos';
-import verCursos from './screens/verCursos'
+import verCursos from './screens/verCursos';
+import  Navbar  from './components/sidebar';
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 
 function App() {
   return (
