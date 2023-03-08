@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import '../styles/style.css';
-import logo from '../assets/image 9.png';
-import CourseCard from '../components/CourseCard';
+import React, { useState, useEffect } from "react";
+import "../styles/style.css";
+import logo from "../assets/image 9.png";
+import CourseCard from "../components/CourseCard";
 
 function Cursos() {
-  const [newCourse, setNewCourse] = useState('');
+  const [newCourse, setNewCourse] = useState("");
   const [courses, setCourses] = useState([]);
 
   const handleInputChange = (event) => {
@@ -13,16 +13,19 @@ function Cursos() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  
+
     const newCourses = [...courses, newCourse];
-   
+
     setCourses(newCourses);
-    setNewCourse('');
+    setNewCourse("");
   };
 
-  useEffect(function(){
-    console.log(courses)
-  }, [courses]) 
+  useEffect(
+    function () {
+      console.log(courses);
+    },
+    [courses]
+  );
 
   return (
     <div>
@@ -33,20 +36,22 @@ function Cursos() {
         <label htmlFor="newCourse" id="newCourse_">
           Nuevo curso:
         </label>
-        <input type="text" id="newCourse" value={newCourse} onChange={handleInputChange} />
+        <input
+          type="text"
+          id="newCourse"
+          value={newCourse}
+          onChange={handleInputChange}
+        />
         <button type="submit" id="agregar">
           Agregar Curso
         </button>
       </form>
-     
-      {courses.map((course, index) => ( 
-        <CourseCard key={index} courseName={course}/>
+
+      {courses.map((course, index) => (
+        <CourseCard key={index} courseName={course} />
       ))}
     </div>
   );
 }
 
 export default Cursos;
-
-
-
