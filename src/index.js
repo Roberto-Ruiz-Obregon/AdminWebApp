@@ -9,13 +9,15 @@ import VerCursos from './screens/verCursos'
 
 function App() {
   return (
-    <div>
-      <Routes>
-        <Route exact path="/" element={<Saludo />} /> 
-        <Route path="/agregarCursos" element={<Cursos />} />
-        <Route path="/verCursos" element={<VerCursos />} />  
-      </Routes>
-    <Navbar />
+    <div id="app-container">
+      <Navbar />
+      <div id="app-base-layout">
+        <Routes>
+          <Route exact path="/" element={<Saludo />} /> 
+          <Route path="/agregarCursos" element={<Cursos />} />
+          <Route path="/verCursos" element={<VerCursos />} />  
+        </Routes>
+      </div>
     </div>
   );
 }
