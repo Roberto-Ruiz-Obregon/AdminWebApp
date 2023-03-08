@@ -9,20 +9,9 @@ function Navbar() {
   return (
     <div className="navbar">
       <img src={profile} alt="perfil" className="btn_perfil" />
-<<<<<<< HEAD
-      <button
-        className="navbar-button"
-        id="inicio_btn"
-        onClick={() => navigate("/")}
-      >
-        Inicio
-      </button>
-      <button className="navbar-button" onClick={() => navigate("/cursos")}>
-=======
       <button className="navbar-button" id='inicio_btn' onClick={() => navigate('/')}>Inicio</button>
       <button className="navbar-button" id='inicio_btn' onClick={() => navigate('/')}>Correos</button>
       <button className="navbar-button" onClick={() => navigate('/agregarCursos')}>
->>>>>>> ep8c1-Fer
         Agregar cursos
       </button>
       <button className="navbar-button" onClick={() => navigate("/verCursos")}>

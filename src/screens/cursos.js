@@ -36,16 +36,7 @@ function Cursos() {
         <label htmlFor="newCourse" id="newCourse_">
           Título del curso:
         </label>
-<<<<<<< HEAD
-        <input
-          type="text"
-          id="newCourse"
-          value={newCourse}
-          onChange={handleInputChange}
-        />
-=======
         <input type="text" id="newCourse" className="newCourse_inpt" value={newCourse} onChange={handleInputChange} />
->>>>>>> ep8c1-Fer
         <button type="submit" id="agregar">
           Agregar Curso
         </button>

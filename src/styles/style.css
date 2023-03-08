@@ -1,12 +1,4 @@
 .saludo-container {
-<<<<<<< HEAD
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 80vh;
-}
-=======
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,7 +12,6 @@
     font-weight: bold;
     text-align: center;
   }
->>>>>>> ep8c1-Fer
 
 .saludo-greeting,
 #cursos {
@@ -31,16 +22,6 @@
   text-align: center;
 }
 
-<<<<<<< HEAD
-#newCourse,
-#newCourse_ {
-  font-size: 30px;
-  font-weight: light;
-  text-align: center;
-  margin-left: 15%;
-  font-family: var(--fuente);
-}
-=======
   .logo-der {
     position: absolute;
     top: 10%;
@@ -82,7 +63,6 @@
     right: 70px
     
   }
->>>>>>> ep8c1-Fer
 
 #agregar {
   font-size: 20px;
@@ -163,12 +143,9 @@
 .course-card {
   margin-left: 50%;
 }
-<<<<<<< HEAD
-=======
 
 .newCourse_inpt {
   position: absolute;
   margin-top: 80px;
   margin-left: 10px;
 }
->>>>>>> ep8c1-Fer
