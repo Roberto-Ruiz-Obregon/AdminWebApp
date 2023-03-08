@@ -75,6 +75,7 @@ const cursos = [request,request,request]
 
 
 function VerCursos() {
+<<<<<<< HEAD
   return(
       <div className="saludo-container">
         {cursos.map((curso) => (
@@ -95,6 +96,11 @@ function VerCursos() {
         ))}
       </div>
     )
+=======
+    return (
+        <h4 className="inicio_agregar">Inicio / Ver Cursos</h4>
+    );
+>>>>>>> develop
 }
 
 export default VerCursos;
