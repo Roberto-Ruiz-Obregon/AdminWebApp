@@ -1,10 +1,26 @@
 .saludo-container {
+<<<<<<< HEAD
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 80vh;
 }
+=======
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 95vh;
+  }
+  
+.saludo-greeting, .agregarc {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+  }
+>>>>>>> ep8c1-Fer
 
 .saludo-greeting,
 #cursos {
@@ -15,6 +31,7 @@
   text-align: center;
 }
 
+<<<<<<< HEAD
 #newCourse,
 #newCourse_ {
   font-size: 30px;
@@ -23,6 +40,49 @@
   margin-left: 15%;
   font-family: var(--fuente);
 }
+=======
+  .logo-der {
+    position: absolute;
+    top: 10%;
+    right: 0;
+    margin: 15px;
+    width: 80px; 
+    height: 70px; 
+  }
+  
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #CF2A2A;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    padding: 22px;
+  }
+  
+  .navbar-button {
+    padding-right: 60px;
+    font-family: 'Segoe UI', Roboto, 'Open Sans', sans-serif;
+    color: white;
+    background-color: transparent;
+    border: none;
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: light;
+    /* text-transform: uppercase; */
+  }
+  
+  
+  .btn_perfil {
+    height: 65px;
+    position: absolute;
+    right: 70px
+    
+  }
+>>>>>>> ep8c1-Fer
 
 #agregar {
   font-size: 20px;
@@ -89,9 +149,9 @@
 
 .grafica {
   margin-top: 1%;
-  margin-left: -450px;
-  width: 500px;
-  height: 600px;
+  margin-left: 2px;
+  width: 600px;
+  height: 400px;
 }
 
 .personas_inscritas {
@@ -103,3 +163,12 @@
 .course-card {
   margin-left: 50%;
 }
+<<<<<<< HEAD
+=======
+
+.newCourse_inpt {
+  position: absolute;
+  margin-top: 80px;
+  margin-left: 10px;
+}
+>>>>>>> ep8c1-Fer

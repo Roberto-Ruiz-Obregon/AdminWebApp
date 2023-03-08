@@ -57,4 +57,8 @@ class VerCursos extends React.Component {
   }
 }
 
+function VerCursos() {
+    <h4 className="inicio_agregar">Inicio / Ver Cursos</h4>
+}
+
 export default VerCursos;
