@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 68vh;
+    height: 80vh;
   }
   
 .saludo-greeting, #cursos {
@@ -31,33 +31,44 @@
 
   .logo-der {
     position: absolute;
-    top: 0;
+    top: 10%;
     right: 0;
     margin: 15px;
     width: 80px; 
     height: 70px; 
   }
   
-  .sidebar {
+  .navbar {
     position: fixed;
-    left: 0;
     top: 0;
-    height: 100%;
-    width: 150px;
-    background-color: #333232;
-    padding: 20px;
+    left: 0;
+    width: 100%;
+    background-color: #CF2A2A;
     display: flex;
-    flex-direction: column;
+    /* justify-content: space-between; */
     align-items: center;
-    justify-content: flex-start;
+    padding: 22px;
   }
   
-  .btn_perfil {
-    height: 90px;
+  .navbar-button {
+    padding-right: 60px;
+    font-family: 'Segoe UI', Roboto, 'Open Sans', sans-serif;
+    color: white;
+    background-color: transparent;
+    border: none;
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
   }
-
-  #inicio_btn {
-    margin-top: 60px;
+  
+  
+  .btn_perfil {
+    height: 65px;
+    position: absolute;
+    right: 70px
+    
   }
 
   .sidebar-button {
@@ -78,13 +89,16 @@
   
 
 .grafica {
-  margin-top: 7%;
+  margin-top: 1%;
+  margin-left: -450px;
   width: 500px;
   height: 600px;
 }
 
 .personas_inscritas {
-  margin-top: 30px;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+  margin-left: -160px;
+  top: 120px;
 }
 
 .course-card {
