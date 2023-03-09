@@ -1,0 +1,8 @@
+#course-container {
+    display: flex;
+    overflow-x: scroll;
+}
+
+#course-container .course-card {
+    margin-right: 2rem;
+}
