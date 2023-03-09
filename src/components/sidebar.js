@@ -2,13 +2,14 @@ import React from "react";
 import "../styles/style.scss";
 import { Link, useNavigate } from "react-router-dom";
 import profile from "../assets/perfil.png";
+import { User } from 'react-feather'
 
 function Navbar() {
   const navigate = useNavigate();
 
   return (
     <div className="navbar">
-      <img src={profile} alt="perfil" className="btn_perfil" />
+      <User color="white" alt="perfil" className="btn_perfil"/>
       <button className="navbar-button" id='inicio_btn' onClick={() => navigate('/')}>Inicio</button>
       <button className="navbar-button" id='inicio_btn' onClick={() => navigate('/')}>Correos</button>
       <button className="navbar-button" onClick={() => navigate('/agregarCursos')}>

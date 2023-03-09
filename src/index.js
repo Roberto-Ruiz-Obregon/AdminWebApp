@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Cursos from './screens/cursos';
 import VerCursos from './screens/verCursos'
 
+const feather = require('feather-icons')
+
 function App() {
   return (
     <div id="app-container">
@@ -18,6 +20,7 @@ function App() {
           <Route path="/verCursos" element={<VerCursos />} />  
         </Routes>
       </div>
+      <script src="./assets/feather.min.js"></script>
     </div>
   );
 }

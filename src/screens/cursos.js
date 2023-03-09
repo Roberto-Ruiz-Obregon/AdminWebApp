@@ -33,6 +33,7 @@ function Cursos() {
       <h2 className="agregarc">Agregar Cursos</h2>
 
       <form onSubmit={handleSubmit} id="form">
+<div className="box">
         <label htmlFor="newCourse" id="newCourse_">
           Título del curso:
         </label>
@@ -40,11 +41,12 @@ function Cursos() {
         <button type="submit" id="agregar">
           Agregar Curso
         </button>
+      </div>
       </form>
 
       {courses.map((course, index) => (
         <CourseCard key={index} courseName={course} />
-      ))}
+        ))}
     </div>
   );
 }
