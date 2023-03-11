@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 }
 
 #app-container {
@@ -18,28 +19,126 @@ body {
     height: 95vh;
   }
   
-.saludo-greeting, .agregarc {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+.saludo-greeting {
     font-size: 2rem;
     font-weight: bold;
     text-align: center;
   }
 
+  .inicio_agregar {
+    font-size: 1.25rem;
+    font-weight: 450;
+    margin-top: 2px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+  }
+
+  .agregarc {
+    font-size: 2.25rem;
+    margin-top: -10px;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  .agregarc, .inicio_agregar, .fecha, .newCourse, .newCourse_, .newCourse_inpt, .descripcion {
+    padding-left: 20px;
+  }
+
+  .newCourse_inpt {
+    position: absolute;
+    align-items: left;
+    top: 260px;
+    left: -190px;
+    border-radius: 10px;
+    border-width: 1.6px;
+    border-color:#b3b3b3c9;
+    width: 500px;
+  }
+
+  .description {
+    position: absolute;
+    align-items: left;
+    top: 370px;
+    left: 39px;
+    border-radius: 10px;
+    border-width: 1.6px;
+    font-size: 10px;
+    border-color:#b3b3b3c9;
+    width: 520px;
+    height: 200px;
+  }
+  
+  .newCourse_inpt::placeholder {
+    font-size: 16px;
+    text-align: left;
+    color: #7c7c7c;
+    font-weight: 365;
+    position: relative;
+    top: -5px;
+    left: -7px;
+  }
+
+  .description::placeholder {
+    font-size: 16px;
+    text-align: left;
+    color: #7c7c7c;
+    font-weight: lighter;
+    position: relative;
+    top: -80px;
+    left: 10px;
+  }
+
+  .newCourse_, .descripcion {
+    align-items: left;
+    font-size: 22px;
+  }
+
   #newCourse, #newCourse_ {
     font-size: 30px;
     font-weight: light;
-    text-align: center;
     margin-left: 15%;
     font-family: var(--fuente);
   }
   
-  #agregar {
+  .agregar {
+    background-color: rgb(5, 174, 5);
     font-size: 20px;
+    position: relative;
+    left: 25%;
+    top: 280px;
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .fecha, .cargo, .modalidad {
     position: absolute;
-    left: 90%;
-    transform: translateX(-50%);
+    top: 585px;
+    font-size: 20px;
+    color: rgb(82, 82, 82)
+  }
+
+  .fecha {
+    left: 29px;
   }
   
+  .cargo {
+    left: 220px;
+  }
+  
+  .modalidad {
+    left: 410px;
+  }
+
+  .agregar:hover {
+    background-color: rgb(4, 137, 4); 
+  }
+  
+  .descripcion {
+    margin-top: 80px;
+    font-weight: 400;
+  }
 
   .logo-der {
     position: absolute;
@@ -56,14 +155,12 @@ body {
     width: 100%;
     background-color: #CF2A2A;
     display: flex;
-    /* justify-content: space-between; */
     align-items: center;
     padding: 22px;
   }
   
   .navbar-button {
     padding-right: 60px;
-    font-family: 'Segoe UI', Roboto, 'Open Sans', sans-serif;
     color: white;
     background-color: transparent;
     border: none;
@@ -107,7 +204,6 @@ body {
 }
 
 .personas_inscritas {
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
   margin-left: -160px;
   top: 120px;
 }
@@ -116,8 +212,3 @@ body {
   margin-left: 50%;
 }
 
-.newCourse_inpt {
-  position: absolute;
-  margin-top: 80px;
-  margin-left: 10px;
-}
