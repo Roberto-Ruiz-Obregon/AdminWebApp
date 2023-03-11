@@ -107,27 +107,28 @@ function VerCursos() {
 function VerCursos() {
     const courses = [
         {
-            _id: 'ferkflmerf',
-            courseName: 'Curso random',
+            _id: 'yanopuedomasMarta',
+            courseName: 'Responsabilidad Social Empresarial',
             description: 'Sumérgete en el mundo de la imaginación y la creatividad a través de la literatura.',
-            startDate: '2023-02-02',
-            endDate: '2023-02-03',
+            startDate: '2023-12-02',
+            endDate: '2024-01-03',
             modality: 'Remoto',
             status: 'Gratuito',
         },
         {
-            _id: 'ferkflmerf',
-            courseName: 'Curso random',
+            _id: 'pastraminsjas',
+            courseName: 'Curso de literatura avanzada',
+            imgURL: 'https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1888&q=80',
             description: 'Sumérgete en el mundo de la imaginación y la creatividad a través de la literatura.',
             startDate: '2023-02-02',
             endDate: '2023-02-03',
             modality: 'Remoto',
-            status: 'Gratuito',
+            status: 'De pago',
         },
         {
-            _id: 'ferkflmerf',
-            courseName: 'Curso random',
-            description: 'Sumérgete en el mundo de la imaginación y la creatividad a través de la literatura.',
+            _id: 'hola',
+            courseName: 'Curso de escritura',
+            description: 'Conoce las herramientas básicas para la escritura de ensayos.',
             startDate: '2023-02-02',
             endDate: '2023-02-03',
             modality: 'Remoto',
@@ -142,6 +143,7 @@ function VerCursos() {
                 { courses.map(course => (
                     <CourseCard 
                         key={course._id}
+                        imgURL={course.imgURL}
                         courseName={course.courseName}
                         description={course.description}
                         startDate={new Date(course.startDate).toLocaleDateString()}

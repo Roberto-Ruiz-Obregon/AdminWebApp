@@ -17,7 +17,7 @@ function CourseCard(props) {
   return (
     <div className="course-card">
       <h3>{props.courseName}</h3>
-      <img src={props.img} alt={props.courseName}  />
+      <img src={props.imgURL} alt={props.courseName}  />
       <p>{props.description}</p>
       <div className="course-card-properties">
           <div>
