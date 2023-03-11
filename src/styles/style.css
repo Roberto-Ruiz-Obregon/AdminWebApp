@@ -208,7 +208,22 @@ body {
   top: 120px;
 }
 
-.course-card {
-  margin-left: 50%;
+.newCourse_inpt {
+  position: absolute;
+  margin-top: 80px;
+  margin-left: 10px;
 }
 
+.btn-info {
+  border-radius: 5px;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #27B0C3;
+  background-color: #27B0C3;
+  color: white;
+  font-size: 1.1rem;
+}
+
+.btn-info:hover {
+  background: none;
+  color: #27B0C3;
+}
