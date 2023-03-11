@@ -133,7 +133,7 @@ function VerCursos() {
             description: 'Conoce las herramientas básicas para la escritura de ensayos.',
             startDate: '2023-02-02',
             endDate: '2023-02-03',
-            modality: 'Remoto',
+            modality: 'Presencial',
             status: 'Gratuito',
         },
         {
@@ -153,7 +153,7 @@ function VerCursos() {
             description: 'Sumérgete en el mundo de la imaginación y la creatividad a través de la literatura.',
             startDate: '2023-02-02',
             endDate: '2023-02-03',
-            modality: 'Remoto',
+            modality: 'Presencial',
             status: 'De pago',
         },
         {
