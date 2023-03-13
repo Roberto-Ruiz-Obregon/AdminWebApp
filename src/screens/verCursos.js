@@ -4,6 +4,7 @@ import "../styles/style.scss";
 import "../styles/verCursos.scss";
 import "../styles/CourseCard.scss";
 
+/* WIP fetching
 // class VerCursos extends React.Component {
 //   constructor(props) {
 //     super(props);
@@ -59,8 +60,9 @@ import "../styles/CourseCard.scss";
 //     );
 //   }
 // }
+*/
 
-/*
+/* Pruebas al bucket de firebase
 const request = {
   "topics": [],
   "teachers": [],
@@ -104,12 +106,25 @@ function VerCursos() {
 
     */
 
+/* pruebas al renderizado de datos de los cursos
+/* CourseCard contains
+ * key:         string unique id obtained from the DB query
+ * imgURL:      string storage bucket URL for the image
+ * courseName:  string name of course
+ * description: string description of course
+ * startDate:   string YYYY-MM-DD
+ * endDate:     string YYYY-MM-DD
+ * modality:    string Remoto || Presencial
+ * status:      string Gratuito || De pago
+ *
+ * @returns {Fragment with CourseCards} 
+ */
 function VerCursos() {
     const courses = [
         {
             _id: 'yanopuedomasMarta',
             courseName: 'Responsabilidad Social Empresarial',
-            imgURL:'https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80',
+            imgURL: 'https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80',
             description: 'Sumérgete en el mundo de la imaginación y la creatividad a través de la literatura.',
             startDate: '2023-12-02',
             endDate: '2024-01-03',
@@ -129,7 +144,7 @@ function VerCursos() {
         {
             _id: 'hola',
             courseName: 'Curso de escritura',
-            imgURL:'https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80',
+            imgURL: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80',
             description: 'Conoce las herramientas básicas para la escritura de ensayos.',
             startDate: '2023-02-02',
             endDate: '2023-02-03',
@@ -139,7 +154,7 @@ function VerCursos() {
         {
             _id: 'hola',
             courseName: 'Curso de escritura',
-            imgURL:'https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80',
+            imgURL: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80',
             description: 'Conoce las herramientas básicas para la escritura de ensayos.',
             startDate: '2023-02-02',
             endDate: '2023-02-03',
@@ -159,7 +174,7 @@ function VerCursos() {
         {
             _id: 'yanopuedomasMarta',
             courseName: 'Responsabilidad Social Empresarial',
-            imgURL:'https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80',
+            imgURL: 'https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80',
             description: 'Sumérgete en el mundo de la imaginación y la creatividad a través de la literatura.',
             startDate: '2023-12-02',
             endDate: '2024-01-03',
@@ -169,7 +184,7 @@ function VerCursos() {
         {
             _id: 'hola',
             courseName: 'Curso de escritura',
-            imgURL:'https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80',
+            imgURL: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80',
             description: 'Conoce las herramientas básicas para la escritura de ensayos.',
             startDate: '2023-02-02',
             endDate: '2023-02-03',
@@ -178,12 +193,13 @@ function VerCursos() {
         },
     ];
 
+    
     return (
         <Fragment>
             <h4>Inicio / Ver Cursos</h4>
             <div id="course-container">
-                { courses.map(course => (
-                    <CourseCard 
+                {courses.map(course => (
+                    <CourseCard
                         key={course._id}
                         imgURL={course.imgURL}
                         courseName={course.courseName}
@@ -193,7 +209,7 @@ function VerCursos() {
                         modality={course.modality}
                         status={course.status}
                     />
-                )) }
+                ))}
             </div>
         </Fragment>
     );
