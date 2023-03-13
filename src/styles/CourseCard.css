@@ -11,13 +11,18 @@
 }
 
 .course-card img {
-    min-height: 40%;
-}
+    position: absolute;
+    top: 25%;
+    left: 19%;
+    width: 320px;
+    height: 280px;
+  }
 
 .course-card-properties {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    margin-top: 79%;
 }
 
 .course-card-properties div {

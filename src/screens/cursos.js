@@ -69,6 +69,7 @@ function Cursos() {
           value={newCourse}
           onChange={handleInputChange}
           placeholder="Manualidades 3B"
+          required
         />
         <h6 className="descripcion">Descripción del curso:</h6>
         <input
@@ -78,7 +79,7 @@ function Cursos() {
           value={description}
           onChange={handleInputChange}
           placeholder="En el curso podrás aprender..."
-        />
+        required/>
         <label className="elegir_img">Elegir imagen:</label>
         <input type="file" name="image" onChange={handleInputChange} className="seleccionar"/>
         <label className="fecha">Fecha</label>
@@ -88,44 +89,53 @@ function Cursos() {
           className="fecha_"
           value={date}
           onChange={handleInputChange}
-        />
-        <label className="cargo">Cargo</label>
-        <input
-          type="text"
+        required/>
+        <label className="cargo">Costo</label>
+        <select
           name="occupation"
           className="cargo_"
           value={occupation}
           onChange={handleInputChange}
-        />
+          required
+        >
+          <option value="">Selecciona una opción</option>
+          <option value="Gratis">Gratis</option>
+          <option value="De pago">De pago</option>
+        </select>
+
         <label className="modalidad">Modalidad</label>
-        <input
-          type="text"
+        <select
           name="modality"
           className="modalidad_"
           value={modality}
           onChange={handleInputChange}
-        />
-        <button type="submit" className="agregar">
-          Agregar Curso
-        </button>
-      </form>
-      
-      {courses.map((course, index) => ( 
-      <CourseCard 
-        key={index} 
-        courseName={course.title} 
-        description={course.description} 
-        startDate={course.date}
-        occupation={course.occupation}
-        modality={course.modality}
-        imgSrc={course.imgSrc}
-    />
-    
-))}
+        >
+          <option value="">Selecciona una opción</option>
+          <option value="presencial">Presencial</option>
+          <option value="en línea">En línea</option>
+        </select>
 
-      
-    </div>
-  );
-}
+                <button type="submit" className="agregar">
+                  Agregar Curso
+                </button>
+              </form>
+              
+              {courses.map((course, index) => ( 
+              <CourseCard 
+                key={index} 
+                courseName={course.title} 
+                description={course.description} 
+                startDate={course.date}
+                occupation={course.occupation}
+                modality={course.modality}
+                imgSrc={course.imgSrc}
+            />
+            
+        ))}
 
-export default Cursos;
+              
+            </div>
+          );
+        }
+
+        export default Cursos;
