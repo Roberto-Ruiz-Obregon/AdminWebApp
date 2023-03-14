@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react';
 import CourseCard from '../components/CourseCard';
-import "../styles/style.scss";
-import "../styles/verCursos.scss";
-import "../styles/CourseCard.scss";
+import "../styles/style.css";
+import "../styles/CourseCard.css";
 
 /* WIP fetching
 // class VerCursos extends React.Component {
@@ -197,7 +196,7 @@ function VerCursos() {
     return (
         <Fragment>
             <h4>Inicio / Ver Cursos</h4>
-            <div id="course-container">
+            <div>
                 {courses.map(course => (
                     <CourseCard
                         key={course._id}

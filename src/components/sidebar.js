@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/style.scss";
+import "../styles/style.css";
 import { Link, useNavigate } from "react-router-dom";
 import profile from "../assets/perfil.png";
 import { User } from 'react-feather'
