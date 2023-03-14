@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import CourseCard from '../components/CourseCard';
 import "../styles/style.css";
+import "../styles/carousel.css";
 import "../styles/CourseCard.css";
 
 /* WIP fetching
@@ -196,7 +197,6 @@ function VerCursos() {
     return (
         <Fragment>
             <h4>Inicio / Ver Cursos</h4>
-            <div>
                 {courses.map(course => (
                     <CourseCard
                         key={course._id}
@@ -209,7 +209,6 @@ function VerCursos() {
                         status={course.status}
                     />
                 ))}
-            </div>
         </Fragment>
     );
 }
