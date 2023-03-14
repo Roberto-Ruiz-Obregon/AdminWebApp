@@ -3,10 +3,13 @@ import "../styles/style.scss";
 import logo from "../assets/image 9.png";
 import CourseCard from "../components/CourseCard";
 
+// render course data
 function Cursos() {
+  //define course status from fetching
   const [newCourse, setNewCourse] = useState("");
   const [courses, setCourses] = useState([]);
 
+  //create new course
   const handleInputChange = (event) => {
     setNewCourse(event.target.value);
   };

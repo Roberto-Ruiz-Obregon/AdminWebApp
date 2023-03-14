@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/CourseCard.scss';
+// load feather icons for the coursecard 
 import { 
   DollarSign,
   Video, 
@@ -9,11 +10,12 @@ import {
 import logo from '../assets/image 9.png';
 
 function CourseCard(props) {
-
+// test function to log clicking 
   const handleClick = () => {
     console.log('redireccionar')
   };
 
+  // render the CourseCard with its needed props
   return (
     <div className="course-card">
       <h3>{props.courseName}</h3>

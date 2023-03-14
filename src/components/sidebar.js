@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import profile from "../assets/perfil.png";
 import { User } from 'react-feather'
 
+// navigation bar at the top
 function Navbar() {
   const navigate = useNavigate();
 
