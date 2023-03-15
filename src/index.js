@@ -5,17 +5,41 @@ import './styles/style.css';
 import  Navbar  from './components/sidebar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 import Cursos from './screens/cursos';
-import VerCursos from './screens/verCursos'
+import VerCursos from './screens/verCursos';
+import PrivateRoute from './components/PrivateRoute';
+import LoginForm from './screens/login';
+
+export const routes = [
+  { path: '/', name:'Dashbord', Component: Saludo, isPrivate: true },
+  { path: '/agregarCursos', name:'Agregar curso', Component: Cursos, isPrivate: true },
+  { path: '/verCursos', name:'Cursos', Component: VerCursos, isPrivate: true },
+  { path: '/login', name:'Iniciar sesión', Component: LoginForm, isPrivate: false },
+  // { path: '/signin', name:'Cursos', Component: LoginForm, isPrivate: false },
+];
 
 function App() {
   return (
     <div id="app-container">
-      <Navbar />
       <div id="app-base-layout">
         <Routes>
-          <Route exact path="/" element={<Saludo />} /> 
-          <Route path="/agregarCursos" element={<Cursos />} />
-          <Route path="/verCursos" element={<VerCursos />} />  
+          { routes.map(route => (
+            route.isPrivate ?
+              <Route 
+                key={route.path}
+                path={route.path}
+                element={
+                  <PrivateRoute>
+                    <Navbar />
+                    <route.Component />
+                  </PrivateRoute>
+                }
+              />
+              : <Route 
+                  key={route.path}
+                  path={route.path}
+                  element={<route.Component />}
+                />
+          )) }
         </Routes>
       </div>
     </div>
@@ -28,6 +52,3 @@ ReactDOM.render(
     </BrowserRouter>,
     document.getElementById('root')
 );
-
-
-
