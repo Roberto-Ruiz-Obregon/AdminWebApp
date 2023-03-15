@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react';
-import CourseCard from '../components/CourseCard';
+import CourseList from '../components/CourseList';
 import "../styles/style.css";
 import "../styles/carousel.css";
-import "../styles/CourseCard.css";
 
 /* WIP fetching
 // class VerCursos extends React.Component {
@@ -124,6 +123,7 @@ function VerCursos() {
         {
             _id: 'yanopuedomasMarta',
             courseName: 'Responsabilidad Social Empresarial',
+            teacher: 'Pedro Esquivar Bolaños',
             imgSrc: 'https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80',
             description: 'Sumérgete en el mundo de la imaginación y la creatividad a través de la literatura.',
             startDate: '2023-12-02',
@@ -134,6 +134,7 @@ function VerCursos() {
         {
             _id: 'pastraminsjas',
             courseName: 'Curso de literatura avanzada',
+            teacher: 'José Esquivias Ruiz',
             imgSrc: 'https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1888&q=80',
             description: 'Sumérgete en el mundo de la imaginación y la creatividad a través de la literatura.',
             startDate: '2023-02-02',
@@ -144,6 +145,7 @@ function VerCursos() {
         {
             _id: 'hola',
             courseName: 'Curso de escritura',
+            teacher: 'Benedicto Onésimo Oliveros',
             imgSrc: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80',
             description: 'Conoce las herramientas básicas para la escritura de ensayos.',
             startDate: '2023-02-02',
@@ -154,6 +156,7 @@ function VerCursos() {
         {
             _id: 'hola',
             courseName: 'Curso de escritura',
+            teacher: 'Marta Oliveros',
             imgSrc: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80',
             description: 'Conoce las herramientas básicas para la escritura de ensayos.',
             startDate: '2023-02-02',
@@ -164,6 +167,7 @@ function VerCursos() {
         {
             _id: 'pastraminsjas',
             courseName: 'Curso de literatura avanzada',
+            teacher: 'Carlos Ruiseñor Obregón',
             imgSrc: 'https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1888&q=80',
             description: 'Sumérgete en el mundo de la imaginación y la creatividad a través de la literatura.',
             startDate: '2023-02-02',
@@ -174,6 +178,7 @@ function VerCursos() {
         {
             _id: 'yanopuedomasMarta',
             courseName: 'Responsabilidad Social Empresarial',
+            teacher: 'Juan Carlos Obrador Galindo',
             imgSrc: 'https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80',
             description: 'Sumérgete en el mundo de la imaginación y la creatividad a través de la literatura.',
             startDate: '2023-12-02',
@@ -184,6 +189,7 @@ function VerCursos() {
         {
             _id: 'hola',
             courseName: 'Curso de escritura',
+            teacher: 'María Josefa Domínguez',
             imgSrc: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80',
             description: 'Conoce las herramientas básicas para la escritura de ensayos.',
             startDate: '2023-02-02',
@@ -197,18 +203,20 @@ function VerCursos() {
     return (
         <Fragment>
             <h4>Inicio / Ver Cursos</h4>
+            <div className='conatiner'>
                 {courses.map(course => (
-                    <CourseCard
-                        key={course._id}
-                        imgSrc={course.imgSrc}
-                        courseName={course.courseName}
-                        description={course.description}
-                        startDate={new Date(course.startDate).toLocaleDateString()}
-                        endDate={new Date(course.endDate).toLocaleDateString()}
-                        modality={course.modality}
-                        status={course.status}
+                    <CourseList
+                    key={course._id}
+                    teacher={course.teacher}
+                    courseName={course.courseName}
+                    description={course.description}
+                    startDate={new Date(course.startDate).toLocaleDateString()}
+                    endDate={new Date(course.endDate).toLocaleDateString()}
+                    modality={course.modality}
+                    status={course.status}
                     />
-                ))}
+                    ))}
+                    </div>
         </Fragment>
     );
 }

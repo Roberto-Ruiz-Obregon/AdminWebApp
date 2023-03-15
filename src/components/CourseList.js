@@ -7,8 +7,7 @@ import {
   Calendar
 } from 'react-feather';
 
-function CourseCard(props) {
-  const [imgSrc] = useState(props.imgSrc);
+function CourseList(props) {
 
   const handleClick = () => {
     console.log('redireccionar');
@@ -16,28 +15,23 @@ function CourseCard(props) {
 
   // render the CourseCard with its needed props
   return (
-    <div className="course-card">
-      <h3>{props.courseName}</h3>
-      <img src={imgSrc} alt={props.courseName} />
-     
-      <p>{props.description}</p>
-          <div>
-            { props.modality === 'Remoto' ?
+    <ul className='course-element'>
+      <p><b>{props.courseName}</b><br></br>
+      {props.teacher} <br></br>
+      {props.startDate} <br></br> <br></br>
+            {props.modality === 'Remoto' ?
               <Video />
               : <Users />
-            }
-            <p>{props.modality}</p>
-            </div>
-            <div>
-            <Calendar />
-            <p>{props.startDate}</p>
-          </div>
-          <div>
-            <DollarSign />
-            <p>{props.occupation}</p>
-          </div>
-      </div>
+            } {'    '}
+            <Calendar /> {'    '}
+            { props.status === 'De pago' ?
+              <DollarSign />
+              : ''
+            }  {'   '}
+            {props.occupation}
+            </p>
+      </ul>
   );
 }
 
-export default CourseCard;
+export default CourseList;
