@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
 import { postLogin } from '../client/authentication';
-import { setToken, setAdminUserSaved } from '../utils/auth';
+import { setToken, setAdminUserSaved, isAuthenticated } from '../utils/auth';
 import '../styles/auth.css'
 import jwtDecode from 'jwt-decode';
 
@@ -30,6 +30,9 @@ const LoginForm = () => {
                 alert('Ocurrió un error. Por favor intenta de nuevo.')
         });
     };
+
+    if (isAuthenticated())
+        return <Navigate to="/" />
 
     return (
         <div className="auth-container">
