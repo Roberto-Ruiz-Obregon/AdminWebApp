@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.course-element {
+  background-color: #9b9b9b;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  transition: background-color 1s ease-out 100ms;
+}
+
+.course-element:hover {
+  background-color: #efefef;
+}
+
+.course-element-properties {
+  display: flex;
+  justify-content: space-between;
+  min-width: none;
+}
+
+
+.course-element-properties p {
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.course-element button {
+  position: absolute;
+  bottom: 1.5rem;
+}
