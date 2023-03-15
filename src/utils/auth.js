@@ -25,11 +25,16 @@ export function setToken(token) {
 	return token;
 }
 
+/**
+ * This function retrieves admin user document from API and saves it to local storage
+ *
+ * @param {String} userId - the id of the user we want to retrieve data for
+ * @return {Object|null} - returns an object representing the saved user, or null if none found
+ */
 export async function setAdminUserSaved(userId) {
 	if (!userId)
 		return null;
-	const response = await retreiveAdmin(userId);
-	const user = response.data.document;
+	const user = await retreiveAdmin(userId);
 	if (user) {
 		localStorage.setItem('adminUser', JSON.stringify(user));
 		return user;
@@ -37,7 +42,11 @@ export async function setAdminUserSaved(userId) {
 	return null;
 }
 
-
+/**
+ * This function retrieves the saved admin user from local storage
+ *
+ * @returns {Object|null} - returns an object representing the saved user, or null if none found
+ */
 export function getUserSaved() {
 	let user = localStorage.getItem('adminUser');
 	if (user) {
@@ -47,7 +56,11 @@ export function getUserSaved() {
 	return null;
 }
 
-
+/**
+ * This function checks if a user is authenticated by checking if there is a valid token and saved user
+ *
+ * @returns {bool} - true if user is authenticated, false otherwise
+ */
 export function isAuthenticated() {
 	const user = getUserSaved();
 	const token = getToken();
