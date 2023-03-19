@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate, Navigate } from 'react-router-dom';
 import { postLogin } from '../client/authentication';
 import { setToken, setAdminUserSaved, isAuthenticated } from '../utils/auth';
-import '../styles/auth.css'
+import '../styles/auth.css';
 import jwtDecode from 'jwt-decode';
 
 const LoginForm = () => {
@@ -10,25 +10,22 @@ const LoginForm = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        postLogin(email, password)
-        .then(data => {
-            if (data.status === 'success') {
-                const token = setToken(data.token);
-                if (!token)
-                    throw 'El token no pudo guardarse';
-                const parsedToken = jwtDecode(token);
-                setAdminUserSaved(parsedToken.id)
-                .then(() => navigate('/'));
+        try {
+            const response = await postLogin(email, password);
+            if (response.status === 'success') {
+                setToken(response.token);
+                setAdminUserSaved(response.data.user);
+                navigate('/');
             }
-        })
-        .catch(error => {
+        }
+        catch (error) {
             if (error.response.status === 401)
                 alert(error.response.data.message);
             else
-                alert('Ocurrió un error. Por favor intenta de nuevo.')
-        });
+                alert('Ocurrió un error. Por favor intenta de nuevo.');
+        }
     };
 
     if (isAuthenticated())
