@@ -1,6 +1,6 @@
 import axios from 'axios';
-// const baseApiEndpoint = process.env.BASE_API_ENDPOINT;‘
-const baseApiEndpoint = 'https://us-central1-robertoruiz-eca78.cloudfunctions.net/api/v1';
+
+const baseApiEndpoint = process.env.REACT_APP_BASE_API_ENDPOINT;
 
 export async function postLogin(email, password) {
     const endpoint = `${baseApiEndpoint}/admin/auth/login`;
