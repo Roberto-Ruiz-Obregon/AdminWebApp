@@ -1,5 +1,4 @@
 import jwt_decode from 'jwt-decode';
-import { retreiveAdmin } from '../client/admin';
 
 /**
  * A function that returns access/refresh tokens based on whether they're requested.
@@ -28,13 +27,10 @@ export function setToken(token) {
 /**
  * This function retrieves admin user document from API and saves it to local storage
  *
- * @param {String} userId - the id of the user we want to retrieve data for
+ * @param {Object} user - user data that will be stored in LocalStorage, need to be json serializable
  * @return {Object|null} - returns an object representing the saved user, or null if none found
  */
-export async function setAdminUserSaved(userId) {
-	if (!userId)
-		return null;
-	const user = await retreiveAdmin(userId);
+export async function setAdminUserSaved(user) {
 	if (user) {
 		localStorage.setItem('adminUser', JSON.stringify(user));
 		return user;
