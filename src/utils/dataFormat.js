@@ -1,9 +1,12 @@
-
+/**
+ * This function formats an object into an URL querystring
+ *
+ * @param {Object} params - parameters to format
+ * @return {String} - returns a querystring, could be an empty string
+ */
 export function objectToUrlQueryString(params) {
-	if (params)
-		return '';
-	let queryString = Object.entries(params).reduce((prev, current) => 
-                        prev + `&${current[0]}=${current[1]}`, '');
-	queryString = queryString.slice(1, queryString.length);
-	return queryString;
+	return Object.entries(params).reduce((queryString, [key, value]) => (
+		Array.isArray(value) ? `${queryString}${key}=${value.join(',')}&`
+		: `${queryString}${key}=${value}&`
+	), '').slice(0, -1); // Remove the trailing '&'
 }

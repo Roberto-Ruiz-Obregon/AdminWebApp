@@ -25,7 +25,7 @@ export function setToken(token) {
 }
 
 /**
- * This function retrieves admin user document from API and saves it to local storage
+ * This function saves user data to local storage
  *
  * @param {Object} user - user data that will be stored in LocalStorage, need to be json serializable
  * @return {Object|null} - returns an object representing the saved user, or null if none found
