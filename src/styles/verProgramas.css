@@ -1,0 +1,10 @@
+#program-container {
+    display: flex;
+    overflow-x: scroll;
+    gap: 30px
+}
+
+#program-container .course-card {
+    flex: 0 0 300px;
+    margin: 0 10px;
+}

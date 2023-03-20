@@ -6,6 +6,7 @@ import  Navbar  from './components/sidebar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 import Cursos from './screens/cursos';
 import VerCursos from './screens/verCursos'
+import VerProgramas from './screens/verProgramas'
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Saludo />} /> 
           <Route path="/agregarCursos" element={<Cursos />} />
-          <Route path="/verCursos" element={<VerCursos />} />  
+          <Route path="/verCursos" element={<VerCursos />} /> 
+          <Route path="/becasProgramas" element={<VerProgramas />} />
         </Routes>
       </div>
     </div>
