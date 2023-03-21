@@ -1,21 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Saludo } from './screens/dashboard'; 
-import './styles/style.css'; 
-import  Navbar  from './components/sidebar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
-import Cursos from './screens/cursos';
-import VerCursos from './screens/verCursos'
+import  Navbar  from './components/sidebar';
+import PrivateRoute from './components/PrivateRoute';
+import routes from './routes';
+import './styles/style.css'; 
 
 function App() {
   return (
     <div id="app-container">
-      <Navbar />
       <div id="app-base-layout">
         <Routes>
-          <Route exact path="/" element={<Saludo />} /> 
-          <Route path="/agregarCursos" element={<Cursos />} />
-          <Route path="/verCursos" element={<VerCursos />} />  
+          { routes.map(route => (
+            route.isPrivate ?
+              <Route 
+                key={route.path}
+                path={route.path}
+                element={
+                  <PrivateRoute>
+                    <Navbar />
+                    <route.Component />
+                  </PrivateRoute>
+                }
+              />
+              : <Route 
+                  key={route.path}
+                  path={route.path}
+                  element={<route.Component />}
+                />
+          )) }
         </Routes>
       </div>
     </div>
@@ -28,6 +41,3 @@ ReactDOM.render(
     </BrowserRouter>,
     document.getElementById('root')
 );
-
-
-
