@@ -8,15 +8,10 @@ const baseApiEndpoint = process.env.REACT_APP_BASE_API_ENDPOINT;
  * @returns An array of objects.
  */
 export async function getTopics() {
-    try {
-        const endpoint = `${baseApiEndpoint}/topics`;
+    const endpoint = `${baseApiEndpoint}/topics`;
 
-        const response = await axios.get(endpoint);
-        return response.data.data.documents;
-    } catch (error) {
-        FireError(error.response.data.message);
-        return [];
-    }
+    const response = await axios.get(endpoint);
+    return response.data.data.documents;
 }
 
 /**
@@ -25,13 +20,8 @@ export async function getTopics() {
  * @returns An array of topics.
  */
 export async function postTopic(topic) {
-    try {
-        const endpoint = `${baseApiEndpoint}/topics`;
+    const endpoint = `${baseApiEndpoint}/topics`;
 
-        const response = await axios.post(endpoint, { topic });
-        return response.data.data.document;
-    } catch (error) {
-        FireError(error.response.data.message);
-        return [];
-    }
+    const response = await axios.post(endpoint, { topic });
+    return response.data.data.document;
 }

@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { FireError, FireSucess } from '../utils/alertHandler';
 import { getTopics, postTopic } from '../client/topics';
+import Input from '../components/Input';
 import '../styles/verCursos.css';
 
 function Topics() {
@@ -9,16 +10,27 @@ function Topics() {
 
     useEffect(() => {
         (async () => {
-            const topics = await getTopics();
-            console.log(topics);
-            setTopics(topics);
+            try {
+                const topics = await getTopics();
+                console.log(topics);
+                setTopics(topics);
+            } catch (error) {
+                FireError(error.response.data.message);
+            }
         })();
     }, []);
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        const newTopic = await postTopic(topic);
-        setTopics([...topics, newTopic]);
+        try {
+            e.preventDefault();
+
+            const newTopic = await postTopic(topic);
+            setTopics([...topics, newTopic]);
+
+            FireSucess('Nuevo interes agregado con exito.');
+        } catch (error) {
+            FireError(error.response.data.message);
+        }
     };
 
     return (
@@ -28,13 +40,11 @@ function Topics() {
             <div class='add-interest-container'>
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <label htmlFor='topic'>Nombre del interés</label>
-                        <input
-                            type='topic'
-                            id='topic'
-                            required
-                            value={topic}
-                            onChange={(e) => setTopic(e.target.value)}
+                        <Input
+                            label='Nombre del interés'
+                            placeholder='Interés'
+                            getVal={topic}
+                            setVal={setTopic}
                         />
                     </div>
                     <button type='submit'>Crear</button>

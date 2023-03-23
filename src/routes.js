@@ -1,7 +1,7 @@
 import Cursos from './screens/cursos';
 import LoginForm from './screens/login';
 import VerCursos from './screens/verCursos';
-import Topics from './screens/topics';
+import Topics from './screens/Topics';
 import { Saludo } from './screens/dashboard';
 
 const routes = [
