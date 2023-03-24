@@ -1,0 +1,9 @@
+.admins-container {
+    display: flex;
+    flex-direction: column;
+}
+.admins-list-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
