@@ -12,7 +12,7 @@ function Input(props) {
                     class='input-general'
                     type='text'
                     placeholder={placeholder}
-                    onchange={(e) => setVal(e.target.value)}
+                    onChange={(e) => setVal(e.target.value)}
                     value={getVal}
                 />
             </label>

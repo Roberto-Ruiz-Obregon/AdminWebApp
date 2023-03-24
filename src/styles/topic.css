@@ -21,3 +21,9 @@
 .add-interest-container div {
     width: 80%;
 }
+
+.interests-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

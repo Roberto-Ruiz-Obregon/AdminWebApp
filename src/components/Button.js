@@ -5,7 +5,12 @@ function Button(props) {
     const { action, text, type } = props;
 
     return (
-        <button onClick={(e) => action(e)} className={`button button-${type}`}>
+        <button
+            onClick={(e) => {
+                e.preventDefault();
+                action(e);
+            }}
+            className={`button button-${type}`}>
             {text}
         </button>
     );

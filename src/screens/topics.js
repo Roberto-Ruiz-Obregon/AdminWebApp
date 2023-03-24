@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { FireError, FireSucess } from '../utils/alertHandler';
-import { getTopics, postTopic } from '../client/topics';
+import { getTopics, postTopic, deleteTopic } from '../client/topics';
 import Input from '../components/Input';
 import Button from '../components/Button';
+import TopicCard from '../components/TopicCard';
 import '../styles/topic.css';
 
 function Topics() {
@@ -23,12 +24,22 @@ function Topics() {
 
     const handleSubmit = async (e) => {
         try {
-            e.preventDefault();
-
             const newTopic = await postTopic(topic);
             setTopics([...topics, newTopic]);
 
             FireSucess('Nuevo interes agregado con exito.');
+        } catch (error) {
+            FireError(error.response.data.message);
+        }
+    };
+
+    const handleDelete = async (id) => {
+        try {
+            await deleteTopic(id);
+
+            setTopics(topics.filter((topic) => topic._id !== id));
+
+            FireSucess('Se ha eliminado el interes con exito.');
         } catch (error) {
             FireError(error.response.data.message);
         }
@@ -54,7 +65,7 @@ function Topics() {
             <h2>Intereses Agregados</h2>
             <div class='interests-container'>
                 {topics.map((topic) => (
-                    <p>{topic.topic}</p>
+                    <TopicCard interest={topic} action={handleDelete} type='delete' />
                 ))}
             </div>
         </div>

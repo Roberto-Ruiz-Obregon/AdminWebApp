@@ -25,3 +25,13 @@ export async function postTopic(topic) {
     const response = await axios.post(endpoint, { topic });
     return response.data.data.document;
 }
+
+/**
+ * It takes an id, and then deletes the topic with that id
+ * @param id - The id of the topic to delete
+ */
+export async function deleteTopic(id) {
+    const endpoint = `${baseApiEndpoint}/topics/${id}`;
+
+    await axios.delete(endpoint);
+}
