@@ -19,6 +19,27 @@ export function Admins() {
         })();
     }, []);
 
+    const handleVerification = async (id) => {
+        try {
+            const confirmation = await FireQuestion(
+                '¿Está seguro de que quiere verificar a este administrador?',
+                'Este administrador tendrá acceso a la administración si es verificado.',
+                'Verificar'
+            );
+
+            if (confirmation.isDismissed) return;
+
+            await verifyAdmin(id);
+
+            setAdmins(admins.filter((admin) => admin._id !== id));
+
+            FireSucess('El administrador ha sido verificado con exito.');
+        } catch (error) {
+            FireError(error.response.data.message);
+        }
+    };
+    const handleDelete = async (id) => {};
+
     return (
         <div className='admins-container'>
             <h4>Inicio / Administradores</h4>
@@ -26,8 +47,8 @@ export function Admins() {
                 {admins.map((admin) => (
                     <AdminCard
                         admin={admin}
-                        actionApprove={(id) => {}}
-                        actionDelete={(id) => {}}
+                        actionApprove={handleVerification}
+                        actionDelete={handleDelete}
                     />
                 ))}
             </div>
