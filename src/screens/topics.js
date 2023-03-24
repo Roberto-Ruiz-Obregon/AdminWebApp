@@ -14,7 +14,7 @@ function Topics() {
         (async () => {
             try {
                 const topics = await getTopics();
-                console.log(topics);
+
                 setTopics(topics);
             } catch (error) {
                 FireError(error.response.data.message);
