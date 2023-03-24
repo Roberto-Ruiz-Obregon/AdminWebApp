@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { FireError } from '../utils/alertHandler';
 
 const baseApiEndpoint = process.env.REACT_APP_BASE_API_ENDPOINT;
 
