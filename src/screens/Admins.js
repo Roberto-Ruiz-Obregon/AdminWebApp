@@ -62,13 +62,17 @@ export function Admins() {
         <div className='admins-container'>
             <h4>Inicio / Administradores</h4>
             <div className='admins-list-container'>
-                {admins.map((admin) => (
-                    <AdminCard
-                        admin={admin}
-                        actionApprove={handleVerification}
-                        actionDelete={handleDelete}
-                    />
-                ))}
+                {admins.length > 0 ? (
+                    admins.map((admin) => (
+                        <AdminCard
+                            admin={admin}
+                            actionApprove={handleVerification}
+                            actionDelete={handleDelete}
+                        />
+                    ))
+                ) : (
+                    <h4>No existen solicitudes de verificacion pendientes</h4>
+                )}
             </div>
         </div>
     );
