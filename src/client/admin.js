@@ -16,11 +16,15 @@ export async function retreiveAdmin(id, params = {}) {
     return response.data.data.document;
 }
 
+/**
+ * It gets all the admins that have not been verified
+ * @returns An array of objects.
+ */
 export async function getUnverifiedAdmins() {
     const endpoint = `${baseApiEndpoint}/admin?hasVerification=false`;
 
     const response = await axios.get(endpoint);
-    return response.data.data.document;
+    return response.data.data.documents;
 }
 
 /**

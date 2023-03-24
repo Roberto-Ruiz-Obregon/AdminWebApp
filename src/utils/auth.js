@@ -1,14 +1,14 @@
 import jwt_decode from 'jwt-decode';
+import axios from 'axios';
 
 /**
  * A function that returns access/refresh tokens based on whether they're requested.
  * @returns { String | null} The access and refresh tokens or null if neither were requested or found in localStorage.
  */
 export function getToken() {
-	let token = localStorage.getItem('authToken');
-	if (token != null && token !== '')
-		return token;
-	return null;
+    let token = localStorage.getItem('authToken');
+    if (token != null && token !== '') return token;
+    return null;
 }
 
 /**
@@ -17,11 +17,10 @@ export function getToken() {
  * @returns {String|null} token
  */
 export function setToken(token) {
-	if (!(typeof token === "string") || !token)
-		return null;
+    if (!(typeof token === 'string') || !token) return null;
 
-	localStorage.setItem('authToken', token);
-	return token;
+    localStorage.setItem('authToken', token);
+    return token;
 }
 
 /**
@@ -31,11 +30,11 @@ export function setToken(token) {
  * @return {Object|null} - returns an object representing the saved user, or null if none found
  */
 export async function setAdminUserSaved(user) {
-	if (user) {
-		localStorage.setItem('adminUser', JSON.stringify(user));
-		return user;
-	}
-	return null;
+    if (user) {
+        localStorage.setItem('adminUser', JSON.stringify(user));
+        return user;
+    }
+    return null;
 }
 
 /**
@@ -44,12 +43,12 @@ export async function setAdminUserSaved(user) {
  * @returns {Object|null} - returns an object representing the saved user, or null if none found
  */
 export function getUserSaved() {
-	let user = localStorage.getItem('adminUser');
-	if (user) {
-		user = JSON.parse(user);
-		return user;
-	}
-	return null;
+    let user = localStorage.getItem('adminUser');
+    if (user) {
+        user = JSON.parse(user);
+        return user;
+    }
+    return null;
 }
 
 /**
@@ -58,10 +57,13 @@ export function getUserSaved() {
  * @returns {bool} - true if user is authenticated, false otherwise
  */
 export function isAuthenticated() {
-	const user = getUserSaved();
-	const token = getToken();
-	if (user && token)
-		if (jwt_decode(token).id === user._id)
-			return true;
-	return false;
+    const user = getUserSaved();
+    const token = getToken();
+    if (user && token) {
+        if (jwt_decode(token).id === user._id) {
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            return true;
+        }
+    }
+    return false;
 }
