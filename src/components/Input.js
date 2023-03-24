@@ -7,9 +7,9 @@ function Input(props) {
     return (
         <>
             <label>
-                <div class='label-text'>{label}</div>
+                <div className='label-text'>{label}</div>
                 <input
-                    class='input-general'
+                    className='input-general'
                     type='text'
                     placeholder={placeholder}
                     onChange={(e) => setVal(e.target.value)}

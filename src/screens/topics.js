@@ -53,10 +53,10 @@ function Topics() {
     };
 
     return (
-        <div class='interest-container'>
+        <div className='interest-container'>
             <h4>Inicio / Intereses</h4>
             <h2>Crear Interes</h2>
-            <div class='add-interest-container'>
+            <div className='add-interest-container'>
                 <form onSubmit={handleSubmit}>
                     <div>
                         <Input
@@ -70,7 +70,7 @@ function Topics() {
                 </form>
             </div>
             <h2>Intereses Agregados</h2>
-            <div class='interests-container'>
+            <div className='interests-container'>
                 {topics.map((topic) => (
                     <TopicCard interest={topic} action={handleDelete} type='delete' />
                 ))}
