@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FireError, FireSucess, FireQuestion } from '../utils/alertHandler';
 import { getUnverifiedAdmins, verifyAdmin, deleteAdmin } from '../client/admin';
+import AdminCard from '../components/AdminCard';
 
 export function Admins() {
     const [admins, setAdmins] = useState([]);
