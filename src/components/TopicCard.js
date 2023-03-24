@@ -9,6 +9,7 @@ function TopicCard(props) {
     return (
         <div className='topic-container'>
             <p>{topic}</p>
+            <div className='separator'></div>
             <Button action={(e) => action(_id)} text='Eliminar' type={type} />
         </div>
     );
