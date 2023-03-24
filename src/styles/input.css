@@ -1,0 +1,39 @@
+label {
+    display: block;
+}
+
+.label-text {
+    font-size: 1.125rem; /* text-md */
+    margin-bottom: 0.5rem; /* mb-2 */
+    font-weight: bold; /* font-bold */
+    color: #4a5568; /* text-gray-700 */
+}
+
+.input-general {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #4a5568;
+    background-color: #fff;
+    border: 1px solid #727272;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.input-general:focus {
+    outline: none;
+    border-color: #cbd5e0;
+    box-shadow: 0 0 0 3px rgba(164, 202, 254, 0.45);
+}
+
+.dark {
+    color: #d1d5db; /* dark:text-gray-300 */
+    background-color: #4b5563; /* dark:bg-gray-600 */
+    border-color: #4b5563; /* dark:border-0 */
+}
+
+.dark::placeholder {
+    color: #9ca3af; /* dark:placeholder-gray-200 */
+}

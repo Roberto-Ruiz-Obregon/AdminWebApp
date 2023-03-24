@@ -1,8 +1,9 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FireError, FireSucess } from '../utils/alertHandler';
 import { getTopics, postTopic } from '../client/topics';
 import Input from '../components/Input';
-import '../styles/verCursos.css';
+import Button from '../components/Button';
+import '../styles/topic.css';
 
 function Topics() {
     const [topic, setTopic] = useState('');
@@ -34,7 +35,7 @@ function Topics() {
     };
 
     return (
-        <Fragment>
+        <div class='interest-container'>
             <h4>Inicio / Intereses</h4>
             <h2>Crear Interes</h2>
             <div class='add-interest-container'>
@@ -47,7 +48,7 @@ function Topics() {
                             setVal={setTopic}
                         />
                     </div>
-                    <button type='submit'>Crear</button>
+                    <Button action={handleSubmit} text='Crear interes' type='create' />
                 </form>
             </div>
             <h2>Intereses Agregados</h2>
@@ -56,7 +57,7 @@ function Topics() {
                     <p>{topic.topic}</p>
                 ))}
             </div>
-        </Fragment>
+        </div>
     );
 }
 

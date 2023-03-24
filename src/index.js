@@ -4,8 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/sidebar';
 import PrivateRoute from './components/PrivateRoute';
 import routes from './routes';
-import './assets/main.css';
-// import './styles/style.css';
+import './styles/style.css';
 
 function App() {
     return (
