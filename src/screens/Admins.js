@@ -38,7 +38,25 @@ export function Admins() {
             FireError(error.response.data.message);
         }
     };
-    const handleDelete = async (id) => {};
+    const handleDelete = async (id) => {
+        try {
+            const confirmation = await FireQuestion(
+                '¿Está seguro de que quiere eliminar a este administrador?',
+                'El perfil del administrador será eliminado de las solicitudes pendientes.',
+                'Eliminar'
+            );
+
+            if (confirmation.isDismissed) return;
+
+            await deleteAdmin(id);
+
+            setAdmins(admins.filter((admin) => admin._id !== id));
+
+            FireSucess('El administrador ha sido eliminado con exito.');
+        } catch (error) {
+            FireError(error.response.data.message);
+        }
+    };
 
     return (
         <div className='admins-container'>
