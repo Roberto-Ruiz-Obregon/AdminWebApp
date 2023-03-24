@@ -7,13 +7,14 @@ function AdminCard(props) {
     const { name, email, _id } = admin;
 
     return (
-        <div className='topic-container'>
+        <div className='admin-container'>
             <p>{name}</p>
             <p>{email}</p>
-            <div className='Button Container'>
+            <div className='separator'></div>
+            <div className='button-container'>
                 <Button
                     action={(e) => actionApprove(_id)}
-                    text='Eliminar'
+                    text='Verificar'
                     type='modify'
                 />
                 <Button action={(e) => actionDelete(_id)} text='Eliminar' type='delete' />
