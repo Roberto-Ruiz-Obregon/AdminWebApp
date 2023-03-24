@@ -20,3 +20,21 @@ export function FireSucess(message) {
         confirmButtonColor: '#002b49',
     });
 }
+
+export async function FireQuestion(
+    question,
+    warning,
+    confirmText = 'Acepto',
+    rejectText = 'Cancelar'
+) {
+    return MySwal.fire({
+        title: question,
+        text: warning,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#002b49',
+        cancelButtonColor: '#d33',
+        confirmButtonText: confirmText,
+        cancelButtonText: rejectText,
+    });
+}

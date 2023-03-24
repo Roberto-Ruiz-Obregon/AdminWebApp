@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FireError, FireSucess } from '../utils/alertHandler';
+import { FireError, FireSucess, FireQuestion } from '../utils/alertHandler';
 import { getTopics, postTopic, deleteTopic } from '../client/topics';
 import Input from '../components/Input';
 import Button from '../components/Button';
@@ -35,6 +35,13 @@ function Topics() {
 
     const handleDelete = async (id) => {
         try {
+            const confirmation = await FireQuestion(
+                '¿Está seguro de que quiere deseas eliminar este interés?',
+                'Los cursos y personas que tengan este interés dejarán de tenerlo.'
+            );
+
+            if (confirmation.isDismissed) return;
+
             await deleteTopic(id);
 
             setTopics(topics.filter((topic) => topic._id !== id));
