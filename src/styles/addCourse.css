@@ -12,6 +12,11 @@
 }
 .form-container {
     min-width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+.form-container label {
+    margin-bottom: 20px;
 }
 .course-container {
     width: fit-content;
