@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { getTopics } from '../client/topics';
+import { FireError, FireSucess, FireQuestion } from '../utils/alertHandler';
 import CourseCard from '../components/CourseCard';
+import TopicCard from '../components/TopicCard';
 import Input from '../components/Input';
 import Select from '../components/Select';
 import Button from '../components/Button';
@@ -24,9 +27,49 @@ function AddCourse() {
     const [cost, setCost] = useState(0);
 
     // Topics
+    // Will store topics id - should contain the same as topicsInCourseUI
     const [topicsInCourse, setTopicsInCourse] = useState([]);
+    // Will store topic object for page renderig
     const [topicsInCourseUI, setTopicsInCourseUI] = useState([]);
-    const [topics, setTopics] = useState([]);
+    const [topicsAvailable, setTopicsAvailable] = useState([]);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const topics = await getTopics();
+
+                setTopicsAvailable(topics);
+            } catch (error) {
+                FireError(error.response.data.message);
+            }
+        })();
+    }, []);
+
+    /**
+     * It adds a topic to the topicsInCourse array and removes it from the topicsAvailable array.
+     * @param topic - {_id: "5f0f8f8f8f8f8f8f8f8f8f8f", name: "Topic 1"}
+     */
+    const handleRemoveTopic = (topic) => {
+        setTopicsAvailable([...topicsAvailable, topic]);
+
+        setTopicsInCourseUI(
+            topicsInCourseUI.filter((currTopic) => currTopic._id !== topic._id)
+        );
+        setTopicsInCourse(topicsInCourse.filter((currTopic) => currTopic !== topic._id));
+    };
+
+    /**
+     * It adds a topic to the topicsInCourse array and removes it from the topicsAvailable array.
+     * @param topic - {_id: "5f0f8f8f8f8f8f8f8f8f8f8f", name: "Topic 1"}
+     */
+    const handleAddTopic = (topic) => {
+        setTopicsInCourse([...topicsInCourse, topic._id]);
+        setTopicsInCourseUI([...topicsInCourseUI, topic]);
+
+        setTopicsAvailable(
+            topicsAvailable.filter((currTopic) => currTopic._id !== topic._id)
+        );
+    };
 
     return (
         <div className='add-course-container'>
@@ -144,39 +187,42 @@ function AddCourse() {
                     ) : (
                         <></>
                     )}
-                    <h3 className=''>Intereses del curso</h3>
-                    {/* <label className='cargo'>Costo</label>
-                <select
-                    name='occupation'
-                    className='cargo_'
-                    value={occupation}
-                    onChange={handleInputChange}
-                    required>
-                    <option value=''>Selecciona una opción</option>
-                    <option value='Gratis'>Gratis</option>
-                    <option value='De pago'>De pago</option>
-                </select>
-
-                <label className='modalidad'>Modalidad</label>
-                <select
-                    name='modality'
-                    className='modalidad_'
-                    value={modality}
-                    onChange={handleInputChange}>
-                    <option value=''>Selecciona una opción</option>
-                    <option value='presencial'>Presencial</option>
-                    <option value='en línea'>En línea</option>
-                </select> */}
+                    <h3 className=''>Intereses seleccionados para el curso</h3>
+                    <div className='topics-container'>
+                        {topicsInCourseUI.map((topic) => (
+                            <TopicCard
+                                interest={topic}
+                                action={() => {
+                                    handleRemoveTopic(topic);
+                                }}
+                                actionText='Remover'
+                                type='delete'
+                            />
+                        ))}
+                    </div>
+                    <h3 className=''>Intereses disponibles</h3>
+                    <div className='topics-container'>
+                        {topicsAvailable.map((topic) => (
+                            <TopicCard
+                                interest={topic}
+                                action={() => {
+                                    handleAddTopic(topic);
+                                }}
+                                actionText='Agregar'
+                                type='create'
+                            />
+                        ))}
+                    </div>
                 </form>
                 <div className='course-container'>
-                    {/* <CourseCard
+                    <CourseCard
                         courseName={courseName}
                         description={description}
                         startDate={startDate}
                         occupation={status}
                         modality={modality}
                         imgSrc={image}
-                    /> */}
+                    />
                 </div>
             </div>
         </div>

@@ -73,7 +73,12 @@ function Topics() {
             <h2>Intereses Agregados</h2>
             <div className='interests-container'>
                 {topics.map((topic) => (
-                    <TopicCard interest={topic} action={handleDelete} type='delete' />
+                    <TopicCard
+                        interest={topic}
+                        action={handleDelete}
+                        actionText='Eliminar'
+                        type='delete'
+                    />
                 ))}
             </div>
         </div>
