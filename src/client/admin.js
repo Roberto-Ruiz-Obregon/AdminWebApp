@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { objectToUrlQueryString } from '../utils/dataFormat';
-// const baseApiEndpoint = process.env.BASE_API_ENDPOINT;‘
-const baseApiEndpoint = 'https://us-central1-robertoruiz-eca78.cloudfunctions.net/api/v1';
+
+const baseApiEndpoint = process.env.REACT_APP_BASE_API_ENDPOINT;
 
 /**
  * Asynchronously retrieves an admin user document by id from the API

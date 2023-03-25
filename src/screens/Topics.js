@@ -64,6 +64,7 @@ function Topics() {
                             placeholder='Interés'
                             getVal={topic}
                             setVal={setTopic}
+                            type='text'
                         />
                     </div>
                     <Button action={handleSubmit} text='Crear interes' type='create' />

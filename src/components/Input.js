@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/input.css';
 
 function Input(props) {
-    const { label, placeholder, getVal, setVal } = props;
+    const { label, placeholder, getVal, setVal, type } = props;
 
     return (
         <>
@@ -10,7 +10,7 @@ function Input(props) {
                 <div className='label-text'>{label}</div>
                 <input
                     className='input-general'
-                    type='text'
+                    type={type}
                     placeholder={placeholder}
                     onChange={(e) => setVal(e.target.value)}
                     value={getVal}
