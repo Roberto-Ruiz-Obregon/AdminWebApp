@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CourseCard from '../components/CourseCard';
 import Input from '../components/Input';
 import Button from '../components/Button';
-import '../styles/style.css';
+import '../styles/addCourse.css';
 
 function Cursos() {
     const [occupation, setOccupation] = useState('');
@@ -10,11 +10,11 @@ function Cursos() {
     const [course, setCourse] = useState({});
 
     return (
-        <div>
+        <div className='add-course-container'>
             <h5 className='inicio_agregar'>Inicio / Agregar Cursos</h5>
             <h2 className=''>Agregar Cursos</h2>
-            <div className='course-container'>
-                <form id='form'>
+            <div className='form-preview-container'>
+                <form className='form-container'>
                     <Input label='Titulo del curso' placeholder='Curso de lectura' />
 
                     {/* <label className='cargo'>Costo</label>
@@ -40,15 +40,16 @@ function Cursos() {
                     <option value='en línea'>En línea</option>
                 </select> */}
                 </form>
-
-                <CourseCard
-                    courseName={course.title}
-                    description={course.description}
-                    startDate={course.date}
-                    occupation={course.occupation}
-                    modality={course.modality}
-                    imgSrc={course.imgSrc}
-                />
+                <div className='course-container'>
+                    <CourseCard
+                        courseName={course.title}
+                        description={course.description}
+                        startDate={course.date}
+                        occupation={course.occupation}
+                        modality={course.modality}
+                        imgSrc={course.imgSrc}
+                    />
+                </div>
             </div>
         </div>
     );

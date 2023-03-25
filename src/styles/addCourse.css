@@ -1,0 +1,16 @@
+.add-course-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.form-preview-container {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
+}
+.form-container {
+    width: 50%;
+}
+.course-container {
+}
