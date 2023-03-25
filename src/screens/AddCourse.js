@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { getTopics } from '../client/topics';
+import { postCourse } from '../client/course';
 import { FireError, FireSucess, FireQuestion } from '../utils/alertHandler';
 import CourseCard from '../components/CourseCard';
 import TopicCard from '../components/TopicCard';
 import Input from '../components/Input';
+import InputImage from '../components/InputImage';
 import Select from '../components/Select';
 import Button from '../components/Button';
 import '../styles/addCourse.css';
@@ -21,7 +23,7 @@ function AddCourse() {
     const [image, setImage] = useState(null);
 
     const [modality, setModality] = useState('');
-    const [accessLink, setAccessLink] = useState('');
+    const [accessLink, setAccessLink] = useState('https://zoom.us/');
     const [address, setAddress] = useState('');
     const [status, setStatus] = useState('');
     const [cost, setCost] = useState(0);
@@ -69,6 +71,35 @@ function AddCourse() {
         setTopicsAvailable(
             topicsAvailable.filter((currTopic) => currTopic._id !== topic._id)
         );
+    };
+
+    const handleSubmit = async (e) => {
+        try {
+            const form = new FormData();
+            form.append('courseName', courseName);
+            form.append('description', description);
+            form.append('startDate', startDate);
+            form.append('endDate', endDate);
+            form.append('schedule', schedule);
+            form.append('teacher', teacher);
+            form.append('capacity', capacity);
+            form.append('postalCode', postalCode);
+            form.append('modality', modality);
+            form.append('accessLink', accessLink);
+            form.append('address', address);
+            form.append('status', status);
+            form.append('cost', cost);
+            topicsInCourseUI.forEach((topic, i) => {
+                form.append(`topic[${i}]`, topic._id);
+            });
+            form.append('courseImage', image);
+
+            await postCourse(form);
+
+            FireSucess('Nuevo curso creado con exito.');
+        } catch (error) {
+            FireError(error.response.data.message);
+        }
     };
 
     return (
@@ -133,12 +164,10 @@ function AddCourse() {
                         setVal={setPostalCode}
                         type='text'
                     />
-                    <Input
+                    <InputImage
                         label='Imagen de la portada'
-                        placeholder=''
                         getVal={image}
                         setVal={setImage}
-                        type='file'
                     />
                     <Select
                         label='Selecciona la modalidad del curso'
@@ -163,13 +192,6 @@ function AddCourse() {
                             type='text'
                         />
                     )}
-                    <Input
-                        label='Imagen de la portada'
-                        placeholder=''
-                        getVal={image}
-                        setVal={setImage}
-                        type='file'
-                    />
                     <Select
                         label='Selecciona el tipo de pago'
                         getVal={status}
@@ -223,6 +245,7 @@ function AddCourse() {
                         modality={modality}
                         imgSrc={image}
                     />
+                    <Button action={handleSubmit} text='Crear curso' type='create' />
                 </div>
             </div>
         </div>
