@@ -5,8 +5,27 @@ import Button from '../components/Button';
 import '../styles/addCourse.css';
 
 function Cursos() {
-    const [occupation, setOccupation] = useState('');
+    // Course attributes
+    const [courseName, setCourseName] = useState('');
+    const [description, setDescription] = useState('');
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+    const [schedule, setSchedule] = useState('');
+    const [teacher, setTeacher] = useState('');
+    const [capacity, setCapacity] = useState('');
+    const [accessLink, setAccessLink] = useState('');
+    const [cost, setCost] = useState(0);
+    const [postalCode, setPostalCode] = useState('');
+    const [image, setImage] = useState(null);
+
     const [modality, setModality] = useState('');
+    const [occupation, setOccupation] = useState('');
+
+    // Topics
+    const [topicsInCourse, setTopicsInCourse] = useState([]);
+    const [topicsInCourseUI, setTopicsInCourseUI] = useState([]);
+    const [topics, setTopics] = useState([]);
+
     const [course, setCourse] = useState({});
 
     return (
