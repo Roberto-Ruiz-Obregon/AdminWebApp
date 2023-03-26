@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { getTopics } from '../client/topics';
-import { postCourse } from '../client/course';
+import { patchCourse, getCourse } from '../client/course';
 import { FireError, FireSucess } from '../utils/alertHandler';
 import CourseCard from '../components/CourseCard';
 import TopicCard from '../components/TopicCard';
@@ -11,6 +12,7 @@ import Button from '../components/Button';
 import '../styles/addCourse.css';
 
 function EditCourse() {
+    const { id } = useParams();
     // Course attributes
     const [courseName, setCourseName] = useState('');
     const [description, setDescription] = useState('');
@@ -36,9 +38,31 @@ function EditCourse() {
     useEffect(() => {
         (async () => {
             try {
+                const course = await getCourse(id);
+
+                setCourseName(course.courseName);
+                setDescription(course.description);
+                setStartDate(course.startDate);
+                setEndDate(course.endDate);
+                setSchedule(course.schedule);
+                setTeacher(course.teacher);
+                setCapacity(course.capacity);
+                setPostalCode(course.postalCode);
+                setImage(course.image);
+                setModality(course.modality);
+                setAccessLink(course.accessLink);
+                setAddress(course.address);
+                setStatus(course.status);
+                setCost(course.cost);
+
                 const topics = await getTopics();
 
-                setTopicsAvailable(topics);
+                setTopicsInCourse(
+                    topics.filter((topic) => course.topics.includes(topic))
+                );
+                setTopicsAvailable(
+                    topics.filter((topic) => !course.topics.includes(topic))
+                );
             } catch (error) {
                 FireError(error.response.data.message);
             }
@@ -90,7 +114,7 @@ function EditCourse() {
             });
             form.append('courseImage', image);
 
-            await postCourse(form);
+            // await postCourse(form);
 
             FireSucess('Nuevo curso creado con exito.');
         } catch (error) {
