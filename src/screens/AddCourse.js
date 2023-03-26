@@ -21,7 +21,7 @@ function AddCourse() {
     const [capacity, setCapacity] = useState('');
     const [postalCode, setPostalCode] = useState('');
     const [image, setImage] = useState(null);
-    const [preview, setPreview] = useState();
+    const [preview, setPreview] = useState(null);
 
     const [modality, setModality] = useState('');
     const [accessLink, setAccessLink] = useState('https://zoom.us/');
@@ -53,9 +53,6 @@ function AddCourse() {
         }
         const objectUrl = URL.createObjectURL(image);
         setPreview(objectUrl);
-        console.log(objectUrl);
-        console.log(image);
-        return () => URL.revokeObjectURL(objectUrl);
     }, [image]);
 
     /**
