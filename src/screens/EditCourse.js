@@ -10,7 +10,7 @@ import Select from '../components/Select';
 import Button from '../components/Button';
 import '../styles/addCourse.css';
 
-function AddCourse() {
+function EditCourse() {
     // Course attributes
     const [courseName, setCourseName] = useState('');
     const [description, setDescription] = useState('');
@@ -100,8 +100,8 @@ function AddCourse() {
 
     return (
         <div className='add-course-container'>
-            <h5 className='inicio_agregar'>Inicio / Agregar Cursos</h5>
-            <h2 className=''>Agregar Cursos</h2>
+            <h5 className='inicio_agregar'>Inicio / Modificar Curso</h5>
+            <h2 className=''>Modificar curso</h2>
             <div className='form-preview-container'>
                 <form className='form-container'>
                     <Input
@@ -241,11 +241,11 @@ function AddCourse() {
                         modality={modality}
                         imgSrc={image}
                     />
-                    <Button action={handleSubmit} text='Crear curso' type='create' />
+                    <Button action={handleSubmit} text='Modificar curso' type='modify' />
                 </div>
             </div>
         </div>
     );
 }
 
-export default AddCourse;
+export default EditCourse;
