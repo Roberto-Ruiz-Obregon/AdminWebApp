@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getTopics } from '../client/topics';
 import { patchCourse, getCourse } from '../client/course';
-import { FireError, FireSucess } from '../utils/alertHandler';
+import { FireError, FireSucess, FireQuestion } from '../utils/alertHandler';
 import CourseCard from '../components/CourseCard';
 import TopicCard from '../components/TopicCard';
 import Input from '../components/Input';
@@ -23,6 +23,7 @@ function EditCourse() {
     const [capacity, setCapacity] = useState('');
     const [postalCode, setPostalCode] = useState('');
     const [image, setImage] = useState(null);
+    const [preview, setPreview] = useState('');
 
     const [modality, setModality] = useState('');
     const [accessLink, setAccessLink] = useState('https://zoom.us/');
@@ -42,13 +43,13 @@ function EditCourse() {
 
                 setCourseName(course.courseName);
                 setDescription(course.description);
-                setStartDate(course.startDate);
-                setEndDate(course.endDate);
+                setStartDate(course.startDate.substr(0, 10));
+                setEndDate(course.endDate.substr(0, 10));
                 setSchedule(course.schedule);
                 setTeacher(course.teacher);
                 setCapacity(course.capacity);
                 setPostalCode(course.postalCode);
-                setImage(course.image);
+                setPreview(course.imageUrl);
                 setModality(course.modality);
                 setAccessLink(course.accessLink);
                 setAddress(course.address);
@@ -56,19 +57,32 @@ function EditCourse() {
                 setCost(course.cost);
 
                 const topics = await getTopics();
-                console.log(course.topics);
 
-                setTopicsInCourse(
-                    topics.filter((topic) => course.topics.includes(topic))
-                );
+                setTopicsInCourse(course.topics);
+
+                const courseTopicIds = course.topics.reduce((prev, curr) => {
+                    prev.push(curr._id);
+                    return prev;
+                }, []);
+
                 setTopicsAvailable(
-                    topics.filter((topic) => !course.topics.includes(topic))
+                    topics.filter((topic) => !courseTopicIds.includes(topic._id))
                 );
             } catch (error) {
                 FireError(error.response.data.message);
             }
         })();
-    }, []);
+    }, [id]);
+
+    useEffect(() => {
+        if (!image) {
+            setPreview(undefined);
+            return;
+        }
+        const objectUrl = URL.createObjectURL(image);
+        setPreview(objectUrl);
+        return () => URL.revokeObjectURL(objectUrl);
+    }, [image]);
 
     /**
      * It adds a topic to the topicsInCourse array and removes it from the topicsAvailable array.
@@ -110,14 +124,21 @@ function EditCourse() {
             form.append('address', address);
             form.append('status', status);
             form.append('cost', cost);
-            topicsInCourse.forEach((topic, i) => {
-                form.append(`topics[${i}]`, topic._id);
+            topicsInCourse.forEach((topic) => {
+                form.append(`topics[]`, topic._id);
             });
             form.append('courseImage', image);
 
-            // await postCourse(form);
+            const confirmation = await FireQuestion(
+                '¿Está seguro de que desea guardar los cambios?',
+                'Todas las modificaciones se aplicarán de inmediato.'
+            );
 
-            FireSucess('Nuevo curso creado con exito.');
+            if (confirmation.isDismissed) return;
+
+            await patchCourse(id, form);
+
+            FireSucess('Curso mofificado con exito.');
         } catch (error) {
             FireError(error.response.data.message);
         }
@@ -186,7 +207,7 @@ function EditCourse() {
                         type='text'
                     />
                     <InputImage
-                        label='Imagen de la portada'
+                        label='Elegir nueva imagen de la portada, dejar vacio si no se quiere modificar'
                         getVal={image}
                         setVal={setImage}
                     />
@@ -264,7 +285,7 @@ function EditCourse() {
                         startDate={startDate}
                         occupation={status}
                         modality={modality}
-                        imgSrc={image}
+                        imgSrc={preview}
                     />
                     <Button action={handleSubmit} text='Modificar curso' type='modify' />
                 </div>

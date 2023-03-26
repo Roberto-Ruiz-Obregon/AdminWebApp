@@ -21,6 +21,7 @@ function AddCourse() {
     const [capacity, setCapacity] = useState('');
     const [postalCode, setPostalCode] = useState('');
     const [image, setImage] = useState(null);
+    const [preview, setPreview] = useState();
 
     const [modality, setModality] = useState('');
     const [accessLink, setAccessLink] = useState('https://zoom.us/');
@@ -44,6 +45,16 @@ function AddCourse() {
             }
         })();
     }, []);
+
+    useEffect(() => {
+        if (!image) {
+            setPreview(undefined);
+            return;
+        }
+        const objectUrl = URL.createObjectURL(image);
+        setPreview(objectUrl);
+        return () => URL.revokeObjectURL(objectUrl);
+    }, [image]);
 
     /**
      * It adds a topic to the topicsInCourse array and removes it from the topicsAvailable array.
@@ -85,8 +96,8 @@ function AddCourse() {
             form.append('address', address);
             form.append('status', status);
             form.append('cost', cost);
-            topicsInCourse.forEach((topic, i) => {
-                form.append(`topics[${i}]`, topic._id);
+            topicsInCourse.forEach((topic) => {
+                form.append(`topics[]`, topic._id);
             });
             form.append('courseImage', image);
 
@@ -239,7 +250,7 @@ function AddCourse() {
                         startDate={startDate}
                         occupation={status}
                         modality={modality}
-                        imgSrc={image}
+                        imgSrc={preview}
                     />
                     <Button action={handleSubmit} text='Crear curso' type='create' />
                 </div>
