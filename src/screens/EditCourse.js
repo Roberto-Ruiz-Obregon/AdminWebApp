@@ -56,6 +56,7 @@ function EditCourse() {
                 setCost(course.cost);
 
                 const topics = await getTopics();
+                console.log(course.topics);
 
                 setTopicsInCourse(
                     topics.filter((topic) => course.topics.includes(topic))
@@ -110,7 +111,7 @@ function EditCourse() {
             form.append('status', status);
             form.append('cost', cost);
             topicsInCourse.forEach((topic, i) => {
-                form.append(`topic[${i}]`, topic._id);
+                form.append(`topics[${i}]`, topic._id);
             });
             form.append('courseImage', image);
 

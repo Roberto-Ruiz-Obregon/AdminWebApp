@@ -86,7 +86,7 @@ function AddCourse() {
             form.append('status', status);
             form.append('cost', cost);
             topicsInCourse.forEach((topic, i) => {
-                form.append(`topic[${i}]`, topic._id);
+                form.append(`topics[${i}]`, topic._id);
             });
             form.append('courseImage', image);
 
