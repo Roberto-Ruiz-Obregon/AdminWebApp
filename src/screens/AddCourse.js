@@ -53,6 +53,8 @@ function AddCourse() {
         }
         const objectUrl = URL.createObjectURL(image);
         setPreview(objectUrl);
+        console.log(objectUrl);
+        console.log(image);
         return () => URL.revokeObjectURL(objectUrl);
     }, [image]);
 
