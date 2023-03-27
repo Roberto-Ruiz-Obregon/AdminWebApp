@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import CourseList from '../components/CourseList';
 import "../styles/style.css";
-import "../styles/carousel.css";
 
 /* WIP fetching
 // class VerCursos extends React.Component {
@@ -132,7 +131,7 @@ function VerCursos() {
             status: 'Gratuito',
         },
         {
-            _id: 'pastraminsjas',
+            _id: 'pastramin1sjas',
             courseName: 'Curso de literatura avanzada',
             teacher: 'José Esquivias Ruiz',
             imgSrc: 'https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1888&q=80',
@@ -143,7 +142,7 @@ function VerCursos() {
             status: 'De pago',
         },
         {
-            _id: 'hola',
+            _id: 'hol2a',
             courseName: 'Curso de escritura',
             teacher: 'Benedicto Onésimo Oliveros',
             imgSrc: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80',
@@ -165,7 +164,7 @@ function VerCursos() {
             status: 'Gratuito',
         },
         {
-            _id: 'pastraminsjas',
+            _id: 'pas123traminsjas',
             courseName: 'Curso de literatura avanzada',
             teacher: 'Carlos Ruiseñor Obregón',
             imgSrc: 'https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1888&q=80',
@@ -176,7 +175,7 @@ function VerCursos() {
             status: 'De pago',
         },
         {
-            _id: 'yanopuedomasMarta',
+            _id: 'yanopuedomas33321Marta',
             courseName: 'Responsabilidad Social Empresarial',
             teacher: 'Juan Carlos Obrador Galindo',
             imgSrc: 'https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80',
@@ -187,7 +186,7 @@ function VerCursos() {
             status: 'Gratuito',
         },
         {
-            _id: 'hola',
+            _id: 'holl1k23a',
             courseName: 'Curso de escritura',
             teacher: 'María Josefa Domínguez',
             imgSrc: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80',
@@ -199,24 +198,23 @@ function VerCursos() {
         },
     ];
 
-    
+
     return (
         <Fragment>
             <h4>Inicio / Ver Cursos</h4>
-            <div className='conatiner'>
-                {courses.map(course => (
-                    <CourseList
-                    key={course._id}
-                    teacher={course.teacher}
-                    courseName={course.courseName}
-                    description={course.description}
-                    startDate={new Date(course.startDate).toLocaleDateString()}
-                    endDate={new Date(course.endDate).toLocaleDateString()}
-                    modality={course.modality}
-                    status={course.status}
-                    />
+            <ul className='course-element-container'>
+                    {courses.map(course => (
+                        <CourseList
+                            key={course._id}
+                            courseName={course.courseName}
+                            description={course.description}
+                            startDate={new Date(course.startDate).toLocaleDateString()}
+                            endDate={new Date(course.endDate).toLocaleDateString()}
+                            modality={course.modality}
+                            status={course.status}
+                        />
                     ))}
-                    </div>
+                </ul>
         </Fragment>
     );
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/CourseCard.css';
+import '../styles/CourseList.css';
 import { 
   DollarSign,
   Video, 
@@ -9,13 +9,13 @@ import {
 
 function CourseList(props) {
 
-  const handleClick = () => {
+  const useNavigate = () => {
     console.log('redireccionar');
   };
 
   // render the CourseCard with its needed props
   return (
-    <ul className='course-element'>
+    <li className='course-element'>
       <p><b>{props.courseName}</b><br></br>
       {props.teacher} <br></br>
       {props.startDate} <br></br> <br></br>
@@ -30,7 +30,7 @@ function CourseList(props) {
             }  {'   '}
             {props.occupation}
             </p>
-      </ul>
+      </li>
   );
 }
 
