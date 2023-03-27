@@ -36,7 +36,7 @@ function Topics() {
     const handleDelete = async (id) => {
         try {
             const confirmation = await FireQuestion(
-                '¿Está seguro de que quiere deseas eliminar este interés?',
+                '¿Está seguro de que quiere eliminar este interés?',
                 'Los cursos y personas que tengan este interés dejarán de tenerlo.'
             );
 
