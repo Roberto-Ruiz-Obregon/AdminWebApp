@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getCourse } from '../client/course';
+import { getCourse, getCourseInscriptions } from '../client/course';
+import { deleteInscription } from '../client/inscriptions';
 import { FireError, FireSucess, FireQuestion } from '../utils/alertHandler';
-import '../styles/topic.css';
+import '../styles/inscriptions.css';
 
 function Inscriptions() {
     const { id } = useParams();
@@ -15,8 +16,10 @@ function Inscriptions() {
                 const currCourse = await getCourse(id);
 
                 setCourse(currCourse);
-                // const topics = await getTopics();
-                // setTopics(topics);
+
+                const inscriptions = await getCourseInscriptions(id);
+                console.log(inscriptions);
+                setInscriptions(inscriptions);
             } catch (error) {
                 FireError(error.response.data.message);
             }
@@ -32,7 +35,7 @@ function Inscriptions() {
 
             if (confirmation.isDismissed) return;
 
-            // await deleteTopic(id);
+            await deleteInscription(id);
 
             // setTopics(topics.filter((topic) => topic._id !== id));
 

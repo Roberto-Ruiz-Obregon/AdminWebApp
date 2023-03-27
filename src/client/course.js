@@ -14,6 +14,18 @@ export async function getCourses() {
 }
 
 /**
+ * It gets the inscriptions of a course
+ * @param courseId - The id of the course
+ * @returns An array of objects.
+ */
+export async function getCourseInscriptions(courseId) {
+    const endpoint = `${baseApiEndpoint}/course/getinscriptions/${courseId}`;
+
+    const response = await axios.get(endpoint);
+    return response.data.data.documents;
+}
+
+/**
  * It takes a topic object, sends it to the server, and returns the response.
  * @param course - {
  * @returns An array of topics.
