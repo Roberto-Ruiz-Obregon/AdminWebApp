@@ -35,7 +35,7 @@ function VerCursos() {
     return (
         <Fragment>
             <h4>Inicio / Ver Cursos</h4>
-            <div id="course-container">
+            <div id="course-element">
                 { courses.map(course => (
                     <CourseCard 
                         key={course._id}
