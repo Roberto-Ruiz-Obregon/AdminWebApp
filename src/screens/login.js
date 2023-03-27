@@ -3,7 +3,6 @@ import { Link, useNavigate, Navigate } from 'react-router-dom';
 import { postLogin } from '../client/authentication';
 import { setToken, setAdminUserSaved, isAuthenticated } from '../utils/auth';
 import '../styles/auth.css';
-import jwtDecode from 'jwt-decode';
 
 const LoginForm = () => {
     const [email, setEmail] = useState('');

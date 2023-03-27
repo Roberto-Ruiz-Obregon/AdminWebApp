@@ -15,3 +15,11 @@ export async function retreiveAdmin(id, params={}) {
     const response = await axios.get(endpoint);
     return response.data.data.document;
 }
+
+export async function sendChangePasswordEmail(email) {
+    const endpoint = `${baseApiEndpoint}/admin/forgotpassword`;
+    const body = { email }
+    const response = await axios.post(endpoint, body);
+    console.log(response.data);
+    return response.data;
+}
