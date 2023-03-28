@@ -1,0 +1,35 @@
+.add-course-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.form-preview-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: start;
+    justify-content: space-between;
+}
+.form-container {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+}
+.form-container label {
+    margin-bottom: 20px;
+}
+.course-container {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.course-container button {
+    margin-top: 50px;
+}
+.topics-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
