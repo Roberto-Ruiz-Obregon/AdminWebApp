@@ -8,32 +8,31 @@ function VerCursos() {
 
     useEffect(() => {
         (async () => {
-                const result = await getAllCourses();
-                setCourses(result);
+            const result = await getAllCourses();
+            setCourses(result);
         })();
     }, [courses]);
 
-        return (
-            <Fragment>
-                <h4>Inicio / Ver Cursos</h4>
-                {/* <p>{courses}</p> */}
-                <ul className='course-element-container'>
-                    {courses.map(course => (
-                        <CourseList
-                            key={course._id}
-                            courseName={course.courseName}
-                            description={course.description}
-                            startDate={new Date(course.startDate).toLocaleDateString()}
-                            endDate={new Date(course.endDate).toLocaleDateString()}
-                            modality={course.modality}
-                            status={course.status}
-                        />
-                    ))}
-                </ul>
+    return (
+        <Fragment>
+            <h4>Inicio / Ver Cursos</h4>
+            <ul className='course-element-container'>
+                {courses.map(course => (
+                    <CourseList
+                        key={course._id}
+                        courseName={course.courseName}
+                        description={course.description}
+                        startDate={new Date(course.startDate).toLocaleDateString()}
+                        endDate={new Date(course.endDate).toLocaleDateString()}
+                        modality={course.modality}
+                        status={course.status}
+                    />
+                ))}
+            </ul>
 
-            </Fragment>
-        );
-    }
+        </Fragment>
+    );
+}
 
 
 export default VerCursos;

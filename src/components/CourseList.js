@@ -1,36 +1,31 @@
-import React, { useState } from 'react';
 import '../styles/CourseList.css';
-import { 
+import {
   DollarSign,
-  Video, 
-  Users, 
+  Video,
+  Users,
   Calendar
 } from 'react-feather';
 
 function CourseList(props) {
 
-  const useNavigate = () => {
-    console.log('redireccionar');
-  };
-
   // render the CourseCard with its needed props
   return (
     <li className='course-element'>
       <p><b>{props.courseName}</b><br></br>
-      {props.teacher} <br></br>
-      {props.startDate} <br></br> <br></br>
-            {props.modality === 'Remoto' ?
-              <Video />
-              : <Users />
-            } {'    '}
-            <Calendar /> {'    '}
-            { props.status === 'De pago' ?
-              <DollarSign />
-              : ''
-            }  {'   '}
-            {props.occupation}
-            </p>
-      </li>
+        {props.teacher} <br></br>
+        {props.startDate} <br></br> <br></br>
+        {props.modality === 'Remoto' ?
+          <Video />
+          : <Users />
+        } {'    '}
+        <Calendar /> {'    '}
+        {props.status === 'De pago' ?
+          <DollarSign />
+          : ''
+        }  {'   '}
+        {props.occupation}
+      </p>
+    </li>
   );
 }
 
