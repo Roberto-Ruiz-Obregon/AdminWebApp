@@ -21,7 +21,7 @@ export async function getTopics() {
 export async function postTopic(topic) {
     const endpoint = `${baseApiEndpoint}/topics`;
 
-    const response = await axios.post(endpoint, topic);
+    const response = await axios.post(endpoint, { topic });
     return response.data.data.document;
 }
 

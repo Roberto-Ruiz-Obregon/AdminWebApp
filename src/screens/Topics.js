@@ -74,6 +74,7 @@ function Topics() {
             <div className='interests-container'>
                 {topics.map((topic) => (
                     <TopicCard
+                        key={topic._id}
                         interest={topic}
                         action={handleDelete}
                         actionText='Eliminar'
