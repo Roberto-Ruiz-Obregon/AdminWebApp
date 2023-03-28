@@ -19,7 +19,7 @@ function Inscriptions() {
                 setCourse(currCourse);
 
                 const inscriptions = await getCourseInscriptions(id);
-                console.log(inscriptions);
+
                 setInscriptions(inscriptions);
             } catch (error) {
                 FireError(error.response.data.message);
