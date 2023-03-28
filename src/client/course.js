@@ -33,7 +33,9 @@ export async function getCourseInscriptions(courseId) {
 export async function postCourse(courseForm) {
     const endpoint = `${baseApiEndpoint}/course`;
 
-    const response = await axios.post(endpoint, courseForm);
+    const response = await axios.post(endpoint, courseForm, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+    });
     return response.data.data.document;
 }
 
@@ -69,6 +71,8 @@ export async function getCourse(id) {
 export async function patchCourse(id, form) {
     const endpoint = `${baseApiEndpoint}/course/${id}`;
 
-    const response = await axios.patch(endpoint, form);
+    const response = await axios.patch(endpoint, form, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+    });
     return response.data.data.document;
 }
