@@ -67,3 +67,14 @@ export function isAuthenticated() {
     }
     return false;
 }
+
+/**
+ * Removes the 'adminUser' and 'authToken' keys from localStorage and reloads the page.
+ * 
+ * @returns undefined
+ */
+export function logOut() {
+    localStorage.removeItem('adminUser');
+    localStorage.removeItem('authToken');
+    window.location.reload(false);
+}

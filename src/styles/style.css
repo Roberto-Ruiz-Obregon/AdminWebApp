@@ -213,27 +213,6 @@ body {
     height: 70px;
 }
 
-.navbar {
-    top: 0;
-    left: 0;
-    max-width: 100%;
-    background-color: #cf2a2a;
-    display: flex;
-    align-items: center;
-    padding: 22px;
-}
-
-.navbar-button {
-    padding-right: 60px;
-    color: white;
-    background-color: transparent;
-    border: none;
-    margin: 0 10px;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: light;
-}
-
 .btn_perfil {
     height: 65px;
     position: absolute;

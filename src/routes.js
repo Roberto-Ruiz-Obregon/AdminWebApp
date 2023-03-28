@@ -1,5 +1,6 @@
 import Cursos from './screens/cursos';
-import LoginForm from './screens/login';
+import LoginForm from './screens/Login';
+import SignupForm from './screens/Signup';
 import ForgotPassword from './screens/forgotPassword';
 import VerCursos from './screens/verCursos';
 import Topics from './screens/Topics';
@@ -12,7 +13,9 @@ const routes = [
     { path: '/verCursos', name: 'Cursos', Component: VerCursos, isPrivate: true },
     { path: '/intereses', name: 'Intereses', Component: Topics, isPrivate: true },
     { path: '/admins', name: 'Administradores', Component: Admins, isPrivate: true },
+    { path: '/perfil', name:'Mi Perfil', Component: ForgotPassword, isPrivate: true },
     { path: '/login', name: 'Iniciar sesión', Component: LoginForm, isPrivate: false },
+    { path: '/signup', name: 'Registrarse', Component: SignupForm, isPrivate: false },
     { path: '/cambiarContrasena', name:'Cambiar contraseña', Component: ForgotPassword, isPrivate: false },
 ];
 

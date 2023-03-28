@@ -24,10 +24,18 @@ h1 {
   flex-direction: column;
 }
 
+.auth-container section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 75px;
+}
 
-.auth-container form 
-  input[type="email"],
-  input[type="password"] {
+.auth-container section a {
+  margin: 0;
+}
+
+.auth-container form input {
   padding: 1rem;
   margin-bottom: 1rem;
   border: none;
@@ -37,15 +45,11 @@ h1 {
   color: #333;
 }
 
-.auth-container form 
-  input[type="email"]::placeholder,
-  input[type="password"]::placeholder {
+.auth-container form {
   color: #999;
 }
 
-.auth-container form 
-  input[type="email"]:focus,
-  input[type="password"]:focus {
+.auth-container form input:focus {
   outline: none;
   box-shadow: 0px 0px 3px #cf2a2a;
 }
