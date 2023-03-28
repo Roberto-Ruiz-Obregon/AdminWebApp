@@ -1,208 +1,23 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
+import { getAllCourses } from '../client/courses';
 import CourseList from '../components/CourseList';
 import "../styles/style.css";
 
-/* WIP fetching
-// class VerCursos extends React.Component {
-//   constructor(props) {
-//     super(props);
-
-//     this.state = {
-//       cursos: [],
-//       isLoaded: true,
-//     };
-//   }
-
-//   getAllCourses() {
-//     fetch(URL)
-//       .then((res) => res.json())
-//       .then((json) => {
-//         this.setState({
-//           cursos: json,
-//           isLoaded: true,
-//         });
-//       });
-//   }
-
-//   render() {
-//     const { isLoaded, cursos } = this.state;
-//     if (!isLoaded)
-//       return (
-//         <div>
-//           <h1> Por favor espere... </h1>{" "}
-//         </div>
-//       );
-
-//     return (
-//       <div className="Cursos">
-//         <h1> Cursos subidos </h1>{" "}
-//         {cursos.map((curso) => (
-//           <ol key={curso.id}>
-//             _id:         {curso._id},
-//             nombreCurso: {curso.nombreCurso}, 
-//             ponente:     {curso.ponente}
-//             topics:      {curso.topics},
-//             teachers:    {curso.teachers},
-//             courseName:  {curso.courseName},
-//             description: {curso.description} ,
-//             modality:    {curso.modality} ,
-//             status:      {curso.status} ,
-//             startDate:   {curso.startDate},
-//             endDate:     {curso.endDate} ,
-//             imageUrl:    {curso.imageUrl} ,
-//             createdAt:   {curso.createdAt},
-//             updatedAt:   {curso.updatedAt}
-//           </ol>
-//         ))}
-//       </div>
-//     );
-//   }
-// }
-*/
-
-/* Pruebas al bucket de firebase
-const request = {
-  "topics": [],
-  "teachers": [],
-  "_id": "6407d32ba457df438c97c6f1",
-  "courseName": "Botanica",
-  "description": "Aprenderas de la flora de Queretaro y los distintos usos que tienen las plantas.",
-  "modality": "Remoto",
-  "status": "Gratuito",
-  "startDate": "2023-02-28T00:00:00.000Z",
-  "endDate": "2023-03-01T00:00:00.000Z",
-  "imageUrl": "https://firebasestorage.googleapis.com/v0/b/robertoruiz-eca78.appspot.com/o/cursos-online-botanica_course_1678234410509.jpg?alt=media&token=f8a67854-e925-4f71-aa2c-169a915ded36",
-  "createdAt": "2023-03-08T00:13:31.158Z",
-  "updatedAt": "2023-03-08T00:13:31.158Z"
-}
-const cursos = [request,request,request]
-
-
 function VerCursos() {
-  return(
-      <div className="saludo-container">
-      <div className="inicio-agregar">
-        {cursos.map((curso) => (
-          <ul key={curso._id}>
-            _id: {curso._id},
-            topics: {curso.topics},
-            teachers: {curso.teachers},
-            courseName: {curso.courseName},
-            description: {curso.description},
-            modality: {curso.modality},
-            status: {curso.status},
-            startDate: {curso.startDate},
-            endDate: {curso.endDate},
-            imageUrl: {curso.imageUrl},
-            createdAt: {curso.createdAt},
-            updatedAt: {curso.updatedAt}
-          </ul>
-        ))}
-      </div>
-      </div>
-    )
+    const [courses, setCourses] = useState([]);
 
-    */
+    useEffect(() => {
+        (async () => {
+                const result = await getAllCourses();
+                setCourses(result);
+        })();
+    }, [courses]);
 
-/* pruebas al renderizado de datos de los cursos
-/* CourseCard contains
- * key:         string unique id obtained from the DB query
- * imgURL:      string storage bucket URL for the image
- * courseName:  string name of course
- * description: string description of course
- * startDate:   string YYYY-MM-DD
- * endDate:     string YYYY-MM-DD
- * modality:    string Remoto || Presencial
- * status:      string Gratuito || De pago
- *
- * @returns {Fragment with CourseCards} 
- */
-function VerCursos() {
-    const courses = [
-        {
-            _id: 'yanopuedomasMarta',
-            courseName: 'Responsabilidad Social Empresarial',
-            teacher: 'Pedro Esquivar Bolaños',
-            imgSrc: 'https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80',
-            description: 'Sumérgete en el mundo de la imaginación y la creatividad a través de la literatura.',
-            startDate: '2023-12-02',
-            endDate: '2024-01-03',
-            modality: 'Remoto',
-            status: 'Gratuito',
-        },
-        {
-            _id: 'pastramin1sjas',
-            courseName: 'Curso de literatura avanzada',
-            teacher: 'José Esquivias Ruiz',
-            imgSrc: 'https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1888&q=80',
-            description: 'Sumérgete en el mundo de la imaginación y la creatividad a través de la literatura.',
-            startDate: '2023-02-02',
-            endDate: '2023-02-03',
-            modality: 'Remoto',
-            status: 'De pago',
-        },
-        {
-            _id: 'hol2a',
-            courseName: 'Curso de escritura',
-            teacher: 'Benedicto Onésimo Oliveros',
-            imgSrc: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80',
-            description: 'Conoce las herramientas básicas para la escritura de ensayos.',
-            startDate: '2023-02-02',
-            endDate: '2023-02-03',
-            modality: 'Presencial',
-            status: 'Gratuito',
-        },
-        {
-            _id: 'hola',
-            courseName: 'Curso de escritura',
-            teacher: 'Marta Oliveros',
-            imgSrc: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80',
-            description: 'Conoce las herramientas básicas para la escritura de ensayos.',
-            startDate: '2023-02-02',
-            endDate: '2023-02-03',
-            modality: 'Remoto',
-            status: 'Gratuito',
-        },
-        {
-            _id: 'pas123traminsjas',
-            courseName: 'Curso de literatura avanzada',
-            teacher: 'Carlos Ruiseñor Obregón',
-            imgSrc: 'https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1888&q=80',
-            description: 'Sumérgete en el mundo de la imaginación y la creatividad a través de la literatura.',
-            startDate: '2023-02-02',
-            endDate: '2023-02-03',
-            modality: 'Presencial',
-            status: 'De pago',
-        },
-        {
-            _id: 'yanopuedomas33321Marta',
-            courseName: 'Responsabilidad Social Empresarial',
-            teacher: 'Juan Carlos Obrador Galindo',
-            imgSrc: 'https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80',
-            description: 'Sumérgete en el mundo de la imaginación y la creatividad a través de la literatura.',
-            startDate: '2023-12-02',
-            endDate: '2024-01-03',
-            modality: 'Remoto',
-            status: 'Gratuito',
-        },
-        {
-            _id: 'holl1k23a',
-            courseName: 'Curso de escritura',
-            teacher: 'María Josefa Domínguez',
-            imgSrc: 'https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1073&q=80',
-            description: 'Conoce las herramientas básicas para la escritura de ensayos.',
-            startDate: '2023-02-02',
-            endDate: '2023-02-03',
-            modality: 'Remoto',
-            status: 'Gratuito',
-        },
-    ];
-
-
-    return (
-        <Fragment>
-            <h4>Inicio / Ver Cursos</h4>
-            <ul className='course-element-container'>
+        return (
+            <Fragment>
+                <h4>Inicio / Ver Cursos</h4>
+                {/* <p>{courses}</p> */}
+                <ul className='course-element-container'>
                     {courses.map(course => (
                         <CourseList
                             key={course._id}
@@ -215,8 +30,10 @@ function VerCursos() {
                         />
                     ))}
                 </ul>
-        </Fragment>
-    );
-}
+
+            </Fragment>
+        );
+    }
+
 
 export default VerCursos;
