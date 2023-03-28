@@ -17,7 +17,7 @@ const routes = [
         inNavbar: true,
     },
     {
-        path: '/editarcurso/:id',
+        path: '/editarCurso/:id',
         name: 'Editar curso',
         Component: EditCourse,
         isPrivate: true,
