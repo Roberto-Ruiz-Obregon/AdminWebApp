@@ -1,0 +1,22 @@
+.inscriptions-container {
+    display: flex;
+    flex-direction: column;
+}
+.inscriptions-list-container {
+    display: flex;
+    flex-direction: column;
+}
+.inscription-list-titles {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bolder;
+    width: 100%;
+    height: 70px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr 1fr 1fr 1fr 1fr 2fr;
+    grid-template-rows: 1fr;
+    justify-items: center;
+    align-items: center;
+    border-bottom: 2px solid black;
+}

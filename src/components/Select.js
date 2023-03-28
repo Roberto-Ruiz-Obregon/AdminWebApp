@@ -5,7 +5,7 @@ function Select(props) {
     const { label, getVal, setVal, options } = props;
 
     return (
-        <>
+        <div>
             <label>
                 <div className='label-text'>{label}</div>
                 <select
@@ -13,13 +13,17 @@ function Select(props) {
                     className='input-general'
                     value={getVal}
                     onChange={(e) => setVal(e.target.value)}>
-                    <option value=''>Selecciona una opción</option>
+                    <option key='no selected' value=''>
+                        Selecciona una opción
+                    </option>
                     {options.map((option) => (
-                        <option value={option}>{option}</option>
+                        <option key='option' value={option}>
+                            {option}
+                        </option>
                     ))}
                 </select>
             </label>
-        </>
+        </div>
     );
 }
 

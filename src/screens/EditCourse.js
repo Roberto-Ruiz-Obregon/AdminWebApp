@@ -256,6 +256,7 @@ function EditCourse() {
                         {topicsInCourse.map((topic) => (
                             <TopicCard
                                 interest={topic}
+                                key={topic._id}
                                 action={() => {
                                     handleRemoveTopic(topic);
                                 }}
@@ -269,6 +270,7 @@ function EditCourse() {
                         {topicsAvailable.map((topic) => (
                             <TopicCard
                                 interest={topic}
+                                key={topic._id}
                                 action={() => {
                                     handleAddTopic(topic);
                                 }}

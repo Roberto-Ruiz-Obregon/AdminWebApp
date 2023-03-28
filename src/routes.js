@@ -2,6 +2,7 @@ import AddCourse from './screens/AddCourse';
 import EditCourse from './screens/EditCourse';
 import LoginForm from './screens/login';
 import VerCursos from './screens/verCursos';
+import Inscriptions from './screens/Inscriptions';
 import Topics from './screens/Topics';
 import Admins from './screens/Admins';
 import { Saludo } from './screens/dashboard';
@@ -16,9 +17,16 @@ const routes = [
         inNavbar: true,
     },
     {
-        path: '/editarcurso/:id',
+        path: '/editarCurso/:id',
         name: 'Editar curso',
         Component: EditCourse,
+        isPrivate: true,
+        inNavbar: false,
+    },
+    {
+        path: '/inscripciones/:id',
+        name: 'Ver inscripciones al curso',
+        Component: Inscriptions,
         isPrivate: true,
         inNavbar: false,
     },

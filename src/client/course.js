@@ -14,6 +14,18 @@ export async function getCourses() {
 }
 
 /**
+ * It gets the inscriptions of a course
+ * @param courseId - The id of the course
+ * @returns An array of objects.
+ */
+export async function getCourseInscriptions(courseId) {
+    const endpoint = `${baseApiEndpoint}/course/getinscriptions/${courseId}`;
+
+    const response = await axios.get(endpoint);
+    return response.data.data.documents;
+}
+
+/**
  * It takes a topic object, sends it to the server, and returns the response.
  * @param course - {
  * @returns An array of topics.
@@ -21,7 +33,10 @@ export async function getCourses() {
 export async function postCourse(courseForm) {
     const endpoint = `${baseApiEndpoint}/course`;
 
-    const response = await axios.post(endpoint, courseForm);
+    const response = await axios.post(endpoint, courseForm, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+    });
+
     return response.data.data.document;
 }
 
@@ -57,6 +72,8 @@ export async function getCourse(id) {
 export async function patchCourse(id, form) {
     const endpoint = `${baseApiEndpoint}/course/${id}`;
 
-    const response = await axios.patch(endpoint, form);
+    const response = await axios.patch(endpoint, form, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+    });
     return response.data.data.document;
 }
