@@ -36,6 +36,7 @@ export async function postCourse(courseForm) {
     const response = await axios.post(endpoint, courseForm, {
         headers: { 'Content-Type': 'multipart/form-data' },
     });
+
     return response.data.data.document;
 }
 
