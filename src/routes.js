@@ -1,6 +1,8 @@
+import LoginForm from './screens/Login';
+import SignupForm from './screens/Signup';
+import ForgotPassword from './screens/forgotPassword';
 import AddCourse from './screens/AddCourse';
 import EditCourse from './screens/EditCourse';
-import LoginForm from './screens/login';
 import VerCursos from './screens/verCursos';
 import Inscriptions from './screens/Inscriptions';
 import Topics from './screens/Topics';
@@ -56,8 +58,22 @@ const routes = [
         name: 'Iniciar sesión',
         Component: LoginForm,
         isPrivate: false,
+        inNavbar: false,
     },
-    // { path: '/signin', name:'Cursos', Component: LoginForm, isPrivate: false },
+    {
+        path: '/signup',
+        name: 'Registrarse',
+        Component: SignupForm,
+        isPrivate: false,
+        inNavbar: false,
+    },
+    {
+        path: '/cambiarContrasena',
+        name: 'Cambiar contraseña',
+        Component: ForgotPassword,
+        isPrivate: false,
+        inNavbar: false,
+    },
 ];
 
 export default routes;

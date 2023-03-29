@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, Navigate } from 'react-router-dom';
+import { FireError, FireSucess } from '../utils/alertHandler';
 import { postLogin } from '../client/authentication';
 import { setToken, setAdminUserSaved, isAuthenticated } from '../utils/auth';
 import axios from 'axios';
@@ -24,8 +25,8 @@ const LoginForm = () => {
                 navigate('/');
             }
         } catch (error) {
-            if (error.response.status === 401) alert(error.response.data.message);
-            else alert('Ocurrió un error. Por favor intenta de nuevo.');
+            if (error.response.status === 401) FireError(error.response.data.message);
+            else FireError('Ocurrió un error. Por favor intenta de nuevo.');
         }
     };
 
@@ -57,11 +58,10 @@ const LoginForm = () => {
                 </div>
                 <button type='submit'>Entrar</button>
             </form>
-            <div>
-                <Link to='/signin'>Registrarse</Link>
-                <br />
-                <a href='#'>Olvidé mi contraseña</a>
-            </div>
+            <section>
+                <Link to='/signup'>Registrarse</Link>
+                <Link to='/cambiarContrasena'>Olvidé mi contraseña</Link>
+            </section>
         </div>
     );
 };

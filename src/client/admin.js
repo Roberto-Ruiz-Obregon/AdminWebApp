@@ -16,6 +16,14 @@ export async function retreiveAdmin(id, params = {}) {
     return response.data.data.document;
 }
 
+export async function sendChangePasswordEmail(email) {
+    const endpoint = `${baseApiEndpoint}/admin/forgotpassword`;
+    const body = { email }
+    const response = await axios.post(endpoint, body);
+    console.log(response.data);
+    return response.data;
+}
+
 /**
  * It gets all the admins that have not been verified
  * @returns An array of objects.
