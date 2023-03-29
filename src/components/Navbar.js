@@ -23,7 +23,7 @@ function Navbar() {
         <div className='navbar'>
             <div>
                 {routes
-                    .filter((route) => route.isPrivate)
+                    .filter((route) => route.isPrivate && route.inNavbar)
                     .map((route) => (
                         <a
                             className='navbar-button'

@@ -144,12 +144,6 @@ body {
     top: 590px;
 }
 
-.course-card {
-    position: absolute;
-    margin-left: 58%;
-    top: -320px;
-}
-
 .fecha,
 .cargo,
 .modalidad {

@@ -36,7 +36,7 @@ function Topics() {
     const handleDelete = async (id) => {
         try {
             const confirmation = await FireQuestion(
-                '¿Está seguro de que quiere deseas eliminar este interés?',
+                '¿Está seguro de que quiere eliminar este interés?',
                 'Los cursos y personas que tengan este interés dejarán de tenerlo.'
             );
 
@@ -64,6 +64,7 @@ function Topics() {
                             placeholder='Interés'
                             getVal={topic}
                             setVal={setTopic}
+                            type='text'
                         />
                     </div>
                     <Button action={handleSubmit} text='Crear interes' type='create' />
@@ -72,7 +73,13 @@ function Topics() {
             <h2>Intereses Agregados</h2>
             <div className='interests-container'>
                 {topics.map((topic) => (
-                    <TopicCard interest={topic} action={handleDelete} type='delete' />
+                    <TopicCard
+                        key={topic._id}
+                        interest={topic}
+                        action={handleDelete}
+                        actionText='Eliminar'
+                        type='delete'
+                    />
                 ))}
             </div>
         </div>
