@@ -4,6 +4,7 @@ import ForgotPassword from './screens/forgotPassword';
 import AddCourse from './screens/AddCourse';
 import EditCourse from './screens/EditCourse';
 import VerCursos from './screens/verCursos';
+import Programs from './screens/Programs';
 import Inscriptions from './screens/Inscriptions';
 import Topics from './screens/Topics';
 import Admins from './screens/Admins';
@@ -36,6 +37,13 @@ const routes = [
         path: '/verCursos',
         name: 'Cursos',
         Component: VerCursos,
+        isPrivate: true,
+        inNavbar: true,
+    },
+    {
+        path: '/programs',
+        name: 'Programas',
+        Component: Programs,
         isPrivate: true,
         inNavbar: true,
     },
