@@ -1,51 +1,46 @@
-import React, { Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CourseCard from '../components/CourseCard';
+import { getCourses } from '../client/course';
+import { Video, Users, Calendar } from 'react-feather';
 import '../styles/verCursos.css';
 
 function VerCursos() {
-    const courses = [
-        {
-            _id: 'ferkflmerf',
-            courseName: 'Curso random',
-            description: 'Sumérgete en el mundo de la imaginación y la creatividad a través de la literatura.',
-            startDate: '2023-02-02',
-            endDate: '2023-02-03',
-            modality: 'Remoto',
-            status: 'Gratuito',
-        },
-        {
-            _id: 'ferkflmerf',
-            courseName: 'Curso random',
-            description: 'Sumérgete en el mundo de la imaginación y la creatividad a través de la literatura.',
-            startDate: '2023-02-02',
-            endDate: '2023-02-03',
-            modality: 'Remoto',
-            status: 'Gratuito',
-        },
-        {
-            _id: 'ferkflmerf',
-            courseName: 'Curso random',
-            description: 'Sumérgete en el mundo de la imaginación y la creatividad a través de la literatura.',
-            startDate: '2023-02-02',
-            endDate: '2023-02-03',
-            modality: 'Remoto',
-            status: 'Gratuito',
-        },
-    ];
+    const navigate = useNavigate();
+    const [courses, setCourses] = useState([]);
+
+    useEffect(() => {
+        getCourses()
+        .then(data => setCourses(data));
+    }, []);
+
     return (
         <Fragment>
-            <h4>Inicio / Ver Cursos</h4>
+            <h4>Inicio / Cursos</h4>
             <div id="course-container">
                 { courses.map(course => (
                     <CourseCard 
                         key={course._id}
-                        courseName={course.courseName}
+                        imgSrc={course.imageUrl}
+                        title={course.courseName}
                         description={course.description}
-                        startDate={new Date(course.startDate).toLocaleDateString()}
-                        endDate={new Date(course.endDate).toLocaleDateString()}
-                        modality={course.modality}
-                        status={course.status}
-                    />
+                        onClick={() => navigate(`/cursos/${course._id}`)}
+                    >
+                        <div>
+                            {course.modality === 'Remoto' ? <Video /> : <Users />}
+                            <p>{course.modality}</p>
+                        </div>
+                        <div>
+                            <Calendar />
+                            <p>{new Date(course.startDate).toLocaleDateString()}</p>
+                        </div>
+                        <div>
+                            {course.cost
+                            ? <p>$ {course.cost}</p>
+                            : <p>Gratis</p>
+                            }
+                        </div>    
+                    </CourseCard>
                 )) }
             </div>
         </Fragment>

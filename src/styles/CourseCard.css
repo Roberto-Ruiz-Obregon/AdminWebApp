@@ -1,6 +1,6 @@
 .course-card {
     background-color: #D9D9D9;
-    width: 400px;
+    width: 600px;
     height: 75vh;
     border-radius: 10px;
     padding: 1.5rem 3rem;
@@ -11,9 +11,6 @@
 }
 
 .course-card img {
-    position: absolute;
-    top: 25%;
-    left: 19%;
     width: 320px;
     height: 280px;
   }
@@ -21,12 +18,13 @@
 .course-card-properties {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     width: 100%;
-    margin-top: 79%;
 }
 
 .course-card-properties div {
     display: flex;
+    align-items: center;
     margin: 1.5rem 0;
 }
 

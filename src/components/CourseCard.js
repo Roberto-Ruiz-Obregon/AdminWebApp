@@ -1,35 +1,21 @@
 import React, { useState } from 'react';
 import '../styles/CourseCard.css';
-import { DollarSign, Video, Users, Calendar } from 'react-feather';
 
 function CourseCard(props) {
-    const { imgSrc } = props;
-
-    const handleClick = () => {
-        console.log('redireccionar');
-    };
+    const { imgSrc, title, description, onClick, children } = props;
 
     return (
         <div className='course-card'>
-            <h3>{props.courseName}</h3>
-            <img src={imgSrc} alt={props.courseName} />
+            <h3>{title}</h3>
+            {imgSrc &&
+                <img src={imgSrc} alt={title} />
+            }
 
-            <p>{props.description}</p>
+            <p>{description}</p>
             <div className='course-card-properties'>
-                <div>
-                    {props.modality === 'Remoto' ? <Video /> : <Users />}
-                    <p>{props.modality}</p>
-                </div>
-                <div>
-                    <Calendar />
-                    <p>{props.startDate}</p>
-                </div>
-                <div>
-                    <DollarSign />
-                    <p>{props.occupation}</p>
-                </div>
+                { children }
             </div>
-            <button className='btn-info' onClick={handleClick}>
+            <button className='btn-info' onClick={e => onClick(e)}>
                 Ver más
             </button>
         </div>
