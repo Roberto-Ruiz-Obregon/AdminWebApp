@@ -27,7 +27,7 @@ function Topics() {
             const newTopic = await postTopic(topic);
             setTopics([...topics, newTopic]);
 
-            FireSucess('Nuevo interes agregado con exito.');
+            FireSucess('Nuevo interés agregado con éxito.');
         } catch (error) {
             FireError(error.response.data.message);
         }
@@ -36,7 +36,7 @@ function Topics() {
     const handleDelete = async (id) => {
         try {
             const confirmation = await FireQuestion(
-                '¿Está seguro de que quiere deseas eliminar este interés?',
+                '¿Estás seguro de que quieres eliminar este interés?',
                 'Los cursos y personas que tengan este interés dejarán de tenerlo.'
             );
 
@@ -46,7 +46,7 @@ function Topics() {
 
             setTopics(topics.filter((topic) => topic._id !== id));
 
-            FireSucess('Se ha eliminado el interes con exito.');
+            FireSucess('Se ha eliminado el interés con éxito.');
         } catch (error) {
             FireError(error.response.data.message);
         }
@@ -66,7 +66,7 @@ function Topics() {
                             setVal={setTopic}
                         />
                     </div>
-                    <Button action={handleSubmit} text='Crear interes' type='create' />
+                    <Button action={handleSubmit} text='Crear interés' type='create' />
                 </form>
             </div>
             <h2>Intereses Agregados</h2>

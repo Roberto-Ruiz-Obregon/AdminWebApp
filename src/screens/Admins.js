@@ -33,7 +33,7 @@ export function Admins() {
 
             setAdmins(admins.filter((admin) => admin._id !== id));
 
-            FireSucess('El administrador ha sido verificado con exito.');
+            FireSucess('El administrador ha sido verificado con éxito.');
         } catch (error) {
             FireError(error.response.data.message);
         }
@@ -52,7 +52,7 @@ export function Admins() {
 
             setAdmins(admins.filter((admin) => admin._id !== id));
 
-            FireSucess('El administrador ha sido eliminado con exito.');
+            FireSucess('El administrador ha sido eliminado con éxito.');
         } catch (error) {
             FireError(error.response.data.message);
         }
@@ -71,7 +71,7 @@ export function Admins() {
                         />
                     ))
                 ) : (
-                    <h4>No existen solicitudes de verificacion pendientes</h4>
+                    <h4>No existen solicitudes de verificación pendientes</h4>
                 )}
             </div>
         </div>
