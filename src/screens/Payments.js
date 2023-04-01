@@ -62,13 +62,13 @@ function Payments() {
         <div className='payments-container'>
             <h4>Inicio / Pagos pendientes de aprobar</h4>
             <h2>Pagos pendientes</h2>
-            <div className='payments-container'>
+            <div className='payment-cards-container'>
                 {payments.length > 0 ? (
                     payments.map((payment) => (
                         <PaymentCard
                             payment={payment}
                             handleAccept={handleAccept}
-                            hanldeDecline={hanldeDecline}
+                            handleDecline={hanldeDecline}
                         />
                     ))
                 ) : (
