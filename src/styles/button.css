@@ -1,0 +1,27 @@
+.button {
+    background-color: #000000;
+    color: #ffffff;
+    border-radius: 20px;
+    border: none;
+    padding: 10px 40px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.button:active {
+    transform: scale(0.95);
+}
+
+.button-create {
+    background-color: #15b725;
+}
+.button-delete {
+    background-color: #d21e15;
+}
+.button-modify {
+    background-color: #156dd2;
+}

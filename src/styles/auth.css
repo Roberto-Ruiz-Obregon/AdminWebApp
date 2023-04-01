@@ -1,0 +1,88 @@
+.auth-container {
+  margin: auto;
+  width: 30rem;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #121212;
+}
+
+.auth-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-container form div {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.auth-container form 
+  input[type="email"],
+  input[type="password"] {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 3px;
+  background-color: #ececec;
+  font-size: 1rem;
+  color: #333;
+}
+
+.auth-container form 
+  input[type="email"]::placeholder,
+  input[type="password"]::placeholder {
+  color: #999;
+}
+
+.auth-container form 
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+  outline: none;
+  box-shadow: 0px 0px 3px #cf2a2a;
+}
+
+.auth-container form 
+  button[type="submit"] {
+  width: 100%;
+  padding: 1rem;
+  background-color: #cf2a2a;
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.auth-container form 
+  button[type="submit"]:hover {
+  background-color: #862121;
+}
+
+.forgot-password {
+  color: #666;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  text-align: right;
+}
+
+a {
+  background-color: transparent;
+  color: #cf2a2a;
+  text-decoration: none;
+  font-size: 1rem;
+  margin: 1rem 0;
+}
+
+a:hover {
+  text-decoration: underline;
+}
