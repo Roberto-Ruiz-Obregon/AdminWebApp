@@ -3,7 +3,7 @@ import Button from './Button';
 import '../styles/paymentCard.css';
 
 function TopicCard(props) {
-    const { payment, hanldeAccept, hanldeDecline } = props;
+    const { payment, handleAccept, handleDecline } = props;
     const { _id, user, course, billImageURL } = payment;
 
     return (
@@ -36,12 +36,12 @@ function TopicCard(props) {
             <div className='separator'></div>
             <div className='button-container'>
                 <Button
-                    action={(e) => hanldeAccept(_id)}
+                    action={(e) => handleAccept(_id)}
                     text='Aceptar pago'
                     type='create'
                 />
                 <Button
-                    action={(e) => hanldeDecline(_id)}
+                    action={(e) => handleDecline(_id)}
                     text='Rechazar pago'
                     type='delete'
                 />

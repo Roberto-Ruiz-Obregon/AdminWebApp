@@ -20,21 +20,60 @@ function Payments() {
         })();
     }, []);
 
-    const handleAccept = async (id) => {};
-    const hanldeDecline = async (id) => {};
+    const handleAccept = async (id) => {
+        try {
+            const confirmation = await FireQuestion(
+                '¿Está seguro de que desea aceptar este pado?',
+                'El usuario sera notificado y se registrara su inscripcion al curso.'
+            );
+
+            if (confirmation.isDismissed) return;
+
+            await acceptPayment(id);
+
+            setPayments(payments.filter((payment) => payment._id !== id));
+
+            FireSucess('Pago aprobado con exito.');
+        } catch (error) {
+            FireError(error.response.data.message);
+        }
+    };
+
+    const hanldeDecline = async (id) => {
+        try {
+            const confirmation = await FireQuestion(
+                '¿Está seguro de que desea rechazar este pado?',
+                'El usuario sera notificado y se eliminara su peticion de pago.'
+            );
+
+            if (confirmation.isDismissed) return;
+
+            await declinePayment(id);
+
+            setPayments(payments.filter((payment) => payment._id !== id));
+
+            FireSucess('Pago declinado con exito.');
+        } catch (error) {
+            FireError(error.response.data.message);
+        }
+    };
 
     return (
         <div className='payments-container'>
             <h4>Inicio / Pagos pendientes de aprobar</h4>
             <h2>Pagos pendientes</h2>
             <div className='payments-container'>
-                {payments.map((payment) => (
-                    <PaymentCard
-                        payment={payment}
-                        handleAccept={handleAccept}
-                        hanldeDecline={hanldeDecline}
-                    />
-                ))}
+                {payments.length > 0 ? (
+                    payments.map((payment) => (
+                        <PaymentCard
+                            payment={payment}
+                            handleAccept={handleAccept}
+                            hanldeDecline={hanldeDecline}
+                        />
+                    ))
+                ) : (
+                    <h3>Sin pagos por aprobar</h3>
+                )}
             </div>
         </div>
     );
