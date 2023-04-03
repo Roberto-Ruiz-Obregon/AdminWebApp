@@ -39,7 +39,7 @@ function Payments() {
         }
     };
 
-    const hanldeDecline = async (id) => {
+    const handleDecline = async (id) => {
         try {
             const confirmation = await FireQuestion(
                 '¿Está seguro de que desea rechazar este pado?',
@@ -66,9 +66,10 @@ function Payments() {
                 {payments.length > 0 ? (
                     payments.map((payment) => (
                         <PaymentCard
+                            key={payment._id}
                             payment={payment}
                             handleAccept={handleAccept}
-                            handleDecline={hanldeDecline}
+                            handleDecline={handleDecline}
                         />
                     ))
                 ) : (
