@@ -6,6 +6,7 @@ import EditCourse from './screens/EditCourse';
 import VerCursos from './screens/verCursos';
 import Inscriptions from './screens/Inscriptions';
 import Topics from './screens/Topics';
+import Payments from './screens/Payments';
 import Admins from './screens/Admins';
 import { Saludo } from './screens/dashboard';
 
@@ -50,6 +51,13 @@ const routes = [
         path: '/admins',
         name: 'Administradores',
         Component: Admins,
+        isPrivate: true,
+        inNavbar: true,
+    },
+    {
+        path: '/pagos',
+        name: 'Pagos pendientes',
+        Component: Payments,
         isPrivate: true,
         inNavbar: true,
     },
