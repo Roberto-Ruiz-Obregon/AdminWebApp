@@ -1,4 +1,5 @@
 import LoginForm from './screens/Login';
+import SendMail from './screens/SendMail';
 import SignupForm from './screens/Signup';
 import ForgotPassword from './screens/forgotPassword';
 import AddCourse from './screens/AddCourse';
@@ -12,6 +13,13 @@ import { Saludo } from './screens/dashboard';
 
 const routes = [
     { path: '/', name: 'Dashbord', Component: Saludo, isPrivate: true, inNavbar: true },
+    {
+        path: '/enviarAnuncio',
+        name: 'Anuncios',
+        Component: SendMail,
+        isPrivate: true,
+        inNavbar: true,
+    },
     {
         path: '/agregarCursos',
         name: 'Agregar curso',
