@@ -13,7 +13,7 @@ import { Saludo } from './screens/dashboard';
 const routes = [
     { path: '/', name: 'Dashbord', Component: Saludo, isPrivate: true, inNavbar: true },
     {
-        path: '/enviaranuncio',
+        path: '/enviarAnuncio',
         name: 'Anuncios',
         Component: SendMail,
         isPrivate: true,

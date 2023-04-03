@@ -100,7 +100,7 @@ function SendMail() {
                     <h4>Vista preliminar</h4>
                     <h3>{subject}</h3>
                     <p>{message}</p>
-                    <img src={preview} alt='' />
+                    <img src={preview} alt='Imagen de correo' />
                 </div>
             </div>
         </div>
