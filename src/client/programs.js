@@ -49,7 +49,7 @@ export async function patchProgram(id, formData) {
 export async function postProgram(formData) {
     const endpoint = `${baseApiEndpoint}/program`;
 
-    const response = await axios.patch(endpoint, formData, {
+    const response = await axios.post(endpoint, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
     });
     return response.data.data.document;

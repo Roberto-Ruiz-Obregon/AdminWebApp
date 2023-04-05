@@ -3,7 +3,7 @@ import SignupForm from './screens/Signup';
 import ForgotPassword from './screens/forgotPassword';
 import AddCourse from './screens/AddCourse';
 import EditCourse from './screens/EditCourse';
-import VerCursos from './screens/verCursos';
+import Courses from './screens/Courses';
 import Programs from './screens/Programs';
 import EditProgram from './screens/EditProgram';
 import Inscriptions from './screens/Inscriptions';
@@ -37,7 +37,7 @@ const routes = [
     {
         path: '/cursos',
         name: 'Cursos',
-        Component: VerCursos,
+        Component: Courses,
         isPrivate: true,
         inNavbar: true,
     },

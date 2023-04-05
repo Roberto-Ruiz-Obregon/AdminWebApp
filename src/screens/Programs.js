@@ -8,8 +8,15 @@ const Programs = () => {
     const [programs, setPrograms] = useState([]);
 
     useEffect(() => {
-        getPrograms()
-        .then(data => setPrograms(data));
+        (async () => {
+            try {
+                const data = await getPrograms();
+                setPrograms(data);
+            }
+            catch(error) {
+                console.error(error);
+            }
+        })();
     }, []);
 
     return (

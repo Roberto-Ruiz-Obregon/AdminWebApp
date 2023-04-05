@@ -10,7 +10,6 @@ import Button from '../components/Button';
 
 const EditProgram = () => {
     const { id } = useParams();
-    const [mode, setMode] = useState('patch');
     const navigate = useNavigate();
 
     // Program attributes
@@ -21,9 +20,7 @@ const EditProgram = () => {
     const [preview, setPreview] = useState('');
 
     useEffect(() => {
-        if (!id)
-            setMode('post');
-        else
+        if (id)
             (async () => {
                 try {
                     const program = await getProgram(id);
@@ -36,6 +33,14 @@ const EditProgram = () => {
                     FireError(error.response.data.message);
                 }
             })();
+        else {
+            // Asegurarnos que el forms esté vacío
+            setProgramName('');
+            setDescription('');
+            setCategory('');
+            setImage(null);
+            setPreview('');
+        }
     }, [id]);
 
     useEffect(() => {
@@ -61,12 +66,13 @@ const EditProgram = () => {
         if (confirmation.isDismissed) return;
         
         try {
-            if (mode === 'patch')
-                await patchProgram(id, form);
-            else if (mode === 'post')
-                await postProgram(form);
-
-            FireSucess('Curso mofificado con exito.');
+            let program = null;
+            if (id)
+                program = await patchProgram(id, form);
+            else
+                program = await postProgram(form);
+            FireSucess('Programa guardado con éxito.');
+            navigate(`/programs/program/${program._id}`);
         }
         catch (error) {
             FireError(error.response.data.message);
@@ -85,7 +91,7 @@ const EditProgram = () => {
 
         try {
             await deleteProgram(id);
-            FireSucess('Curso mofificado con exito.');
+            FireSucess('Programa eliminado con exito.');
             navigate('/programs');
         }
         catch (error) {
@@ -117,7 +123,7 @@ const EditProgram = () => {
                         label='Categoría'
                         getVal={category}
                         setVal={setCategory}
-                        options={['Beca', 'Programa', 'Otro']}
+                        options={['Beca', 'Programa', 'Evento', 'Apoyo', 'Otro']}
                     />
                     <InputImage
                         label='Elegir nueva imagen de la portada, dejar vacio si no se quiere modificar'
@@ -135,7 +141,7 @@ const EditProgram = () => {
                             <p>{category}</p>
                         </div>
                     </CourseCard>
-                    <Button action={handleSubmit} text='Modificar programa' type='modify' />
+                    <Button action={handleSubmit} text={`${id ? 'Modificar' : 'Crear'} programa`} type='modify' />
                     { id &&
                         <Button action={handleDelete} text='Eliminar programa' type='delete' />
                     }

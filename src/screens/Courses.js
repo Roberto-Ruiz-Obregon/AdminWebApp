@@ -5,7 +5,7 @@ import { getCourses } from '../client/course';
 import { Video, Users, Calendar } from 'react-feather';
 import '../styles/verCursos.css';
 
-function VerCursos() {
+function Courses() {
     const navigate = useNavigate();
     const [courses, setCourses] = useState([]);
 
@@ -47,4 +47,4 @@ function VerCursos() {
     );
 }
 
-export default VerCursos;
+export default Courses;
