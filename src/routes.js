@@ -1,4 +1,5 @@
 import LoginForm from './screens/Login';
+import SendMail from './screens/SendMail';
 import SignupForm from './screens/Signup';
 import ForgotPassword from './screens/forgotPassword';
 import AddCourse from './screens/AddCourse';
@@ -8,11 +9,19 @@ import Programs from './screens/Programs';
 import EditProgram from './screens/EditProgram';
 import Inscriptions from './screens/Inscriptions';
 import Topics from './screens/Topics';
+import Payments from './screens/Payments';
 import Admins from './screens/Admins';
 import { Saludo } from './screens/dashboard';
 
 const routes = [
     { path: '/', name: 'Dashbord', Component: Saludo, isPrivate: true, inNavbar: true },
+    {
+        path: '/enviarAnuncio',
+        name: 'Anuncios',
+        Component: SendMail,
+        isPrivate: true,
+        inNavbar: true,
+    },
     {
         path: '/agregarCursos',
         name: 'Agregar curso',
@@ -73,6 +82,13 @@ const routes = [
         path: '/admins',
         name: 'Administradores',
         Component: Admins,
+        isPrivate: true,
+        inNavbar: true,
+    },
+    {
+        path: '/pagos',
+        name: 'Pagos pendientes',
+        Component: Payments,
         isPrivate: true,
         inNavbar: true,
     },

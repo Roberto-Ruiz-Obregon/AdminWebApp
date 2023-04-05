@@ -1,0 +1,38 @@
+.email-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-preview-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.email-form-container {
+    width: 40%;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.email-form-container button {
+    width: 40%;
+    margin-top: 20px;
+}
+.email-form-container * {
+    width: 100%;
+    margin-top: 5px;
+}
+.email-preview {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    min-width: 300px;
+}
+
+.email-preview img {
+    width: 80%;
+}

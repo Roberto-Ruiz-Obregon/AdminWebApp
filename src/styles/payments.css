@@ -1,0 +1,13 @@
+.payments-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.payment-cards-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
