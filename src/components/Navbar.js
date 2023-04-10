@@ -26,6 +26,7 @@ function Navbar() {
                     .filter((route) => route.isPrivate && route.inNavbar)
                     .map((route) => (
                         <a
+                            key={route.path}
                             className='navbar-button'
                             id='inicio_btn'
                             onClick={() => navigate(route.path)}>

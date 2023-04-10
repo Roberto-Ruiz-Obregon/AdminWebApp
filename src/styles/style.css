@@ -253,4 +253,5 @@ body {
 .btn-info:hover {
     background: none;
     color: #27b0c3;
+    cursor: pointer;
 }

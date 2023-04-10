@@ -4,7 +4,9 @@ import SignupForm from './screens/Signup';
 import ForgotPassword from './screens/forgotPassword';
 import AddCourse from './screens/AddCourse';
 import EditCourse from './screens/EditCourse';
-import VerCursos from './screens/verCursos';
+import Courses from './screens/Courses';
+import Programs from './screens/Programs';
+import EditProgram from './screens/EditProgram';
 import Inscriptions from './screens/Inscriptions';
 import Topics from './screens/Topics';
 import Payments from './screens/Payments';
@@ -28,7 +30,7 @@ const routes = [
         inNavbar: true,
     },
     {
-        path: '/editarCurso/:id',
+        path: '/cursos/:id',
         name: 'Editar curso',
         Component: EditCourse,
         isPrivate: true,
@@ -42,9 +44,30 @@ const routes = [
         inNavbar: false,
     },
     {
-        path: '/verCursos',
+        path: '/cursos',
         name: 'Cursos',
-        Component: VerCursos,
+        Component: Courses,
+        isPrivate: true,
+        inNavbar: true,
+    },
+    {
+        path: '/programs/program/',
+        name: 'Crear programa',
+        Component: EditProgram,
+        isPrivate: true,
+        inNavbar: true,
+    },
+    {
+        path: '/programs/program/:id',
+        name: 'Editar programa',
+        Component: EditProgram,
+        isPrivate: true,
+        inNavbar: false,
+    },
+    {
+        path: '/programs',
+        name: 'Programas',
+        Component: Programs,
         isPrivate: true,
         inNavbar: true,
     },
