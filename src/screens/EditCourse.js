@@ -31,6 +31,7 @@ function EditCourse() {
     const [accessLink, setAccessLink] = useState('https://zoom.us/');
     const [address, setAddress] = useState('');
     const [status, setStatus] = useState('');
+    const [bankAccount, setBankAccount] = useState('');
     const [cost, setCost] = useState(0);
 
     // Topics
@@ -58,6 +59,7 @@ function EditCourse() {
                 setAccessLink(course.accessLink);
                 setAddress(course.address);
                 setStatus(course.status);
+                setBankAccount(course.bankAccount);
                 setCost(course.cost);
 
                 const topics = await getTopics();
@@ -127,6 +129,7 @@ function EditCourse() {
             form.append('accessLink', accessLink);
             form.append('address', address);
             form.append('status', status);
+            form.append('bankAccount', bankAccount);
             form.append('cost', cost);
             topicsInCourse.forEach((topic) => {
                 form.append(`topics[]`, topic._id);
@@ -264,13 +267,22 @@ function EditCourse() {
                         options={['Gratuito', 'Pagado']}
                     />
                     {status === 'Pagado' ? (
-                        <Input
-                            label='Costo'
-                            placeholder='150'
-                            getVal={cost}
-                            setVal={setCost}
-                            type='number'
-                        />
+                        <React.Fragment>
+                            <Input
+                                label='Cuenta bancaria que recibira el pago'
+                                placeholder='3974619276419864'
+                                getVal={bankAccount}
+                                setVal={setBankAccount}
+                                type='number'
+                            />
+                            <Input
+                                label='Costo'
+                                placeholder='150'
+                                getVal={cost}
+                                setVal={setCost}
+                                type='number'
+                            />
+                        </React.Fragment>
                     ) : (
                         <></>
                     )}
