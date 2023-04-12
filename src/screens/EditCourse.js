@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { getTopics } from '../client/topics';
-import { patchCourse, getCourse } from '../client/course';
+import { patchCourse, getCourse, deleteCourse } from '../client/course';
 import { FireError, FireSucess, FireQuestion } from '../utils/alertHandler';
 import CourseCard from '../components/CourseCard';
 import TopicCard from '../components/TopicCard';
@@ -143,6 +143,25 @@ function EditCourse() {
             await patchCourse(id, form);
 
             FireSucess('Curso mofificado con exito.');
+        } catch (error) {
+            FireError(error.response.data.message);
+        }
+    };
+
+    const handleDelete = async () => {
+        const confirmation = await FireQuestion(
+            '¿Está seguro de que desea eliminar este curso?',
+            'Esta acción es irreversible.'
+        );
+
+        if (confirmation.isDismissed) return;
+
+        try {
+            await deleteCourse(id);
+
+            FireSucess('Curso eliminado con exito.');
+
+            navigate('/cursos');
         } catch (error) {
             FireError(error.response.data.message);
         }
@@ -305,6 +324,7 @@ function EditCourse() {
                         text='Ver inscripciones'
                         type='modify'
                     />
+                    <Button action={handleDelete} text='Eliminar curso' type='delete' />
                 </div>
             </div>
         </div>
