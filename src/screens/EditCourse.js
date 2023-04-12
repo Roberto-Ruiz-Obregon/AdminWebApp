@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { getTopics } from '../client/topics';
 import { patchCourse, getCourse } from '../client/course';
@@ -36,6 +37,8 @@ function EditCourse() {
     // Will store topic object for page renderig
     const [topicsInCourse, setTopicsInCourse] = useState([]);
     const [topicsAvailable, setTopicsAvailable] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         (async () => {
@@ -282,11 +285,10 @@ function EditCourse() {
                     </div>
                 </form>
                 <div className='course-container'>
-                    <CourseCard 
+                    <CourseCard
                         imgSrc={preview}
                         title={courseName}
-                        description={description}
-                    >
+                        description={description}>
                         <div>
                             {modality === 'Remoto' ? <Video /> : <Users />}
                             <p>{modality}</p>
@@ -295,14 +297,14 @@ function EditCourse() {
                             <Calendar />
                             <p>{new Date(startDate).toLocaleDateString()}</p>
                         </div>
-                        <div>
-                            {cost
-                            ? <p>$ {cost}</p>
-                            : <p>Gratis</p>
-                            }
-                        </div>    
+                        <div>{cost ? <p>$ {cost}</p> : <p>Gratis</p>}</div>
                     </CourseCard>
                     <Button action={handleSubmit} text='Modificar curso' type='modify' />
+                    <Button
+                        action={() => navigate(`/inscripciones/${id}`)}
+                        text='Ver inscripciones'
+                        type='modify'
+                    />
                 </div>
             </div>
         </div>
