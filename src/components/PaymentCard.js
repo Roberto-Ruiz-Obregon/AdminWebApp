@@ -12,14 +12,24 @@ function TopicCard(props) {
             <div className='separator'></div>
             <div className='info-container'>
                 <div className='course-info-container'>
-                    <p className='category'>Curso:</p>
-                    <p>{course.courseName}</p>
-                    <p className='category'>Costo:</p>
-                    <p>{course.cost}</p>
-                    <p className='category'>Modalidad:</p>
-                    <p>{course.modality}</p>
-                    <p className='category'>Cupo restante:</p>
-                    <p>{course.capacity}</p>
+                    {course ? (
+                        <React.Fragment>
+                            <p className='category'>Curso:</p>
+                            <p>{course.courseName}</p>
+                            <p className='category'>Costo:</p>
+                            <p>{course.cost}</p>
+                            <p className='category'>Modalidad:</p>
+                            <p>{course.modality}</p>
+                            <p className='category'>Cupo restante:</p>
+                            <p>{course.capacity}</p>
+                            <p className='category'>Cuenta bancaria:</p>
+                            <p>{course.bankAccount}</p>
+                        </React.Fragment>
+                    ) : (
+                        <p className='category'>
+                            El curso ha sido eliminado recientemente
+                        </p>
+                    )}
                 </div>
                 <div className='separator-vertical'></div>
                 <div className='user-info-container'>
