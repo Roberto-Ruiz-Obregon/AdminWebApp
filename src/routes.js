@@ -27,7 +27,7 @@ const routes = [
         name: 'Agregar curso',
         Component: AddCourse,
         isPrivate: true,
-        inNavbar: true,
+        inNavbar: false,
     },
     {
         path: '/cursos/:id',
@@ -55,7 +55,7 @@ const routes = [
         name: 'Crear programa',
         Component: EditProgram,
         isPrivate: true,
-        inNavbar: true,
+        inNavbar: false,
     },
     {
         path: '/programs/program/:id',

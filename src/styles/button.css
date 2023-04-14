@@ -25,3 +25,16 @@
 .button-modify {
     background-color: #156dd2;
 }
+.button-pagination {
+    background-color: #229cac;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button-pagination:hover {
+    background-color: #2bbfd2;
+  }

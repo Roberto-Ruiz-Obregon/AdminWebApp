@@ -3,20 +3,50 @@ import { useNavigate } from 'react-router-dom';
 import CourseCard from '../components/CourseCard';
 import { getCourses } from '../client/course';
 import { Video, Users, Calendar } from 'react-feather';
+import Button from '../components/Button';
+import Pagination from '../components/Pagination';
+import Input from '../components/Input';
 import '../styles/verCursos.css';
 
 function Courses() {
     const navigate = useNavigate();
     const [courses, setCourses] = useState([]);
+    const [getPage, setPage] = useState(1);
+    const [getName, setName] = useState("");
+    const [getLength, setLength] = useState("");
 
     useEffect(() => {
         getCourses()
-        .then(data => setCourses(data));
+        .then(data => {
+            setCourses(data)
+            setLength(data.length)
+        });
     }, []);
+
+    useEffect(() => {
+        getCourses(getName, getPage, 8)
+        .then(data => {
+            setCourses(data)
+            setLength(data.length)
+        });
+    }, [getPage, getName]);
+
+   
 
     return (
         <Fragment>
-            <h4>Inicio / Cursos</h4>
+            <div className='header-container'>
+                <h4>Inicio / Cursos</h4>
+                <Button action = {() => navigate('/agregarCursos')} text="Agregar nuevo curso" type = "create"/>
+            </div>
+            <Input
+                label='Buscar curso por nombre:'
+                placeholder = "Buscar..."
+                getVal={getName}
+                setVal={setName}
+                type='text'
+            />
+
             <div id="course-container">
                 { courses.map(course => (
                     <CourseCard 
@@ -43,6 +73,7 @@ function Courses() {
                     </CourseCard>
                 )) }
             </div>
+            <Pagination lenght = {getLength} getPage = {getPage} setPage = {setPage} limit = {8} />
         </Fragment>
     );
 }

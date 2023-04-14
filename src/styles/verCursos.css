@@ -1,8 +1,36 @@
 #course-container {
     display: flex;
-    overflow-x: scroll;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 #course-container .course-card {
-    margin-right: 2rem;
+    width: 15vw;
+    height: 62vh;
+    margin-bottom: 2rem;
 }
+
+.header-container{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+label {
+    margin-bottom: 20px;
+    margin-right: 30px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: 2px solid #bdb0b0;
+    font-size: 15px;
+    transition: border-color 0.3s ease-in-out;
+  }
+
+  input[type="text"]:focus {
+    border-color: rgb(232, 85, 72);
+  }
+  
+  
