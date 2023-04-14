@@ -2,7 +2,9 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CourseCard from '../components/CourseCard';
 import { getPrograms } from '../client/programs';
+import { getProgramByCategory } from '../client/programs';
 import Button from '../components/Button';
+import Select from '../components/Select';
 import Pagination from '../components/Pagination';
 import Input from '../components/Input';
 import '../styles/verCursos.css';
@@ -13,6 +15,7 @@ const Programs = () => {
     const [getPage, setPage] = useState(1);
     const [getName, setName] = useState("");
     const [getLength, setLength] = useState("");
+    const [category, setCategory] =  useState("");
 
     useEffect(() => {
         (async () => {
@@ -35,19 +38,40 @@ const Programs = () => {
         });
     }, [getPage, getName]);
 
+    useEffect(() => {
+        getProgramByCategory(category, getPage, 8)
+        .then(data => {
+            setPrograms(data)
+            setLength(data.length)
+        });
+    }, [getPage, category]);
+
     return (
         <Fragment>
             <div className='header-container'>
                 <h4>Inicio / Programas</h4>
                 <Button action = {() => navigate('/programs/program/')} text="Agregar nuevo programa" type = "create"/>
             </div>
-            <Input
-                label='Buscar programa por nombre:'
-                placeholder = "Buscar..."
-                getVal={getName}
-                setVal={setName}
-                type='text'
-            />
+            <div className='search-container'>
+                <div className='input-container'>
+                    <Input
+                        label='Buscar programa por nombre:'
+                        placeholder = "Buscar"
+                        getVal={getName}
+                        setVal={setName}
+                        type='text'
+                    />
+                </div>
+                <div className='input-container'>
+                    <Select
+                        className='input-general'
+                        label='Categoría'
+                        getVal={category}
+                        setVal={setCategory}
+                        options={['Beca', 'Programa', 'Evento', 'Apoyo', 'Otro']}
+                    />
+                </div>
+            </div>
             <div id="course-container">
                 { programs.map(program => (
                     <CourseCard 

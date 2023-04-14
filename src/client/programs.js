@@ -15,6 +15,17 @@ export async function getPrograms(name = '', page = 1, limit = 8) {
 }
 
 /**
+ * It makes a GET request to the endpoint `/course` and returns the response data.
+ * @returns An array of objects.
+ */
+export async function getProgramByCategory(category = '', page = 1, limit = 8) {
+    const endpoint = `${baseApiEndpoint}/program?category=${category}&page=${page}&limit=${limit}`;
+
+    const response = await axios.get(endpoint);
+    return response.data.data.documents;
+}
+
+/**
  * Fetches a specific program from an API based on its ID.
  * @param {string|number} id - The ID of the program to retrieve from the API.
  * @returns {Promise<object>} - A Promise that resolves to an object representing the retrieved program.
