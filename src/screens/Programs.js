@@ -5,7 +5,7 @@ import { getPrograms } from '../client/programs';
 import Button from '../components/Button';
 import Pagination from '../components/Pagination';
 import Input from '../components/Input';
-
+import '../styles/verCursos.css';
 
 const Programs = () => {
     const navigate = useNavigate();

@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CourseCard from '../components/CourseCard';
 import { getCourses } from '../client/course';
+import { getCoursesByPostalCode } from '../client/course';
 import { Video, Users, Calendar } from 'react-feather';
 import Button from '../components/Button';
 import Pagination from '../components/Pagination';
@@ -14,6 +15,7 @@ function Courses() {
     const [getPage, setPage] = useState(1);
     const [getName, setName] = useState("");
     const [getLength, setLength] = useState("");
+    const [getPostalCode, setPostalCode] =  useState("");
 
     useEffect(() => {
         getCourses()
@@ -31,7 +33,13 @@ function Courses() {
         });
     }, [getPage, getName]);
 
-   
+    useEffect(() => {
+        getCoursesByPostalCode(getPostalCode, getPage, 8)
+        .then(data => {
+            setCourses(data)
+            setLength(data.length)
+        });
+    }, [getPage, getPostalCode]);
 
     return (
         <Fragment>
@@ -39,14 +47,26 @@ function Courses() {
                 <h4>Inicio / Cursos</h4>
                 <Button action = {() => navigate('/agregarCursos')} text="Agregar nuevo curso" type = "create"/>
             </div>
-            <Input
-                label='Buscar curso por nombre:'
-                placeholder = "Buscar..."
-                getVal={getName}
-                setVal={setName}
-                type='text'
-            />
-
+            <div className='search-container'>
+                <div className='input-container'>
+                    <Input
+                        label='Buscar curso por nombre:'
+                        placeholder = "Buscar"
+                        getVal={getName}
+                        setVal={setName}
+                        type='text'
+                    />
+                </div>
+                <div className='input-container'>
+                    <Input
+                        label='Buscar curso por CP:'
+                        placeholder = "12345"
+                        getVal={getPostalCode}
+                        setVal={setPostalCode}
+                        type='number'
+                    />
+                </div>
+            </div>
             <div id="course-container">
                 { courses.map(course => (
                     <CourseCard 

@@ -14,6 +14,17 @@ export async function getCourses(name = '', page = 1, limit = 8, topic = '') {
 }
 
 /**
+ * It makes a GET request to the endpoint `/course` and returns the response data.
+ * @returns An array of objects.
+ */
+export async function getCoursesByPostalCode(postalCode = '', page = 1, limit = 8) {
+    const endpoint = `${baseApiEndpoint}/course?postalCode[regex]=${postalCode}&page=${page}&limit=${limit}`;
+
+    const response = await axios.get(endpoint);
+    return response.data.data.documents;
+}
+
+/**
  * It gets the inscriptions of a course
  * @param courseId - The id of the course
  * @returns An array of objects.
