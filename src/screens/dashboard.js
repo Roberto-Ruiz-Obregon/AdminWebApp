@@ -1,28 +1,50 @@
-import React from 'react';
-import '../styles/style.css';
-import logo from '../assets/image 9.png';
-import grafica from '../assets/grafica.png';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Bar } from 'react-chartjs-2';
 
-export function Saludo() {
-  const usuario = {
-    nombre: 'Carlos',
-    apellido: 'Ramírez'
-    
-  }
+const Dashboard = () => {
+  const [chartData, setChartData] = useState({});
+
+  useEffect(() => {
+    const fetchChartData = async () => {
+      const response = await axios.get('/api/v1/filters/users-by-zone');
+      const chartData = {
+        labels: response.data.data.results.map((result) => result._id),
+        datasets: [
+          {
+            label: 'Users by Zone',
+            data: response.data.data.results.map((result) => result.count),
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1,
+          },
+        ],
+      };
+      setChartData(chartData);
+    };
+
+    fetchChartData();
+  }, []);
 
   return (
-    <div className="saludo-container">
-      <h1 className="saludo-greeting">Hola, {usuario.nombre} {usuario.apellido}!</h1>
-      <h3 className="personas_inscritas">Personas inscritas:</h3>
-      <img src={grafica} alt="grafica" className="grafica"/>
-      
+    <div>
+      <h1>Usuarios por zona</h1>
+      <Bar
+        data={chartData}
+        options={{
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true,
+                },
+              },
+            ],
+          },
+        }}
+      />
     </div>
-    
   );
-}
+};
 
-export default Saludo;
-
-
-
-
+export default Dashboard;
