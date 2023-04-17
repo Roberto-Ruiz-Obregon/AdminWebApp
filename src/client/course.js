@@ -6,19 +6,8 @@ const baseApiEndpoint = process.env.REACT_APP_BASE_API_ENDPOINT;
  * It makes a GET request to the endpoint `/course` and returns the response data.
  * @returns An array of objects.
  */
-export async function getCourses(name = '', page = 1, limit = 8, topic = '') {
-    const endpoint = `${baseApiEndpoint}/course?courseName[regex]=${name}&page=${page}&limit=${limit}`;
-
-    const response = await axios.get(endpoint);
-    return response.data.data.documents;
-}
-
-/**
- * It makes a GET request to the endpoint `/course` and returns the response data.
- * @returns An array of objects.
- */
-export async function getCoursesByPostalCode(postalCode = '', page = 1, limit = 8) {
-    const endpoint = `${baseApiEndpoint}/course?postalCode[regex]=${postalCode}&page=${page}&limit=${limit}`;
+export async function getCourses(name = '', page = 1, limit = 8, topic = '', postalCode = '') {
+    const endpoint = `${baseApiEndpoint}/course?courseName[regex]=${name}&page=${page}&limit=${limit}&postalCode[regex]=${postalCode}`;
 
     const response = await axios.get(endpoint);
     return response.data.data.documents;

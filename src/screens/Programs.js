@@ -2,7 +2,6 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CourseCard from '../components/CourseCard';
 import { getPrograms } from '../client/programs';
-import { getProgramByCategory } from '../client/programs';
 import Button from '../components/Button';
 import Select from '../components/Select';
 import Pagination from '../components/Pagination';
@@ -15,7 +14,7 @@ const Programs = () => {
     const [getPage, setPage] = useState(1);
     const [getName, setName] = useState("");
     const [getLength, setLength] = useState("");
-    const [category, setCategory] =  useState("");
+    const [getCategory, setCategory] =  useState("");
 
     useEffect(() => {
         (async () => {
@@ -31,20 +30,13 @@ const Programs = () => {
     }, []);
 
     useEffect(() => {
-        getPrograms(getName, getPage, 8)
+        getPrograms(getName, getPage, 8, getCategory)
         .then(data => {
             setPrograms(data)
             setLength(data.length)
         });
-    }, [getPage, getName]);
+    }, [getPage, getName, getCategory]);
 
-    useEffect(() => {
-        getProgramByCategory(category, getPage, 8)
-        .then(data => {
-            setPrograms(data)
-            setLength(data.length)
-        });
-    }, [getPage, category]);
 
     return (
         <Fragment>
@@ -66,7 +58,7 @@ const Programs = () => {
                     <Select
                         className='input-general'
                         label='Categoría'
-                        getVal={category}
+                        getVal={getCategory}
                         setVal={setCategory}
                         options={['Beca', 'Programa', 'Evento', 'Apoyo', 'Otro']}
                     />

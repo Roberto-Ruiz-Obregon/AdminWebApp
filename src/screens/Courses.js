@@ -2,7 +2,6 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CourseCard from '../components/CourseCard';
 import { getCourses } from '../client/course';
-import { getCoursesByPostalCode } from '../client/course';
 import { Video, Users, Calendar } from 'react-feather';
 import Button from '../components/Button';
 import Pagination from '../components/Pagination';
@@ -26,20 +25,12 @@ function Courses() {
     }, []);
 
     useEffect(() => {
-        getCourses(getName, getPage, 8)
+        getCourses(getName, getPage, 8, '', getPostalCode)
         .then(data => {
             setCourses(data)
             setLength(data.length)
         });
-    }, [getPage, getName]);
-
-    useEffect(() => {
-        getCoursesByPostalCode(getPostalCode, getPage, 8)
-        .then(data => {
-            setCourses(data)
-            setLength(data.length)
-        });
-    }, [getPage, getPostalCode]);
+    }, [getPage, getPostalCode, getName]);
 
     return (
         <Fragment>
