@@ -8,6 +8,7 @@ import Input from '../components/Input';
 import InputImage from '../components/InputImage';
 import Select from '../components/Select';
 import Button from '../components/Button';
+import { Video, Users, Calendar } from 'react-feather';
 import '../styles/addCourse.css';
 
 function AddCourse() {
@@ -266,13 +267,19 @@ function AddCourse() {
                 </form>
                 <div className='course-container'>
                     <CourseCard
-                        courseName={courseName}
-                        description={description}
-                        startDate={startDate}
-                        occupation={status}
-                        modality={modality}
                         imgSrc={preview}
-                    />
+                        title={courseName}
+                        description={description}>
+                        <div>
+                            {modality === 'Remoto' ? <Video /> : <Users />}
+                            <p>{modality}</p>
+                        </div>
+                        <div>
+                            <Calendar />
+                            <p>{new Date(startDate).toLocaleDateString()}</p>
+                        </div>
+                        <div>{cost ? <p>$ {cost}</p> : <p>Gratis</p>}</div>
+                    </CourseCard>
                     <Button action={handleSubmit} text='Crear curso' type='create' />
                 </div>
             </div>
