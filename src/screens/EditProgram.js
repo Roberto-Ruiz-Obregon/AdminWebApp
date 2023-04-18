@@ -29,10 +29,12 @@ const EditProgram = () => {
                     setProgramName(program.programName);
                     setDescription(program.description);
                     setHasLimit(program.hasLimit);
-                    setLimitDate(program.limitDate.substr(0, 10));
+                    if (program.limitDate) setLimitDate(program.limitDate.substr(0, 10));
                     setCategory(program.category);
                     setPreview(program.imageUrl);
+                    console.log(program);
                 } catch (error) {
+                    console.log(error);
                     FireError(error.response.data.message);
                 }
             })();
