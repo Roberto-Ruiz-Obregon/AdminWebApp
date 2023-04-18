@@ -31,6 +31,7 @@ function EditCourse() {
     const [accessLink, setAccessLink] = useState('https://zoom.us/');
     const [address, setAddress] = useState('');
     const [status, setStatus] = useState('');
+    const [bank, setBank] = useState('');
     const [bankAccount, setBankAccount] = useState('');
     const [cost, setCost] = useState(0);
 
@@ -59,6 +60,7 @@ function EditCourse() {
                 setAccessLink(course.accessLink);
                 setAddress(course.address);
                 setStatus(course.status);
+                setBank(course.bank);
                 setBankAccount(course.bankAccount);
                 setCost(course.cost);
 
@@ -129,6 +131,7 @@ function EditCourse() {
             form.append('accessLink', accessLink);
             form.append('address', address);
             form.append('status', status);
+            form.append('bank', bank);
             form.append('bankAccount', bankAccount);
             form.append('cost', cost);
             topicsInCourse.forEach((topic) => {
@@ -268,6 +271,13 @@ function EditCourse() {
                     />
                     {status === 'Pagado' ? (
                         <React.Fragment>
+                            <Input
+                                label='Banco de la cuenta'
+                                placeholder='Bank of America'
+                                getVal={bank}
+                                setVal={setBank}
+                                type='string'
+                            />
                             <Input
                                 label='Cuenta bancaria que recibira el pago'
                                 placeholder='3974619276419864'
