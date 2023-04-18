@@ -11,10 +11,10 @@ import Inscriptions from './screens/Inscriptions';
 import Topics from './screens/Topics';
 import Payments from './screens/Payments';
 import Admins from './screens/Admins';
-import { Saludo } from './screens/dashboard';
+import Dashboard from './screens/dashboard';
 
 const routes = [
-    { path: '/', name: 'Dashbord', Component: Saludo, isPrivate: true, inNavbar: true },
+    { path: '/', name: 'Dashboard', Component: Dashboard, isPrivate: true, inNavbar: true },
     {
         path: '/enviarAnuncio',
         name: 'Anuncios',
