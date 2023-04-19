@@ -45,3 +45,16 @@ input[type="text"]:focus {
     flex-basis: 30%;
     height: 80px;
 }
+
+.search-container2 {
+    display: flex;
+}
+  
+.input-container2 {
+    flex: 1;
+}
+  
+.input-general2 {
+    width: 100%;
+}
+  

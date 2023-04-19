@@ -20,6 +20,7 @@ function Courses() {
     const [getLength, setLength] = useState("");
     const [getPostalCode, setPostalCode] =  useState("");
     const [getCurrentTopic, setCurrentTopic] =  useState("");
+    const [getStatus, setStatus] = useState("");
     const [getModality, setModality] = useState("");
 
     useEffect(() => {
@@ -36,12 +37,12 @@ function Courses() {
     }, []);
 
     useEffect(() => {
-        getCourses(getName, getPage, 8, getCurrentTopic, getPostalCode, getModality)
+        getCourses(getName, getPage, 8, getCurrentTopic, getPostalCode, getStatus, getModality)
         .then(data => {
             setCourses(data)
             setLength(data.length)
         });
-    }, [getPage, getPostalCode, getName, getModality]);
+    }, [getPage, getPostalCode, getName, getStatus, getModality]);
 
     useEffect(() => {
         let topicId = ''
@@ -82,17 +83,25 @@ function Courses() {
                 </div>
             </div>
 
-            <div className='search-container'>
-                <div className='input-container'>
+            <div className='search-container2'>
+                <div className='input-container2'>
                 <Select
-                        className='input-general'
+                        className='input-general2'
                         label='Selecciona un interés'
                         getVal={getCurrentTopic}
                         setVal={setCurrentTopic}
                         options={getTopicsNames}
                     />
                 </div>
-                <div className='input-container'>
+                <div className='input-container2'>
+                    <Select
+                            label='Selecciona el tipo de pago'
+                            getVal={getStatus}
+                            setVal={setStatus}
+                            options={['Gratuito', 'Pagado']}
+                    />
+                </div>
+                <div className='input-container2'>
                     <Select
                         label='Selecciona la modalidad del curso'
                         getVal={getModality}
