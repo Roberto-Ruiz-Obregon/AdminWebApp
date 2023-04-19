@@ -5,18 +5,22 @@ import {
   LinearScale,
   PointElement,
   LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Chart } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
+
+const baseApiEndpoint = process.env.REACT_APP_BASE_API_ENDPOINT;
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
   PointElement,
   LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend
@@ -43,7 +47,7 @@ const Dashboard = () => {
         position: 'top',
         labels: {
           font: {
-            size: 5,
+            size: 10,
             color: 'rgba(255, 255, 255, 1)',
           },
         },
@@ -53,8 +57,9 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get('/api/zones-most-users');
+      const result = await axios.get('http://localhost:3000/v1/aggregations/zones-most-users');
       const data = result.data.data;
+      console.log(data)
       const labels = data.map((zone) => zone.postalCode);
       const counts = data.map((zone) => zone.totalUsers);
       setChartData({
@@ -65,7 +70,7 @@ const Dashboard = () => {
             label: 'Zonas con más usuarios',
             borderColor: '#3333ff',
             fill: true,
-            lineTension: 0.1,
+            lineTension: 1,
           },
         ],
       });
@@ -76,7 +81,7 @@ const Dashboard = () => {
   return (
     <div>
       <h1>Usuarios por zona</h1>
-      <Chart type="line" width={900} height={520} options={options} data={getChartData} />
+      <Bar width={900} height={520} options={options} data={getChartData} />
     </div>
   );
 };
