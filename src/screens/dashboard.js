@@ -24,48 +24,126 @@ ChartJS.register(
 
 const Dashboard = () => {
     const [getChartData, setChartData] = useState({
-        labels: ['October', 'November', 'December'],
+        labels: [],
         datasets: [
-            {
-                data: [8137119, 9431691, 10266674],
-                label: 'Infected',
-                borderColor: '#3333ff',
-                fill: true,
-                lineTension: 0.5,
-            },
-            {
-                data: [1216410, 1371390, 1477380],
-                label: 'Deaths',
-                borderColor: '#ff3333',
-                backgroundColor: 'rgba(255, 0, 0, 0.5)',
-                fill: true,
-                lineTension: 0.5,
-            },
-        ],
-    });
+          {
+            data: [],
+            label: 'Intereses por zona',
+            backgroundColor: [
+              '#FF6384',
+              '#36A2EB',
+              '#FFCE56',
+              '#FF6384',
+              '#36A2EB',
+              '#FFCE56'
+            ],
+            hoverBackgroundColor: [
+              '#FF6384',
+              '#36A2EB',
+              '#FFCE56',
+              '#FF6384',
+              '#36A2EB',
+              '#FFCE56'
+            ]
+          }
+        ]
+      });
+      
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch('/filter-topics', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ postalCode: '76158' }) 
+            });
+      
+            const data = await response.json();
+      
+            const labels = data.data.map(item => item._id);
+            const counts = data.data.map(item => item.count);
+      
+            setChartData({
+              labels: labels,
+              datasets: [
+                {
+                  data: counts,
+                  label: 'Intereses por zona',
+                  backgroundColor: [
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56',
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56'
+                  ],
+                  hoverBackgroundColor: [
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56',
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56'
+                  ]
+                }
+              ]
+            });
+          } catch (error) {
+            console.log(error);
+          }
+        };
+      
+        fetchData();
+      }, []);
+      
     const options = {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-            legend: {
-                position: 'top',
-                labels: {
-                    font: {
-                        size: 30,
-                        color: 'rgba(255, 255, 255, 1)',
-                    },
-                },
-            },
+          legend: {
+            position: 'top',
+            labels: {
+              font: {
+                size: 25,
+                family: 'Arial',
+                weight: 'bold',
+                color: 'white'
+              }
+            }
+          }
         },
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text: 'Cantidad de usuarios'
+            },
+            ticks: {
+                beginAtZero: true,
+                stepSize: 1
+                }
+                },
+            x: {
+                title: {
+                display: true,
+                text: 'Mes'
+            },
+                ticks: {
+            autoSkip: false
+            }
+            }
+        }
     };
 
     return (
         <div>
             <h1>Usuarios por zona</h1>
             <Chart
-                type='line'
-                width={160}
-                height={60}
+                type='bar'
+                width={800}
+                height={450}
                 options={options}
                 data={getChartData}
             />
