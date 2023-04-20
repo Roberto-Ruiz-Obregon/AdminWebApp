@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import {getPostalCode } from '../client/stats'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,9 +12,6 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import axios from 'axios';
-
-const baseApiEndpoint = process.env.REACT_APP_BASE_API_ENDPOINT;
 
 ChartJS.register(
   CategoryScale,
@@ -57,8 +55,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get('http://localhost:3000/v1/aggregations/zones-most-users');
-      const data = result.data.data;
+      const data = await getPostalCode();
       console.log(data)
       const labels = data.map((zone) => zone.postalCode);
       const counts = data.map((zone) => zone.totalUsers);
