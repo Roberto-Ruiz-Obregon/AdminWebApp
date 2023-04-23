@@ -10,10 +10,8 @@ const result = await axios.get('http://localhost:3000/v1/aggregations/zones-most
 }
 
 export async function getInscriptions() {
-    const result = await axios.get('http://localhost:3000/v1/aggregations/zones-most-inscriptions');
-    const labels = result.data.map((zone) => zone.postalCode);
-    const counts = result.data.map((zone) => zone.totalInscriptions);
-    return { labels, data: counts };
+    const result = await axios.get('http://localhost:3000/v1/aggregations/inscriptions-by-zone');
+    return result.data.data;
   }
   
 

@@ -44,8 +44,8 @@ const Dashboard = () => {
     datasets: [
       {
         data: [],
-        label: 'Zonas con más inscripciones',
-        borderColor: '#ff3333',
+        label: 'Inscripciones por zona',
+        borderColor: '#3333ff',
         fill: true,
         lineTension: 0.1,
       },
@@ -77,8 +77,9 @@ const Dashboard = () => {
         datasets: [
           {
             data: counts,
-            label: 'Zonas con más usuarios',
-            borderColor: '#3333ff',
+            label: 'Usuarios en esta zona',
+            borderColor: '#8B00B0',
+            backgroundColor: '#1D86A2',
             fill: true,
             lineTension: 1,
           },
@@ -90,14 +91,17 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchInscriptionData = async () => {
-      const { labels, data } = await getInscriptions();
+      const data = await getInscriptions();
+      const labels = data.map((zone) => zone.courses);
+      const counts = data.map((zone) => zone.totalUsers);
       setInscriptionChartData({
         labels: labels,
         datasets: [
           {
-            data: data,
-            label: 'Inscripciones de usuarios por zona',
-            borderColor: '#ff3333',
+            data: counts,
+            label: 'Inscripciones por zona',
+            borderColor: '#8B00B0',
+            backgroundColor: '#1D86A2',
             fill: true,
             lineTension: 1,
           },
@@ -106,13 +110,14 @@ const Dashboard = () => {
     };
     fetchInscriptionData();
   }, []);
+  
 
   return (
     <div>
       <h1>Usuarios por zona</h1>
-      <Bar width={800} height={450} options={options} data={userChartData} />
-      <h1>Inscripciones de usuarios por zona</h1>
-      <Bar width={800} height={450} options={options} data={inscriptionChartData} />
+      <Bar width={600} height={350} options={options} data={userChartData} />
+      <h1>Inscripciones por zona</h1>
+    <Bar width={600} height={350} options={options} data={inscriptionChartData} />
     </div>
   );
 };
