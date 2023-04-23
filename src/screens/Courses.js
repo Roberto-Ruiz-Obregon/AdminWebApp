@@ -19,7 +19,7 @@ function Courses() {
     const [getName, setName] = useState("");
     const [getLength, setLength] = useState("");
     const [getPostalCode, setPostalCode] =  useState("");
-    const [getCurrentTopic, setCurrentTopic] =  useState("");
+    const [getCurrentTopic, setCurrentTopic] = useState(null);
     const [getStatus, setStatus] = useState("");
     const [getModality, setModality] = useState("");
 
@@ -37,24 +37,29 @@ function Courses() {
     }, []);
 
     useEffect(() => {
-        getCourses(getName, getPage, 8, getCurrentTopic, getPostalCode, getStatus, getModality)
+        getCourses(getName, getPage, 8, getCurrentTopic?._id, getPostalCode, getStatus, getModality)
         .then(data => {
             setCourses(data)
             setLength(data.length)
         });
-    }, [getPage, getPostalCode, getName, getStatus, getModality]);
+    }, [getPage, getPostalCode, getName, getStatus, getModality, getCurrentTopic]);
 
     useEffect(() => {
-        let topicId = ''
-        getTopicsObjects.forEach(topic => {
-            if(topic.topic == getCurrentTopic) topicId = topic._id
-        })
-        getCourses(getName, getPage, 8, topicId, getPostalCode)
+        let topicId = '';
+        if (getCurrentTopic) {
+          topicId = getCurrentTopic._id;
+        }
+        getCourses(getName, getPage, 8, topicId, getPostalCode, getStatus, getModality)
         .then(data => {
             setCourses(data)
             setLength(data.length)
         });
-    }, [getCurrentTopic]);
+      }, [getPage, getPostalCode, getName, getStatus, getModality, getCurrentTopic]);
+      
+
+    const handleChange = (selectedOption) => {
+        setCurrentTopic(selectedOption);
+    };
 
     return (
         <Fragment>
@@ -88,9 +93,10 @@ function Courses() {
                 <Select
                         className='input-general2'
                         label='Selecciona un interés'
-                        getVal={getCurrentTopic}
-                        setVal={setCurrentTopic}
+                        value={getCurrentTopic}
+                        onChange={handleChange}
                         options={getTopicsNames}
+                        getOptionLabel={(option) => option.topic}
                     />
                 </div>
                 <div className='input-container2'>
