@@ -1,0 +1,13 @@
+.pagination-container {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination-number {
+    font-size: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: bold;
+}

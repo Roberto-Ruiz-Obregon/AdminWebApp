@@ -16,7 +16,7 @@ function CourseCard(props) {
                 { children }
             </div>
             <button className='btn-info' onClick={e => onClick(e)}>
-                Ver más
+                Editar
             </button>
         </div>
     );
