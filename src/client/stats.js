@@ -13,7 +13,9 @@ export async function getInscriptions() {
     const result = await axios.get('http://localhost:3000/v1/aggregations/inscriptions-by-zone');
     return result.data.data;
   }
-  
 
-
+  export async function getTopics() {
+    const result = await axios.get('http://localhost:3000/v1/aggregations/filter-topics');
+    return result.data.data;
+  }
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getPostalCode, getInscriptions } from '../client/stats';
+import { getPostalCode, getInscriptions, getTopics } from '../client/stats';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -45,6 +45,18 @@ const Dashboard = () => {
       {
         data: [],
         label: 'Inscripciones por zona',
+        borderColor: '#3333ff',
+        fill: true,
+        lineTension: 0.1,
+      },
+    ],
+  });
+  const [topicsChartData, setTopicsChartData] = useState({
+    labels: [],
+    datasets: [
+      {
+        data: [],
+        label: 'Topics por zona',
         borderColor: '#3333ff',
         fill: true,
         lineTension: 0.1,
@@ -110,14 +122,38 @@ const Dashboard = () => {
     };
     fetchInscriptionData();
   }, []);
+
+  useEffect(() => {
+    const fetchTopicsData = async () => {
+      const data = await getTopics();
+      const labels = data.map((zone) => zone.topics);
+      const counts = data.map((zone) => zone.totalUsers);
+      setInscriptionChartData({
+        labels: labels,
+        datasets: [
+          {
+            data: counts,
+            label: 'Intereses de usuarios por zona',
+            borderColor: '#8B00B0',
+            backgroundColor: '#1D86A2',
+            fill: true,
+            lineTension: 1,
+          },
+        ],
+      });
+    };
+    fetchTopicsData();
+  }, []);
   
 
   return (
     <div>
-      <h1>Usuarios por zona</h1>
+      <h3>Usuarios por zona</h3>
       <Bar width={600} height={350} options={options} data={userChartData} />
-      <h1>Inscripciones por zona</h1>
+      <h3>Inscripciones por zona</h3>
     <Bar width={600} height={350} options={options} data={inscriptionChartData} />
+    <h3>Intereses por zona</h3>
+    <Bar width={600} height={350} options={options} data={topicsChartData} />
     </div>
   );
 };
