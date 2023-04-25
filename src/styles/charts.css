@@ -1,0 +1,10 @@
+ .chart1, .chart2, .chart3 {
+    position: relative;
+    margin-left: 30%;
+    padding: 0px;
+} 
+
+.chart2 {
+    margin-top: 4%;
+    margin-bottom: 5%;
+}

@@ -12,7 +12,8 @@ import {
   Legend,
   ArcElement,
 } from 'chart.js';
-import { Bar, Doughnut } from 'react-chartjs-2';
+import { Bar,  Pie } from 'react-chartjs-2';
+import '../styles/charts.css' 
 
 ChartJS.register(
   CategoryScale,
@@ -33,9 +34,8 @@ const Dashboard = () => {
       {
         data: [],
         label: 'Zonas con más usuarios',
-        borderColor: '#3333ff',
         fill: true,
-        lineTension: 0.1,
+        lineTension: 0.7,
       },
     ],
   });
@@ -45,9 +45,7 @@ const Dashboard = () => {
       {
         data: [],
         label: 'Inscripciones por zona',
-        borderColor: '#3333ff',
         fill: true,
-        lineTension: 0.1,
       },
     ],
   });
@@ -57,7 +55,6 @@ const Dashboard = () => {
       {
         data: [],
         label: 'Topics por zona',
-        borderColor: '#3333ff',
         fill: true,
         lineTension: 0.1,
       },
@@ -71,7 +68,7 @@ const Dashboard = () => {
         position: 'top',
         labels: {
           font: {
-            size: 10,
+            size: 13,
             color: 'rgba(255, 255, 255, 1)',
           },
         },
@@ -90,7 +87,6 @@ const Dashboard = () => {
           {
             data: counts,
             label: 'Usuarios en esta zona',
-            borderColor: '#8B00B0',
             backgroundColor: '#1D86A2',
             fill: true,
             lineTension: 1,
@@ -104,7 +100,8 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchInscriptionData = async () => {
       const data = await getInscriptions();
-      const labels = data.map((zone) => zone.courses);
+      const labels = data.map((zone) => `Cursos inscritos en ${zone._id}: \n ${zone.courses.join(',\n')} `);
+      console.log(data)
       const counts = data.map((zone) => zone.totalUsers);
       setInscriptionChartData({
         labels: labels,
@@ -112,7 +109,6 @@ const Dashboard = () => {
           {
             data: counts,
             label: 'Inscripciones por zona',
-            borderColor: '#8B00B0',
             backgroundColor: '#1D86A2',
             fill: true,
             lineTension: 1,
@@ -128,13 +124,12 @@ const Dashboard = () => {
       const data = await getTopics();
       const labels = data.map((zone) => zone.topics);
       const counts = data.map((zone) => zone.totalUsers);
-      setInscriptionChartData({
+      setTopicsChartData({
         labels: labels,
         datasets: [
           {
             data: counts,
-            label: 'Intereses de usuarios por zona',
-            borderColor: '#8B00B0',
+            label: ['Intereses de usuarios por zona'],
             backgroundColor: '#1D86A2',
             fill: true,
             lineTension: 1,
@@ -149,11 +144,11 @@ const Dashboard = () => {
   return (
     <div>
       <h3>Usuarios por zona</h3>
-      <Bar width={600} height={350} options={options} data={userChartData} />
+      <Bar width={600} height={350} options={options} data={userChartData} className='chart1'/>
       <h3>Inscripciones por zona</h3>
-    <Bar width={600} height={350} options={options} data={inscriptionChartData} />
+    <Pie height={250} width={450} options={options} data={inscriptionChartData} className='chart2'/>
     <h3>Intereses por zona</h3>
-    <Bar width={600} height={350} options={options} data={topicsChartData} />
+    <Bar width={600} height={350} options={options} data={topicsChartData} className='chart3'/>
     </div>
   );
 };
