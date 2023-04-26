@@ -28,6 +28,7 @@ ChartJS.register(
 );
 
 const Dashboard = () => {
+  const [postalCode, setPostalCode] = useState('');
   const [userChartData, setUserChartData] = useState({
     labels: [],
     datasets: [
@@ -89,7 +90,7 @@ const Dashboard = () => {
             label: 'Usuarios en esta zona',
             backgroundColor: '#1D86A2',
             fill: true,
-            lineTension: 1,
+            lineTension: 0.7,
           },
         ],
       });
@@ -101,7 +102,6 @@ const Dashboard = () => {
     const fetchInscriptionData = async () => {
       const data = await getInscriptions();
       const labels = data.map((zone) => `Cursos inscritos en ${zone._id}: \n ${zone.courses.join(',\n')} `);
-      console.log(data)
       const counts = data.map((zone) => zone.totalUsers);
       setInscriptionChartData({
         labels: labels,
@@ -110,8 +110,7 @@ const Dashboard = () => {
             data: counts,
             label: 'Inscripciones por zona',
             backgroundColor: '#1D86A2',
-            fill: true,
-            lineTension: 1,
+            fill: false,
           },
         ],
       });
@@ -121,35 +120,57 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchTopicsData = async () => {
-      const data = await getTopics();
-      const labels = data.map((zone) => zone.topics);
+      if (!postalCode) return;
+      const data = await getTopics(postalCode);
+      const labels = data.map((zone) => zone._id);
       const counts = data.map((zone) => zone.totalUsers);
       setTopicsChartData({
         labels: labels,
         datasets: [
           {
             data: counts,
-            label: ['Intereses de usuarios por zona'],
+            label: 'Intereses de usuarios por zona',
             backgroundColor: '#1D86A2',
-            fill: true,
-            lineTension: 1,
+            fill: false,
           },
         ],
       });
-    };
+    };    
     fetchTopicsData();
-  }, []);
+  }, [postalCode]);
+  
+  const handlePostalCodeSubmit = async () => {
+    const data = await getTopics(postalCode);
+    console.log("test", data)
+    const labels = data.map((zone) => zone._id);
+    const counts = data.map((zone) => zone.totalUsers);
+    setTopicsChartData({
+      labels: labels,
+      datasets: [
+        {
+          data: counts,
+          label: 'Intereses de usuarios por zona',
+          backgroundColor: '#1D86A2',
+          fill: true,
+          lineTension: 1,
+        },
+      ],
+    });
+  };
   
 
   return (
     <div>
-      <h3>Usuarios por zona</h3>
-      <Bar width={600} height={350} options={options} data={userChartData} className='chart1'/>
-      <h3>Inscripciones por zona</h3>
-    <Pie height={250} width={450} options={options} data={inscriptionChartData} className='chart2'/>
-    <h3>Intereses por zona</h3>
-    <Bar width={600} height={350} options={options} data={topicsChartData} className='chart3'/>
-    </div>
+  <h3>Usuarios por zona</h3>
+  <Bar width={600} height={350} options={options} data={userChartData} className='chart1' />
+  <h3>Inscripciones por zona</h3>
+  <Pie height={250} width={450} options={options} data={inscriptionChartData} className='chart2' />
+  <h3>Intereses por zona</h3>
+  <input type="text" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} placeholder="Ingresa un código postal" />
+  <button onClick={handlePostalCodeSubmit}>Actualizar</button>
+  <Bar width={600} height={350} options={options} data={topicsChartData} className='chart3' />
+</div>
+
   );
 };
 
