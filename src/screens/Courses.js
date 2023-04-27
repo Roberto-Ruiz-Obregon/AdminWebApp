@@ -25,12 +25,6 @@ function Courses() {
     const [getModality, setModality] = useState('');
 
     useEffect(() => {
-        const today = new Date();
-        const enDate = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
-        getCourses(enDate).then((data) => {
-            setCourses(data);
-            setLength(data.length);
-        });
         getTopics().then((data) => {
             setTopicsObjects(data);
             setTopicsNames(data.map((topic) => topic.topic));
@@ -38,15 +32,29 @@ function Courses() {
     }, []);
 
     useEffect(() => {
-        getCourses(
-            getName,
-            getPage,
-            8,
-            getCurrentTopic,
-            getPostalCode,
-            getStatus,
-            getModality
-        ).then((data) => {
+        const today = new Date();
+        const endDate = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
+        const params = {
+            'endDate[gt]': endDate,
+            'page': getPage,
+            'limit': 8,
+        };
+        if (getName)
+            params['courseName[regex]'] = getName;
+
+        if (getPostalCode)
+            params['postalCode[regex]'] = getPostalCode;
+
+        if (getModality)
+            params['modality[regex]'] = getModality;
+
+        if (getStatus)
+            params['status[regex]'] = getStatus;
+
+        if (getCurrentTopic)
+            params['topics[in]'] = getCurrentTopic;
+
+        getCourses(params).then((data) => {
             setCourses(data);
             setLength(data.length);
         });
