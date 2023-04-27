@@ -42,7 +42,7 @@ function Courses() {
         if (getName)
             params['courseName[regex]'] = getName;
 
-        if (getPostalCode)
+        if (getPostalCode && getPostalCode.length === 5)
             params['postalCode[regex]'] = getPostalCode;
 
         if (getModality)
