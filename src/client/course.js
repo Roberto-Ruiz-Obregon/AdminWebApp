@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { objectToUrlQueryString } from '../utils/dataFormat';
 
 const baseApiEndpoint = process.env.REACT_APP_BASE_API_ENDPOINT;
 
@@ -6,8 +7,10 @@ const baseApiEndpoint = process.env.REACT_APP_BASE_API_ENDPOINT;
  * It makes a GET request to the endpoint `/course` and returns the response data.
  * @returns An array of objects.
  */
-export async function getCourses() {
-    const endpoint = `${baseApiEndpoint}/course`;
+export async function getCourses(params={}) {
+    params = objectToUrlQueryString(params);
+    const endpoint = `${baseApiEndpoint}/course?${params}`;
+    //https://us-central1-robertoruiz-eca78.cloudfunctions.net/api/v1/course?endDate[gte]=2027-04-25T16:13:28.952Z
 
     const response = await axios.get(endpoint);
     return response.data.data.documents;

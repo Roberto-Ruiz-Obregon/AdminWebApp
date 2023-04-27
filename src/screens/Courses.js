@@ -10,7 +10,11 @@ function Courses() {
     const [courses, setCourses] = useState([]);
 
     useEffect(() => {
-        getCourses()
+        const today = new Date();
+        const params = {
+            'endDate[gt]': `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`
+        };
+        getCourses(params)
         .then(data => setCourses(data));
     }, []);
 

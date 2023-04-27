@@ -5,12 +5,17 @@
     justify-content: space-between;
 }
 
+.navbar-links {
+    margin-right: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
 .navbar-button {
-    padding-right: 60px;
     color: white;
     background-color: transparent;
     border: none;
-    margin: 0 10px;
     cursor: pointer;
     font-size: 18px;
     font-weight: light;
