@@ -1,10 +1,58 @@
- .chart1, .chart2, .chart3 {
-    position: relative;
-    margin-left: 30%;
-    padding: 0px;
-} 
+.container {
+  display: grid;
+  grid-template-areas:
+    "chart1 chart2"
+    "inputArea inputArea"
+    "chart3 chart4";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 60px 1fr;
+  gap: 20px;
+}
+
+.chart1 {
+  grid-area: chart1;
+}
 
 .chart2 {
-    margin-top: 4%;
-    margin-bottom: 5%;
+  grid-area: chart2;
+}
+
+.postal-code-container{
+  grid-column: 1;
+  margin-top: -75%;
+}
+
+.chart3 {
+  grid-area: chart3;
+}
+
+.chart4 {
+  grid-area: chart4;
+  margin-left: 17%;
+}
+
+.inputArea {
+  grid-area: inputArea;
+  display: flex;
+  align-items: left;
+}
+
+.chart3, .chart4 {
+  position: relative;
+  margin-top: 92px;
+}
+
+.button {
+  position: relative;
+  top: 35%;
+  margin-left: 4%;
+}
+
+.int_zona {
+  position: absolute;
+  margin-top: -40px;
+}
+
+.chart4 h3 {
+  margin-top: -80px;
 }

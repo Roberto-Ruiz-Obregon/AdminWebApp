@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getPostalCode, getInscriptions, getTopics, filterInscriptions } from '../client/stats';
+import '../styles/button.css';
+import Input from '../components/Input';
+import Button from '../components/Button';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -121,7 +124,7 @@ const Dashboard = () => {
           {
             data: counts,
             label: 'Inscripciones por zona',
-            backgroundColor: '#1D86A2',
+            backgroundColor: '#83136A',
             fill: false,
           },
         ],
@@ -167,7 +170,7 @@ const Dashboard = () => {
           {
             data: counts,
             label: 'Inscripciones de usuarios por zona',
-            backgroundColor: '#1D86A2',
+            backgroundColor: '#1DCA30',
             fill: false,
           },
         ],
@@ -190,7 +193,7 @@ const Dashboard = () => {
         {
           data: topicsCounts,
           label: 'Topics de usuarios por zona',
-          backgroundColor: '#1D86A2',
+          backgroundColor: '#8E1F94',
           fill: false,
           lineTension: 1,
         },
@@ -206,7 +209,7 @@ const Dashboard = () => {
         {
           data: interestsCounts,
           label: 'Inscripciones de usuarios por zona',
-          backgroundColor: '#1D86A2',
+          backgroundColor: '#1DCA30',
           fill: false,
           lineTension: 1,
         },
@@ -217,24 +220,39 @@ const Dashboard = () => {
   
 
   return (
-    <div>
-  <h3>Usuarios por zona</h3>
-  <Bar width={600} height={350} options={options} data={userChartData} className='chart1' />
-  <h3>Inscripciones por zona</h3>
-  <Pie height={250} width={450} options={options} data={inscriptionChartData} className='chart2' />
-
-    <h3>Intereses por zona</h3>
-  <input type="text" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} placeholder="Ingresa un código postal 1" />
-  <button onClick={() => handlePostalCode('interests')}>Buscar</button>
-  <Bar width={600} height={350} options={options} data={topicsChartData} className='chart3' />
-  
-    <h3>Inscripciones por zona</h3>
-<Bar width={600} height={350} options={options} data={interestsChartData} className='chart4' />
-
- 
-
-</div>
-
+    <div className="container">
+      <div className="chart1">
+        <h3>Usuarios por zona</h3>
+        <Bar width={500} height={350} options={options} data={userChartData}/>
+      </div>
+      <div className="chart2">
+        <h3>Inscripciones por zona</h3>
+        <Pie height={180} width={800} options={options} data={inscriptionChartData}/>
+      </div>
+      <div className="inputArea">
+        <Input
+          id="input"
+          label='Código Postal'
+          placeholder='Ingresa un código postal'
+          getVal={postalCode}
+          setVal={setPostalCode}
+          type='text'
+        />
+        <Button
+          action={() => handlePostalCode('interests')}
+          text='Buscar'
+          type='search'
+        />
+      </div>
+      <div className="chart3">
+        <h3 className="int_zona">Intereses por zona</h3>
+        <Bar width={500} height={350} options={options} data={topicsChartData}/>
+      </div>
+      <div className="chart4">
+        <h3>Inscripciones por zona</h3>
+        <Bar width={550} height={390} options={options} data={interestsChartData}/>
+      </div>
+    </div>
   );
 };
 
