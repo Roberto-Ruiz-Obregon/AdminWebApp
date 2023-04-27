@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { getTopics } from '../client/topics';
-import { patchCourse, getCourse } from '../client/course';
+import { patchCourse, getCourse, deleteCourse } from '../client/course';
 import { FireError, FireSucess, FireQuestion } from '../utils/alertHandler';
 import CourseCard from '../components/CourseCard';
 import TopicCard from '../components/TopicCard';
@@ -30,12 +31,16 @@ function EditCourse() {
     const [accessLink, setAccessLink] = useState('https://zoom.us/');
     const [address, setAddress] = useState('');
     const [status, setStatus] = useState('');
+    const [bank, setBank] = useState('');
+    const [bankAccount, setBankAccount] = useState('');
     const [cost, setCost] = useState(0);
 
     // Topics
     // Will store topic object for page renderig
     const [topicsInCourse, setTopicsInCourse] = useState([]);
     const [topicsAvailable, setTopicsAvailable] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         (async () => {
@@ -55,6 +60,8 @@ function EditCourse() {
                 setAccessLink(course.accessLink);
                 setAddress(course.address);
                 setStatus(course.status);
+                setBank(course.bank);
+                setBankAccount(course.bankAccount);
                 setCost(course.cost);
 
                 const topics = await getTopics();
@@ -124,6 +131,8 @@ function EditCourse() {
             form.append('accessLink', accessLink);
             form.append('address', address);
             form.append('status', status);
+            form.append('bank', bank);
+            form.append('bankAccount', bankAccount);
             form.append('cost', cost);
             topicsInCourse.forEach((topic) => {
                 form.append(`topics[]`, topic._id);
@@ -140,6 +149,25 @@ function EditCourse() {
             await patchCourse(id, form);
 
             FireSucess('Curso mofificado con exito.');
+        } catch (error) {
+            FireError(error.response.data.message);
+        }
+    };
+
+    const handleDelete = async () => {
+        const confirmation = await FireQuestion(
+            '¿Está seguro de que desea eliminar este curso?',
+            'Esta acción es irreversible.'
+        );
+
+        if (confirmation.isDismissed) return;
+
+        try {
+            await deleteCourse(id);
+
+            FireSucess('Curso eliminado con exito.');
+
+            navigate('/cursos');
         } catch (error) {
             FireError(error.response.data.message);
         }
@@ -242,13 +270,29 @@ function EditCourse() {
                         options={['Gratuito', 'Pagado']}
                     />
                     {status === 'Pagado' ? (
-                        <Input
-                            label='Costo'
-                            placeholder='150'
-                            getVal={cost}
-                            setVal={setCost}
-                            type='number'
-                        />
+                        <React.Fragment>
+                            <Input
+                                label='Banco de la cuenta'
+                                placeholder='Bank of America'
+                                getVal={bank}
+                                setVal={setBank}
+                                type='string'
+                            />
+                            <Input
+                                label='Cuenta bancaria que recibira el pago'
+                                placeholder='3974619276419864'
+                                getVal={bankAccount}
+                                setVal={setBankAccount}
+                                type='number'
+                            />
+                            <Input
+                                label='Costo'
+                                placeholder='150'
+                                getVal={cost}
+                                setVal={setCost}
+                                type='number'
+                            />
+                        </React.Fragment>
                     ) : (
                         <></>
                     )}
@@ -282,11 +326,10 @@ function EditCourse() {
                     </div>
                 </form>
                 <div className='course-container'>
-                    <CourseCard 
+                    <CourseCard
                         imgSrc={preview}
                         title={courseName}
-                        description={description}
-                    >
+                        description={description}>
                         <div>
                             {modality === 'Remoto' ? <Video /> : <Users />}
                             <p>{modality}</p>
@@ -295,14 +338,15 @@ function EditCourse() {
                             <Calendar />
                             <p>{new Date(startDate).toLocaleDateString()}</p>
                         </div>
-                        <div>
-                            {cost
-                            ? <p>$ {cost}</p>
-                            : <p>Gratis</p>
-                            }
-                        </div>    
+                        <div>{cost ? <p>$ {cost}</p> : <p>Gratis</p>}</div>
                     </CourseCard>
                     <Button action={handleSubmit} text='Modificar curso' type='modify' />
+                    <Button
+                        action={() => navigate(`/inscripciones/${id}`)}
+                        text='Ver inscripciones'
+                        type='modify'
+                    />
+                    <Button action={handleDelete} text='Eliminar curso' type='delete' />
                 </div>
             </div>
         </div>

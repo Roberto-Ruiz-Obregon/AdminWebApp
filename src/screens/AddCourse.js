@@ -8,6 +8,7 @@ import Input from '../components/Input';
 import InputImage from '../components/InputImage';
 import Select from '../components/Select';
 import Button from '../components/Button';
+import { Video, Users, Calendar } from 'react-feather';
 import '../styles/addCourse.css';
 
 function AddCourse() {
@@ -27,6 +28,8 @@ function AddCourse() {
     const [accessLink, setAccessLink] = useState('https://zoom.us/');
     const [address, setAddress] = useState('');
     const [status, setStatus] = useState('');
+    const [bank, setBank] = useState('');
+    const [bankAccount, setBankAccount] = useState('');
     const [cost, setCost] = useState(0);
 
     // Topics
@@ -94,6 +97,8 @@ function AddCourse() {
             form.append('accessLink', accessLink);
             form.append('address', address);
             form.append('status', status);
+            form.append('bank', bank);
+            form.append('bankAccount', bankAccount);
             form.append('cost', cost);
             topicsInCourse.forEach((topic) => {
                 form.append(`topics[]`, topic._id);
@@ -205,13 +210,29 @@ function AddCourse() {
                         options={['Gratuito', 'Pagado']}
                     />
                     {status === 'Pagado' ? (
-                        <Input
-                            label='Costo'
-                            placeholder='150'
-                            getVal={cost}
-                            setVal={setCost}
-                            type='number'
-                        />
+                        <React.Fragment>
+                            <Input
+                                label='Banco de la cuenta'
+                                placeholder='Bank of America'
+                                getVal={bank}
+                                setVal={setBank}
+                                type='string'
+                            />
+                            <Input
+                                label='Cuenta bancaria que recibira el pago'
+                                placeholder='3974619276419864'
+                                getVal={bankAccount}
+                                setVal={setBankAccount}
+                                type='number'
+                            />
+                            <Input
+                                label='Costo'
+                                placeholder='150'
+                                getVal={cost}
+                                setVal={setCost}
+                                type='number'
+                            />
+                        </React.Fragment>
                     ) : (
                         <></>
                     )}
@@ -246,13 +267,19 @@ function AddCourse() {
                 </form>
                 <div className='course-container'>
                     <CourseCard
-                        courseName={courseName}
-                        description={description}
-                        startDate={startDate}
-                        occupation={status}
-                        modality={modality}
                         imgSrc={preview}
-                    />
+                        title={courseName}
+                        description={description}>
+                        <div>
+                            {modality === 'Remoto' ? <Video /> : <Users />}
+                            <p>{modality}</p>
+                        </div>
+                        <div>
+                            <Calendar />
+                            <p>{new Date(startDate).toLocaleDateString()}</p>
+                        </div>
+                        <div>{cost ? <p>$ {cost}</p> : <p>Gratis</p>}</div>
+                    </CourseCard>
                     <Button action={handleSubmit} text='Crear curso' type='create' />
                 </div>
             </div>

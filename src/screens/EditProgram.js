@@ -16,6 +16,8 @@ const EditProgram = () => {
     const [programName, setProgramName] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
+    const [hasLimit, setHasLimit] = useState('');
+    const [limitDate, setLimitDate] = useState('');
     const [image, setImage] = useState(null);
     const [preview, setPreview] = useState('');
 
@@ -26,10 +28,13 @@ const EditProgram = () => {
                     const program = await getProgram(id);
                     setProgramName(program.programName);
                     setDescription(program.description);
+                    setHasLimit(program.hasLimit);
+                    if (program.limitDate) setLimitDate(program.limitDate.substr(0, 10));
                     setCategory(program.category);
                     setPreview(program.imageUrl);
-                }
-                catch (error) {
+                    console.log(program);
+                } catch (error) {
+                    console.log(error);
                     FireError(error.response.data.message);
                 }
             })();
@@ -37,6 +42,8 @@ const EditProgram = () => {
             // Asegurarnos que el forms esté vacío
             setProgramName('');
             setDescription('');
+            setHasLimit('');
+            setLimitDate('');
             setCategory('');
             setImage(null);
             setPreview('');
@@ -59,42 +66,45 @@ const EditProgram = () => {
         form.append('description', description);
         form.append('category', category);
         form.append('programImage', image);
+        form.append('hasLimit', hasLimit);
+        form.append('limitDate', limitDate);
+
         const confirmation = await FireQuestion(
             '¿Está seguro de que desea guardar los cambios?',
             'Todas las modificaciones se aplicarán de inmediato.'
         );
         if (confirmation.isDismissed) return;
-        
+
         try {
             let program = null;
-            if (id)
-                program = await patchProgram(id, form);
-            else
-                program = await postProgram(form);
+            if (id) program = await patchProgram(id, form);
+            else program = await postProgram(form);
+
             FireSucess('Programa guardado con éxito.');
+
             navigate(`/programs/program/${program._id}`);
-        }
-        catch (error) {
+        } catch (error) {
             FireError(error.response.data.message);
         }
     };
 
     const handleDelete = async () => {
-        if (!id)
-            return;
+        if (!id) return;
 
         const confirmation = await FireQuestion(
             '¿Está seguro de que desea eliminar este programa?',
             'Esta acción es irreversible.'
         );
+
         if (confirmation.isDismissed) return;
 
         try {
             await deleteProgram(id);
+
             FireSucess('Programa eliminado con exito.');
+
             navigate('/programs');
-        }
-        catch (error) {
+        } catch (error) {
             FireError(error.response.data.message);
         }
     };
@@ -119,7 +129,8 @@ const EditProgram = () => {
                         setVal={setDescription}
                         type='text'
                     />
-                    <Select className='input-general' 
+                    <Select
+                        className='input-general'
                         label='Categoría'
                         getVal={category}
                         setVal={setCategory}
@@ -130,21 +141,49 @@ const EditProgram = () => {
                         getVal={image}
                         setVal={setImage}
                     />
+                    <Select
+                        className='input-general'
+                        label={`Tipo de ${category}`}
+                        getVal={hasLimit}
+                        setVal={setHasLimit}
+                        options={[
+                            'Sin limite de inscripcion',
+                            'Con limite de inscripcion',
+                        ]}
+                    />
+                    {hasLimit === 'Con limite de inscripcion' ? (
+                        <Input
+                            label='Fecha de limite '
+                            placeholder=''
+                            getVal={limitDate}
+                            setVal={setLimitDate}
+                            type='date'
+                        />
+                    ) : (
+                        <></>
+                    )}
                 </form>
                 <div className='course-container'>
-                    <CourseCard 
+                    <CourseCard
                         imgSrc={preview}
                         title={programName}
-                        description={description}
-                    >
+                        description={description}>
                         <div>
                             <p>{category}</p>
                         </div>
                     </CourseCard>
-                    <Button action={handleSubmit} text={`${id ? 'Modificar' : 'Crear'} programa`} type='modify' />
-                    { id &&
-                        <Button action={handleDelete} text='Eliminar programa' type='delete' />
-                    }
+                    <Button
+                        action={handleSubmit}
+                        text={`${id ? 'Modificar' : 'Crear'} programa`}
+                        type='modify'
+                    />
+                    {id && (
+                        <Button
+                            action={handleDelete}
+                            text='Eliminar programa'
+                            type='delete'
+                        />
+                    )}
                 </div>
             </div>
         </div>
