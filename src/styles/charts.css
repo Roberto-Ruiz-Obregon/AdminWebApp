@@ -46,7 +46,10 @@
   position: relative;
   top: 35%;
   margin-left: 4%;
+  padding: 15px;
 }
+
+
 
 .int_zona {
   position: absolute;

@@ -227,7 +227,7 @@ const Dashboard = () => {
       </div>
       <div className="chart2">
         <h3>Inscripciones por zona</h3>
-        <Pie height={180} width={800} options={options} data={inscriptionChartData}/>
+        <Pie height={380} width={850} options={options} data={inscriptionChartData}/>
       </div>
       <div className="inputArea">
         <Input
