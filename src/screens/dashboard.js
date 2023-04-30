@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getPostalCode, getInscriptions, getTopics, filterInscriptions } from '../client/stats';
+import { FireError } from '../utils/alertHandler';
 import '../styles/button.css';
 import Input from '../components/Input';
 import Button from '../components/Button';
@@ -30,9 +31,14 @@ ChartJS.register(
   Legend
 );
 
+/**
+ * Graphs with realtime data are displayed on the dashboard
+ * 
+ * @return {*} 
+ */
 const Dashboard = () => {
   const [postalCode, setPostalCode] = useState('');
-  // const [postalCodeTopics, setPostalCodeTopics] = useState('');
+
   const [userChartData, setUserChartData] = useState({
     labels: [],
     datasets: [
@@ -132,91 +138,57 @@ const Dashboard = () => {
     };
     fetchInscriptionData();
   }, []);
-
-  // - 
-
-  useEffect(() => {
-    const fetchTopicsData = async () => {
-      if (!postalCode) return;
-      const result = await getTopics(postalCode);
-      const labels = result.map((item) => item._id);
-      console.log("test de resultados", result)
-      const counts = result.map((item) => item.totalUsers);
+  const handlePostalCode = async () => {
+    try {
+      if (!postalCode) {
+        return;
+      }
+  
+      const topicsData = await getTopics(postalCode);
+  
+      if (!topicsData || !topicsData.result || topicsData.result.length === 0) {
+        throw new Error('No se encontraron resultados para el código postal proporcionado');
+      }
+  
+      const topicsLabels = topicsData.result.map((item) => item._id);
+      const topicsCounts = topicsData.result.map((item) => item.totalUsers);
       setTopicsChartData({
-        labels: labels,
+        labels: topicsLabels,
         datasets: [
           {
-            data: counts,
-            label: 'Intereses de usuarios por zona',
-            backgroundColor: '#1D86A2',
+            data: topicsCounts,
+            label: 'Topics de usuarios por zona',
+            backgroundColor: '#8E1F94',
             fill: false,
+            lineTension: 1,
           },
         ],
       });
-    };    
-    fetchTopicsData();
-  }, [postalCode]);
-
-  useEffect(() => {
-    const fetchInscriptionsData = async () => {
-      if (!postalCode) return;
-      const result = await filterInscriptions(postalCode);
-      const labels = result.map((item) => item._id);
-      console.log(result)
-      const counts = result.map((item) => item.totalUsers);
+  
+      const interestsData = await filterInscriptions(postalCode);
+  
+      if (!interestsData || !interestsData.result || interestsData.result.length === 0) {
+        throw new Error('No se encontraron inscripciones para el código postal proporcionado');
+      }
+  
+      const interestsLabels = interestsData.result.map((item) => item._id);
+      const interestsCounts = interestsData.result.map((item) => item.totalUsers);
       setInterestsChartData({
-        labels: labels,
+        labels: interestsLabels,
         datasets: [
           {
-            data: counts,
+            data: interestsCounts,
             label: 'Inscripciones de usuarios por zona',
             backgroundColor: '#1DCA30',
             fill: false,
+            lineTension: 1,
           },
         ],
       });
-    };    
-    fetchInscriptionsData();
-  }, [postalCode]);
-
-  const handlePostalCode = async () => {
-    if (!postalCode) {
-      return;
+    } catch (error) {
+      FireError(error.message);
     }
-  
-    const topicsData = await getTopics(postalCode);
-    const topicsLabels = topicsData.result.map((item) => item._id);
-    const topicsCounts = topicsData.result.map((item) => item.totalUsers);
-    setTopicsChartData({
-      labels: topicsLabels,
-      datasets: [
-        {
-          data: topicsCounts,
-          label: 'Topics de usuarios por zona',
-          backgroundColor: '#8E1F94',
-          fill: false,
-          lineTension: 1,
-        },
-      ],
-    });
-  
-    const interestsData = await filterInscriptions(postalCode);
-    const interestsLabels = interestsData.result.map((item) => item._id);
-    const interestsCounts = interestsData.result.map((item) => item.totalUsers);
-    setInterestsChartData({
-      labels: interestsLabels,
-      datasets: [
-        {
-          data: interestsCounts,
-          label: 'Inscripciones de usuarios por zona',
-          backgroundColor: '#1DCA30',
-          fill: false,
-          lineTension: 1,
-        },
-      ],
-    });
   };
-  
   
 
   return (

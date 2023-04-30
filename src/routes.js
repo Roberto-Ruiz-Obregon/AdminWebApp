@@ -14,7 +14,7 @@ import Admins from './screens/Admins';
 import Dashboard from './screens/dashboard';
 
 const routes = [
-    { path: '/', name: 'Dashboard', Component: Dashboard, isPrivate: true, inNavbar: true },
+    { path: '/', name: 'Inicio', Component: Dashboard, isPrivate: true, inNavbar: true },
     {
         path: '/enviarAnuncio',
         name: 'Anuncios',
