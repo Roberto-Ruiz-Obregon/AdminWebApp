@@ -27,7 +27,7 @@ function Topics() {
             const newTopic = await postTopic(topic);
             setTopics([...topics, newTopic]);
 
-            FireSucess('Nuevo interes agregado con exito.');
+            FireSucess('Nuevo interés agregado con éxito.');
         } catch (error) {
             FireError(error.response.data.message);
         }
@@ -46,7 +46,7 @@ function Topics() {
 
             setTopics(topics.filter((topic) => topic._id !== id));
 
-            FireSucess('Se ha eliminado el interes con exito.');
+            FireSucess('Se ha eliminado el interes con éxito.');
         } catch (error) {
             FireError(error.response.data.message);
         }
