@@ -109,7 +109,7 @@ const Dashboard = () => {
           {
             data: counts,
             label: 'Usuarios en esta zona',
-            backgroundColor: '#1D86A2',
+            backgroundColor: '#27B0C3',
             fill: true,
             lineTension: 0.7,
           },
@@ -130,7 +130,7 @@ const Dashboard = () => {
           {
             data: counts,
             label: 'Inscripciones por zona',
-            backgroundColor: '#83136A',
+            backgroundColor: '#27B0C3',
             fill: false,
           },
         ],
@@ -158,7 +158,7 @@ const Dashboard = () => {
           {
             data: topicsCounts,
             label: 'Topics de usuarios por zona',
-            backgroundColor: '#8E1F94',
+            backgroundColor: '#27B0C3',
             fill: false,
             lineTension: 1,
           },
@@ -179,7 +179,7 @@ const Dashboard = () => {
           {
             data: interestsCounts,
             label: 'Inscripciones de usuarios por zona',
-            backgroundColor: '#1DCA30',
+            backgroundColor: '#27B0C3',
             fill: false,
             lineTension: 1,
           },
@@ -189,10 +189,19 @@ const Dashboard = () => {
       FireError(error.message);
     }
   };
-  
 
   return (
     <div className="container">
+      <div className="introText">
+        <h7><b>¡Bienvenid@!</b></h7>
+        <p class="paragraph">
+          <div>Estamos contentos de tenerte aquí, donde podrás encontrar diferentes 
+            herramientas para crear, modificar y/o eliminar módulos, así como aceptar o rechazar solicitudes.</div>
+        </p>
+      </div>
+      <p class="paragraph2">
+          <div>Para las últimas dos gráficas es necesario introducir un código postal
+            para poder visualizarlas.</div></p>
       <div className="chart1">
         <h3>Usuarios por zona</h3>
         <Bar width={500} height={350} options={options} data={userChartData}/>
