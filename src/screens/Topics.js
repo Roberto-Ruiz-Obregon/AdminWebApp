@@ -46,7 +46,7 @@ function Topics() {
 
             setTopics(topics.filter((topic) => topic._id !== id));
 
-            FireSucess('Se ha eliminado el interes con éxito.');
+            FireSucess('Se ha eliminado el interés con éxito.');
         } catch (error) {
             FireError(error.response.data.message);
         }
@@ -67,7 +67,7 @@ function Topics() {
                             type='text'
                         />
                     </div>
-                    <Button action={handleSubmit} text='Crear interes' type='create' />
+                    <Button action={handleSubmit} text='Crear interés' type='create' />
                 </form>
             </div>
             <h2>Intereses Agregados</h2>

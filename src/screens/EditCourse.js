@@ -148,7 +148,7 @@ function EditCourse() {
 
             await patchCourse(id, form);
 
-            FireSucess('Curso mofificado con exito.');
+            FireSucess('Curso mofificado con éxito.');
         } catch (error) {
             FireError(error.response.data.message);
         }
@@ -165,7 +165,7 @@ function EditCourse() {
         try {
             await deleteCourse(id);
 
-            FireSucess('Curso eliminado con exito.');
+            FireSucess('Curso eliminado con éxito.');
 
             navigate('/cursos');
         } catch (error) {
@@ -180,14 +180,14 @@ function EditCourse() {
             <div className='form-preview-container'>
                 <form className='form-container'>
                     <Input
-                        label='Titulo del curso'
+                        label='Título del curso'
                         placeholder='Curso de lectura'
                         getVal={courseName}
                         setVal={setCourseName}
                         type='text'
                     />
                     <Input
-                        label='Descripcion del curso'
+                        label='Descripción del curso'
                         placeholder='En este curso...'
                         getVal={description}
                         setVal={setDescription}
@@ -209,7 +209,7 @@ function EditCourse() {
                     />
                     <Input
                         label='Horario del curso'
-                        placeholder='Este curso se imparte a las 6:00pm los sabados'
+                        placeholder='Este curso se imparte a las 6:00pm los sábados'
                         getVal={schedule}
                         setVal={setSchedule}
                         type='text'
@@ -229,14 +229,14 @@ function EditCourse() {
                         type='number'
                     />
                     <Input
-                        label='Codigo postal del curso'
+                        label='Código postal del curso'
                         placeholder='76159'
                         getVal={postalCode}
                         setVal={setPostalCode}
                         type='text'
                     />
                     <InputImage
-                        label='Elegir nueva imagen de la portada, dejar vacio si no se quiere modificar'
+                        label='Elegir nueva imagen de la portada, dejar vacío si no se quiere modificar'
                         getVal={image}
                         setVal={setImage}
                     />
@@ -256,8 +256,8 @@ function EditCourse() {
                         />
                     ) : (
                         <Input
-                            label='Direccion del curso'
-                            placeholder='Calle de la Revolucion #130'
+                            label='Dirección del curso'
+                            placeholder='Calle de la Revolución #130'
                             getVal={address}
                             setVal={setAddress}
                             type='text'
@@ -279,7 +279,7 @@ function EditCourse() {
                                 type='string'
                             />
                             <Input
-                                label='Cuenta bancaria que recibira el pago'
+                                label='Cuenta bancaria que recibirá el pago'
                                 placeholder='3974619276419864'
                                 getVal={bankAccount}
                                 setVal={setBankAccount}

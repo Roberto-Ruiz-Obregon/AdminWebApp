@@ -27,7 +27,7 @@ const SignupForm = () => {
             const data = { name, email, password, passwordConfirm };
             const response = await postSignup(data);
             if (response.status === 'success') {
-                FireSucess('Se ha envido la solicitud exitosamente. Por favor expere a que la acepten.');
+                FireSucess('Se ha enviado la solicitud exitosamente. Por favor espere a que la acepten.');
                 navigate('/login');
             }
         } catch (error) {

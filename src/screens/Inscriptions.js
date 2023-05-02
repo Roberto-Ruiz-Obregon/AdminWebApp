@@ -31,7 +31,7 @@ function Inscriptions() {
         try {
             const confirmation = await FireQuestion(
                 '¿Está seguro de que quiere eliminar este interés?',
-                'El usuario inscrito dejera de tener acceso a este curso.'
+                'El usuario inscrito dejará de tener acceso a este curso.'
             );
 
             if (confirmation.isDismissed) return;
@@ -40,7 +40,7 @@ function Inscriptions() {
 
             setInscriptions(inscriptions.filter((inscription) => inscription._id !== id));
 
-            FireSucess('Se ha eliminado la inscripcion con exito.');
+            FireSucess('Se ha eliminado la inscripción con éxito.');
         } catch (error) {
             FireError(error.response.data.message);
         }
