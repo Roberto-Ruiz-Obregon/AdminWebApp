@@ -197,11 +197,13 @@ const Dashboard = () => {
         <p class="paragraph">
           <div>Estamos contentos de tenerte aquí, donde podrás encontrar diferentes 
             herramientas para crear, modificar y/o eliminar módulos, así como aceptar o rechazar solicitudes.</div>
+          <div>Para las últimas dos gráficas es necesario introducir un código postal
+            para poder visualizarlas.</div>
         </p>
       </div>
-      <p class="paragraph2">
-          <div>Para las últimas dos gráficas es necesario introducir un código postal
-            para poder visualizarlas.</div></p>
+      <div class="logoFundacion">
+        <img src="../assets/logoFundacion.png" alt="Logo de la Fundacion"/>
+      </div>
       <div className="chart1">
         <h3>Usuarios por zona</h3>
         <Bar width={500} height={350} options={options} data={userChartData}/>

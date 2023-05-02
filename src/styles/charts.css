@@ -1,7 +1,7 @@
 .container {
   display: grid;
   grid-template-areas:
-    "introText paragraph2"
+    "introText logo"
     "chart1 chart2"
     "inputArea button"
     "chart3 chart4";
@@ -18,6 +18,10 @@
   color: #cf2a2a;
   text-align: justify;
   margin-top: 20px;
+}
+
+.logoFundacion {
+  width: 400px;
 }
 
 .introText .paragraph {
