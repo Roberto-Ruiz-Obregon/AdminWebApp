@@ -1,7 +1,7 @@
 .container {
   display: grid;
   grid-template-areas:
-    "introText logo"
+    "logoFundacion introText"
     "chart1 chart2"
     "inputArea button"
     "chart3 chart4";
@@ -18,16 +18,19 @@
   color: #cf2a2a;
   text-align: justify;
   margin-top: 20px;
+  text-align: center;
 }
 
 .logoFundacion {
-  width: 400px;
+  text-align: center;
+  padding-top: 15px;
 }
 
 .introText .paragraph {
   margin-top: 20px;
   font-size: 20px;
   color: black;
+  text-align: left;
 }
 
 .paragraph2 {
@@ -38,10 +41,12 @@
 
 .chart1 {
   grid-area: chart1;
+  text-align: center;
 }
 
 .chart2 {
   grid-area: chart2;
+  text-align: center;
 }
 
 .postal-code-container{

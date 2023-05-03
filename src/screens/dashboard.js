@@ -18,6 +18,7 @@ import {
 } from 'chart.js';
 import { Bar,  Pie } from 'react-chartjs-2';
 import '../styles/charts.css' 
+import logo from '../assets/logoFundacion.png'
 
 ChartJS.register(
   CategoryScale,
@@ -192,6 +193,9 @@ const Dashboard = () => {
 
   return (
     <div className="container">
+      <div class="logoFundacion">
+        <img src={logo} alt="Logo de la Fundacion" width={400}/>
+      </div>
       <div className="introText">
         <h7><b>¡Bienvenid@!</b></h7>
         <p class="paragraph">
@@ -200,9 +204,6 @@ const Dashboard = () => {
           <div>Para las últimas dos gráficas es necesario introducir un código postal
             para poder visualizarlas.</div>
         </p>
-      </div>
-      <div class="logoFundacion">
-        <img src="../assets/logoFundacion.png" alt="Logo de la Fundacion"/>
       </div>
       <div className="chart1">
         <h3>Usuarios por zona</h3>
