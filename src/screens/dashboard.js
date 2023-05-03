@@ -131,7 +131,8 @@ const Dashboard = () => {
           {
             data: counts,
             label: 'Inscripciones por zona',
-            backgroundColor: '#27B0C3',
+            backgroundColor: ['#18a3ad','#b97cbf','#BDBDBD','#F48FB1',
+            '#81C784','#FF7043','#7b0e87','#30a5c2','#BA68C8','#C5E1A5','#82bfd9','#a8275b'],
             fill: false,
           },
         ],
