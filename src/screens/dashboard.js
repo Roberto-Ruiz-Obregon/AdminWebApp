@@ -202,7 +202,7 @@ const Dashboard = () => {
         </p>
       </div>
       <div class="logoFundacion">
-        <img src="../assets/logoFundacion.png" alt="Logo de la Fundacion"/>
+        <img src="../assets/logoFundacion" alt="Logo de la Fundacion"/>
       </div>
       <div className="chart1">
         <h3>Usuarios por zona</h3>
