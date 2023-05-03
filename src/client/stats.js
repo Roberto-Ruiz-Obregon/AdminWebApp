@@ -3,7 +3,7 @@ import axios from 'axios';
 const baseApiEndpoint = process.env.REACT_APP_BASE_API_ENDPOINT;
 
 export async function getPostalCode() {
-    const result = await axios.get(`${baseApiEndpoint}aggregations/zones-most-users`);
+    const result = await axios.get(`${baseApiEndpoint}/aggregations/zones-most-users`);
     return result.data.data;
 }
 
