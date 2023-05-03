@@ -12,43 +12,44 @@ const Programs = () => {
     const navigate = useNavigate();
     const [programs, setPrograms] = useState([]);
     const [getPage, setPage] = useState(1);
-    const [getName, setName] = useState("");
-    const [getLength, setLength] = useState("");
-    const [getCategory, setCategory] =  useState("");
+    const [getName, setName] = useState('');
+    const [getLength, setLength] = useState('');
+    const [getCategory, setCategory] = useState('');
 
     useEffect(() => {
         (async () => {
             try {
                 const data = await getPrograms();
                 setPrograms(data);
-                setLength(data.length)
-            }
-            catch(error) {
+                setLength(data.length);
+            } catch (error) {
                 console.error(error);
             }
         })();
     }, []);
 
     useEffect(() => {
-        getPrograms(getName, getPage, 8, getCategory)
-        .then(data => {
-            setPrograms(data)
-            setLength(data.length)
+        getPrograms(getName, getPage, 8, getCategory).then((data) => {
+            setPrograms(data);
+            setLength(data.length);
         });
     }, [getPage, getName, getCategory]);
-
 
     return (
         <Fragment>
             <div className='header-container'>
                 <h4>Inicio / Programas</h4>
-                <Button action = {() => navigate('/programs/program/')} text="Agregar nuevo programa" type = "create"/>
+                <Button
+                    action={() => navigate('/programs/program/')}
+                    text='Agregar nuevo programa'
+                    type='create'
+                />
             </div>
             <div className='search-container'>
                 <div className='input-container'>
                     <Input
                         label='Buscar programa por nombre:'
-                        placeholder = "Buscar"
+                        placeholder='Buscar'
                         getVal={getName}
                         setVal={setName}
                         type='text'
@@ -64,22 +65,30 @@ const Programs = () => {
                     />
                 </div>
             </div>
-            <div id="course-container">
-                { programs.map(program => (
-                    <CourseCard 
+            <div id='course-container'>
+                {programs.map((program) => (
+                    <CourseCard
                         key={program._id}
                         imgSrc={program.imageUrl}
                         title={program.programName}
-                        description={program.description}
-                        onClick={() => navigate(`/programs/program/${program._id}`)}
-                    >
+                        description={(() => {
+                            const desc = program.description.split(' ');
+                            if (desc.length < 8) return desc.join(' ');
+                            else return desc.splice(0, 8).join(' ') + '...';
+                        })()}
+                        onClick={() => navigate(`/programs/program/${program._id}`)}>
                         <div>
                             <p>{program.category}</p>
                         </div>
                     </CourseCard>
-                )) }
+                ))}
             </div>
-            <Pagination lenght = {getLength} getPage = {getPage} setPage = {setPage} limit = {8} />
+            <Pagination
+                lenght={getLength}
+                getPage={getPage}
+                setPage={setPage}
+                limit={8}
+            />
         </Fragment>
     );
 };

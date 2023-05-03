@@ -6,12 +6,12 @@
 
 #course-container .course-card {
     width: 15vw;
-    height: 62vh;
+    /* height: 62vh; */
     margin-bottom: 2rem;
 }
 
-.header-container{
-    display:flex;
+.header-container {
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -22,25 +22,25 @@ label {
     margin-right: 30px;
 }
 
-input[type="text"] {
+input[type='text'] {
     padding: 10px;
     border: 2px solid #bdb0b0;
     font-size: 15px;
     transition: border-color 0.3s ease-in-out;
 }
 
-input[type="text"]:focus {
+input[type='text']:focus {
     border-color: rgb(232, 85, 72);
 }
 
 .search-container {
     display: flex;
 }
-  
+
 .input-container:first-child {
     flex-basis: 70%;
 }
-  
+
 .input-container:last-child {
     flex-basis: 30%;
     height: 80px;
@@ -49,12 +49,11 @@ input[type="text"]:focus {
 .search-container2 {
     display: flex;
 }
-  
+
 .input-container2 {
     flex: 1;
 }
-  
+
 .input-general2 {
     width: 100%;
 }
-  
