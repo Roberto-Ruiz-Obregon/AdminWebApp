@@ -126,7 +126,11 @@ function Courses() {
                         key={course._id}
                         imgSrc={course.imageUrl}
                         title={course.courseName}
-                        description={course.description}
+                        description={(() => {
+                            const desc = course.description.split(' ');
+                            if (desc.length < 8) return desc.join(' ');
+                            else return desc.splice(0, 8).join(' ') + '...';
+                        })()}
                         onClick={() => navigate(`/cursos/${course._id}`)}>
                         <div>
                             {course.modality === 'Remoto' ? <Video /> : <Users />}
