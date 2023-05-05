@@ -66,7 +66,7 @@ const Dashboard = () => {
     datasets: [
       {
         data: [],
-        label: 'Topics por zona',
+        label: 'Intereses por zona',
         fill: true,
         lineTension: 0.1,
       },
@@ -130,9 +130,12 @@ const Dashboard = () => {
         datasets: [
           {
             data: counts,
-            label: 'Inscripciones por zona',
+
+            label: 'Cantidad de usuarios inscritos en esta zona',
+         
             backgroundColor: ['#18a3ad','#b97cbf','#BDBDBD','#F48FB1',
             '#81C784','#FF7043','#7b0e87','#30a5c2','#BA68C8','#C5E1A5','#82bfd9','#a8275b'],
+
             fill: false,
           },
         ],
@@ -159,8 +162,11 @@ const Dashboard = () => {
         datasets: [
           {
             data: topicsCounts,
-            label: 'Topics de usuarios por zona',
+
+            label: 'Usuarios con este interés',
+          
             backgroundColor: '#27B0C3',
+
             fill: false,
             lineTension: 1,
           },
@@ -180,8 +186,11 @@ const Dashboard = () => {
         datasets: [
           {
             data: interestsCounts,
-            label: 'Inscripciones de usuarios por zona',
+
+            label: 'Cantidad de usuarios inscritos',
+            
             backgroundColor: '#27B0C3',
+
             fill: false,
             lineTension: 1,
           },
@@ -211,7 +220,7 @@ const Dashboard = () => {
         <Bar width={500} height={350} options={options} data={userChartData}/>
       </div>
       <div className="chart2">
-        <h3>Inscripciones por zona</h3>
+        <h3>Inscripciones a cursos por zona</h3>
         <Pie height={380} width={850} options={options} data={inscriptionChartData}/>
       </div>
       <div className="inputArea">
@@ -234,7 +243,7 @@ const Dashboard = () => {
         <Bar width={500} height={350} options={options} data={topicsChartData}/>
       </div>
       <div className="chart4">
-        <h3>Inscripciones por zona</h3>
+        <h3>Usuarios inscritos por zona</h3>
         <Bar width={550} height={390} options={options} data={interestsChartData}/>
       </div>
     </div>

@@ -101,7 +101,7 @@ const EditProgram = () => {
         try {
             await deleteProgram(id);
 
-            FireSucess('Programa eliminado con exito.');
+            FireSucess('Programa eliminado con éxito.');
 
             navigate('/programs');
         } catch (error) {
@@ -123,7 +123,7 @@ const EditProgram = () => {
                         type='text'
                     />
                     <Input
-                        label='Descripcion del programa'
+                        label='Descripción del programa'
                         placeholder='En este programa...'
                         getVal={description}
                         setVal={setDescription}
@@ -147,13 +147,13 @@ const EditProgram = () => {
                         getVal={hasLimit}
                         setVal={setHasLimit}
                         options={[
-                            'Sin limite de inscripcion',
-                            'Con limite de inscripcion',
+                            'Sin limite de inscripción',
+                            'Con limite de inscripción',
                         ]}
                     />
-                    {hasLimit === 'Con limite de inscripcion' ? (
+                    {hasLimit === 'Con limite de inscripción' ? (
                         <Input
-                            label='Fecha de limite '
+                            label='Fecha de límite '
                             placeholder=''
                             getVal={limitDate}
                             setVal={setLimitDate}

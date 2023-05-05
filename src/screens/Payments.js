@@ -23,8 +23,8 @@ function Payments() {
     const handleAccept = async (id) => {
         try {
             const confirmation = await FireQuestion(
-                '¿Está seguro de que desea aceptar este pado?',
-                'El usuario sera notificado y se registrara su inscripcion al curso.'
+                '¿Está seguro de que desea aceptar este pago?',
+                'El usuario será notificado y se registrará su inscripción al curso.'
             );
 
             if (confirmation.isDismissed) return;
@@ -33,7 +33,7 @@ function Payments() {
 
             setPayments(payments.filter((payment) => payment._id !== id));
 
-            FireSucess('Pago aprobado con exito.');
+            FireSucess('Pago aprobado con éxito.');
         } catch (error) {
             FireError(error.response.data.message);
         }
@@ -42,8 +42,8 @@ function Payments() {
     const handleDecline = async (id) => {
         try {
             const confirmation = await FireQuestion(
-                '¿Está seguro de que desea rechazar este pado?',
-                'El usuario sera notificado y se eliminara su peticion de pago.'
+                '¿Está seguro de que desea rechazar este pago?',
+                'El usuario será notificado y se eliminará su petición de pago.'
             );
 
             if (confirmation.isDismissed) return;
@@ -52,7 +52,7 @@ function Payments() {
 
             setPayments(payments.filter((payment) => payment._id !== id));
 
-            FireSucess('Pago declinado con exito.');
+            FireSucess('Pago declinado con éxito.');
         } catch (error) {
             FireError(error.response.data.message);
         }

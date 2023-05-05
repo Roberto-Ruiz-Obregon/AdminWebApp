@@ -107,7 +107,7 @@ function AddCourse() {
 
             await postCourse(form);
 
-            FireSucess('Nuevo curso creado con exito.');
+            FireSucess('Nuevo curso creado con éxito.');
         } catch (error) {
             FireError(error.response.data.message);
         }
@@ -120,14 +120,14 @@ function AddCourse() {
             <div className='form-preview-container'>
                 <form className='form-container'>
                     <Input
-                        label='Titulo del curso'
+                        label='Título del curso'
                         placeholder='Curso de lectura'
                         getVal={courseName}
                         setVal={setCourseName}
                         type='text'
                     />
                     <Input
-                        label='Descripcion del curso'
+                        label='Descripción del curso'
                         placeholder='En este curso...'
                         getVal={description}
                         setVal={setDescription}
@@ -149,7 +149,7 @@ function AddCourse() {
                     />
                     <Input
                         label='Horario del curso'
-                        placeholder='Este curso se imparte a las 6:00pm los sabados'
+                        placeholder='Este curso se imparte a las 6:00pm los sábados'
                         getVal={schedule}
                         setVal={setSchedule}
                         type='text'
@@ -169,7 +169,7 @@ function AddCourse() {
                         type='number'
                     />
                     <Input
-                        label='Codigo postal del curso'
+                        label='Código postal del curso'
                         placeholder='76159'
                         getVal={postalCode}
                         setVal={setPostalCode}
@@ -196,8 +196,8 @@ function AddCourse() {
                         />
                     ) : (
                         <Input
-                            label='Direccion del curso'
-                            placeholder='Calle de la Revolucion #130'
+                            label='Dirección del curso'
+                            placeholder='Calle de la Revolución #130'
                             getVal={address}
                             setVal={setAddress}
                             type='text'
@@ -219,7 +219,7 @@ function AddCourse() {
                                 type='string'
                             />
                             <Input
-                                label='Cuenta bancaria que recibira el pago'
+                                label='Cuenta bancaria que recibirá el pago'
                                 placeholder='3974619276419864'
                                 getVal={bankAccount}
                                 setVal={setBankAccount}

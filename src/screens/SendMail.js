@@ -77,17 +77,17 @@ function SendMail() {
                         setVal={setImage}
                     />
                     <Select
-                        label='Selecciona a quienes quieres enviarle el archivo'
+                        label='Selecciona a quiénes quieres enviarle el correo'
                         getVal={sendMode}
                         setVal={setSendMode}
                         options={[
                             'Enviar correo a todos',
-                            'Enviar correo por codigo postal',
+                            'Enviar correo por código postal',
                         ]}
                     />
-                    {sendMode === 'Enviar correo por codigo postal' ? (
+                    {sendMode === 'Enviar correo por código postal' ? (
                         <Input
-                            label='Codigo postal al que se enviaran los correos'
+                            label='Código postal al que se enviaran los correos'
                             placeholder='76159'
                             getVal={postalCode}
                             setVal={setPostalCode}
