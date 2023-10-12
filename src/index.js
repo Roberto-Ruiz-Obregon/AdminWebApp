@@ -9,7 +9,6 @@ import './styles/style.css';
 function App() {
     return (
         <div id='app-container'>
-            <div id='app-base-layout'>
                 <Routes>
                     {routes.map((route) =>
                         route.isPrivate ? (
@@ -19,7 +18,9 @@ function App() {
                                 element={
                                     <PrivateRoute>
                                         <Navbar />
-                                        <route.Component />
+                                        <div id='app-base-layout'>
+                                            <route.Component />
+                                        </div>
                                     </PrivateRoute>
                                 }
                             />
@@ -32,7 +33,6 @@ function App() {
                         )
                     )}
                 </Routes>
-            </div>
         </div>
     );
 }

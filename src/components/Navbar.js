@@ -21,7 +21,7 @@ function Navbar() {
 
     return (
         <div className='navbar'>
-            <div>
+            <div className='navbar-links'>
                 {routes
                     .filter((route) => route.isPrivate && route.inNavbar)
                     .map((route) => (
@@ -36,7 +36,6 @@ function Navbar() {
             </div>
             <div className='navbar-logout'>
                 <a onClick={logOutHandler}>
-                    <span>Cerrar sesión</span>
                     <LogOut color="white" />
                 </a>
             </div>
